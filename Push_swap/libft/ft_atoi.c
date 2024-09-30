@@ -6,12 +6,11 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 18:23:32 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/09/22 19:33:41 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:13:54 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	blanks(const char i)
 {
@@ -21,12 +20,12 @@ static int	blanks(const char i)
 		return (0);
 	return (1);
 }
-#include <unistd.h>
+
 long	ft_atoi(const char *nptr)
 {
-	int	i;
+	int		i;
 	long	ptr;
-	int	sign;
+	int		sign;
 
 	i = 0;
 	ptr = 0;

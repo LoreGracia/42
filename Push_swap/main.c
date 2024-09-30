@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:21:07 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/09/24 11:48:02 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/09/30 12:17:50 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 t_stack	*ft_stacknew(char **argv)
 {
 	t_stack	*nodo;
-	int i;
-	
+	int		i;
+
 	i = 1;
 	nodo = malloc(sizeof(t_stack));
 	if (nodo == 0)
@@ -46,7 +46,7 @@ int	ft_stacksize(t_stack *lst)
 void	printlist(t_stack *lst)
 {
 	int	size;
-	int str;
+	int	str;
 
 	size = ft_stacksize(lst);
 	while (lst)
@@ -75,8 +75,8 @@ void	ft_stackclear(t_stack **lst)
 
 int	main(int argc, char **argv)
 {
-	t_stack *a;
-	t_stack *b;
+	t_stack	*a;
+	t_stack	*b;
 
 	b = NULL;
 	if (argc < 2)
@@ -86,13 +86,14 @@ int	main(int argc, char **argv)
 	a = ft_stacknew(argv);
 	if (a == 0)
 		return (-1);
-	//if (ft_ordered(&a) == 0)
-	printlist(a);
-	ft_push(&a, &b, 'b');
-	ft_push(&a, &b, 'b');
-	printlist(a);
-	write(1, "*\n", 2);
-	printlist(b);
-	ft_stackclear(&a);
-	ft_stackclear(&b);
+	if (ft_ordered(&a, &b) == 1)
+		return (ft_stackclear(&a), ft_stackclear(&b), 0);
+	else if (ft_ordered(&a, &b) == 0)
+		printlist(a);
+	if (argc <= 6)
+		ft_sort_small_stack(&a, &b);
+	else if (argc > 6)
+		printlist(a);
+		//ft_sort_big_stack(&a, &b);
+	return (0);
 }
