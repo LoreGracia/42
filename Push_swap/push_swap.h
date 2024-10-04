@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 20:14:24 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/09/30 12:01:50 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/04 11:51:04 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_stack
 }	t_stack;
 
 int		ft_check(char **argv, int argc);
+int		ft_max(int	len, t_stack **a);
 int		ft_stacksize(t_stack *lst);
 t_stack	*ft_stacknew(char **argv);
 int		ft_ordered(t_stack	**stack, t_stack **b);
@@ -36,5 +37,8 @@ void	ft_rr(t_stack **a, t_stack **b);
 void	ft_reverse(t_stack **stack, char c);
 void	ft_rrr(t_stack **a, t_stack **b);
 void	ft_sort_small_stack(t_stack **a, t_stack **b);
+void	ft_sort_big_stack_r(t_stack **a, t_stack **b, int i);
+
+int	ft_median(int len, t_stack **a);
 
 #endif

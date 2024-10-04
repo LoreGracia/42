@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:21:07 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/09/30 12:17:50 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/04 13:01:16 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,12 @@ void	ft_stackclear(t_stack **lst)
 	}
 	*lst = NULL;
 }
-
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
 	t_stack	*b;
+	int max;
 
 	b = NULL;
 	if (argc < 2)
@@ -88,12 +89,18 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (ft_ordered(&a, &b) == 1)
 		return (ft_stackclear(&a), ft_stackclear(&b), 0);
-	else if (ft_ordered(&a, &b) == 0)
-		printlist(a);
+	//else if (ft_ordered(&a, &b) == 0)
+	//	printlist(a);
+	max = ft_max(argc - 1, &a);
+	write(1, &max, 1);
 	if (argc <= 6)
 		ft_sort_small_stack(&a, &b);
 	else if (argc > 6)
-		printlist(a);
-		//ft_sort_big_stack(&a, &b);
-	return (0);
+		//printlist(a);
+		//ft_sort_big_stack_t(&a, &b, argc - 1);
+		ft_sort_big_stack_r(&a, &b, max);
+	if (ft_ordered(&a, &b) == 1)
+		return (ft_stackclear(&a), ft_stackclear(&b), 0);
+	else
+		return (printlist(a), ft_stackclear(&a), ft_stackclear(&b), 0);
 }
