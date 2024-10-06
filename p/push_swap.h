@@ -26,6 +26,7 @@ typedef struct s_stack
 
 int		ft_check(char **argv, int argc);
 int		ft_max(int	len, t_stack **a);
+int		ft_min(int	len, t_stack **a);
 int		ft_stacksize(t_stack *lst);
 t_stack	*ft_stacknew(char **argv);
 int		ft_ordered(t_stack	**stack, t_stack **b);

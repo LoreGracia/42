@@ -13,22 +13,13 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-int	next(int b, t_stack **a)
+int	ft_next(int b, t_stack **a, int max)
 {
 	t_stack *tmp;
 	int i;
 
-	tmp = *a;
 	i = 2147483647;
-	while (tmp)
-	{
-		if (tmp->num > b && tmp->num <= i)
-			i = tmp->num;
-		if(!tmp->next)
-			break ;
-		tmp = tmp->next;
-	}
-	if (i = b)
+	if (b = max)
 	{
 		tmp = *a;
 		while (tmp)
@@ -40,16 +31,27 @@ int	next(int b, t_stack **a)
 			tmp = tmp->next;
 		}
 	}
+	else
+	{
+		while (tmp)
+		{
+			if (tmp->num > b && tmp->num <= i)
+				i = tmp->num;
+			if(!tmp->next)
+				break ;
+			tmp = tmp->next;
+		}
+	}
 }
 
-void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len)
+void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 {
 	t_stack *tmp;
 	int	m;
-	int l;
+	int 	l;
+	int 	next;
 
 	l = len - 3;
-	tmp = *a;
 	m = ft_median(len, a);
 	while (l--)
 	{
@@ -60,5 +62,13 @@ void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len)
 	}	
 	ft_pos(b, len);
 	ft_sort_small_stack(a, b);
-	while ()
+	tmp = *a;
+	while (*b)
+	{
+		next = ft_next((*b)->num, a, max);
+		while (tmp->num != next)
+		{
+			ft_rotate(a, 'a');
+		}
+	}
 }

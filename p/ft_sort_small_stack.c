@@ -136,7 +136,22 @@ int	ft_max(int	len, t_stack **a)
 		if (tmp->num > i)
 			i = tmp->num;
 	}
-	i = ft_bit_max(i);
+	//i = ft_bit_max(i);
+	return (i);
+}
+
+int	ft_min(int	len, t_stack **a)
+{
+	t_stack *tmp;
+	int i;
+
+	i = 2147483647;
+	tmp = *a;
+	while (len--)
+	{
+		if (tmp->num < i)
+			i = tmp->num;
+	}
 	return (i);
 }
 

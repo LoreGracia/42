@@ -100,7 +100,7 @@ int	main(int argc, char **argv)
 	else if (argc > 6)
 		//printf("%dmax*\n",max);
 		//printlist(a);
-		ft_sort_big_stack_t(&a, &b, argc - 1);
+		ft_sort_big_stack_t(&a, &b, argc - 1, max);
 	//	ft_sort_big_stack_r(&a, &b, 0, max);
 	if (ft_ordered(&a, &b) == 1)
 		return (ft_stackclear(&a), ft_stackclear(&b), 0);
