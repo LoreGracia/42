@@ -66,9 +66,11 @@ void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 	while (*b)
 	{
 		next = ft_next((*b)->num, a, max);
+if (ft_pos() = 1) //tal vez sustituir pos,que devuelva 1 o -1 según si esta a la mitad de len. 
 		while (tmp->num != next)
-		{
 			ft_rotate(a, 'a');
-		}
+else
+while (tmp->num != next)
+			ft_rotate(a, 'a');
 	}
 }
