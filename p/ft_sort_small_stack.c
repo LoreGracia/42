@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:47:23 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/05 18:20:18 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/06 18:38:16 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void	pos(t_stack **stack, int len)
 	}
 }	
 
-int	pos(t_stack **stack, int len, int next)
+int	position(t_stack **stack, int len, int next)
 {
 	t_stack *tmp;
 	int i;

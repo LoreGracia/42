@@ -6,20 +6,20 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:14:18 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/05 19:55:09 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:23:19 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-int	ft_next(int b, t_stack **a, int max)
+int	ft_next(int b, t_stack **a, int max, int len)
 {
 	t_stack *tmp;
-	int i;
+	int 	i;
 
 	i = 2147483647;
-	if (b = max)
+	if (b == max)
 	{
 		tmp = *a;
 		while (tmp)
@@ -33,15 +33,17 @@ int	ft_next(int b, t_stack **a, int max)
 	}
 	else
 	{
-		while (tmp)
+		i = ft_min(len, a);
+		/*while (tmp)
 		{
 			if (tmp->num > b && tmp->num <= i)
 				i = tmp->num;
 			if(!tmp->next)
 				break ;
 			tmp = tmp->next;
-		}
+		}*/
 	}
+	return (i);
 }
 
 void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
@@ -53,6 +55,7 @@ void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 
 	l = len - 3;
 	m = ft_median(len, a);
+	printf("H");
 	while (l--)
 	{
 	//	print("%d|\n", l);
@@ -60,17 +63,23 @@ void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 		if ((*b)->num >= m)
 			ft_rotate(b, 'b');
 	}	
-	ft_pos(b, len);
 	ft_sort_small_stack(a, b);
 	tmp = *a;
-	while (*b)
+	//next = ft_next((*b)->num, a, max, len);
+	//printf("%d||\n", next);
+	/*while (*b)
 	{
-		next = ft_next((*b)->num, a, max);
-if (ft_pos() = 1) //tal vez sustituir pos,que devuelva 1 o -1 según si esta a la mitad de len. 
-		while (tmp->num != next)
-			ft_rotate(a, 'a');
-else
-while (tmp->num != next)
-			ft_rotate(a, 'a');
-	}
+		next = ft_next((*b)->num, a, max, len);
+		if (position(a, len, next) == 1)
+		{
+			while (tmp->num != next)
+				ft_rotate(a, 'a');
+		}
+		else
+		{
+			while (tmp->num != next)
+				ft_reverse(a, 'a');
+		}
+		ft_push(b, a, 'a');
+	}*/
 }
