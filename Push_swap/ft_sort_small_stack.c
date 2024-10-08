@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:47:23 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/04 12:39:46 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:26:44 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,7 @@ int	ft_median(int len, t_stack **a)
 
 static int ft_bit_max(int i)
 {
-	if(i < 8)
-		i = 3;
-	else if (i < 16)
-		i = 4;
-	else if (i < 256)
+	if (i < 256)
 		i = 8;
 	else if (i < 65536)
 		i = 16;
@@ -140,6 +136,6 @@ int	ft_max(int	len, t_stack **a)
 		if (tmp->num > i)
 			i = tmp->num;
 	}
-	ft_bit_max(i);
+	i = ft_bit_max(i);
 	return (i);
 }
