@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:14:18 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/06 19:23:19 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:00:40 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,20 @@ int	ft_next(int b, t_stack **a, int max, int len)
 	int 	i;
 
 	i = 2147483647;
+	tmp = *a;
 	if (b == max)
-	{
-		tmp = *a;
-		while (tmp)
-		{
-			if (tmp->num < i)
-				i = tmp->num;
-			if(!tmp->next)
-				break ;
-			tmp = tmp->next;
-		}
-	}
+		return (ft_min(len, a));
 	else
 	{
-		i = ft_min(len, a);
-		/*while (tmp)
+		while (len--)
 		{
-			if (tmp->num > b && tmp->num <= i)
-				i = tmp->num;
-			if(!tmp->next)
-				break ;
+			if (tmp->num > b)
+			{
+				if(tmp->num < i)
+					i = tmp->num;
+			}
 			tmp = tmp->next;
-		}*/
+		}
 	}
 	return (i);
 }
@@ -55,19 +46,17 @@ void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 
 	l = len - 3;
 	m = ft_median(len, a);
-	printf("H");
 	while (l--)
 	{
-	//	print("%d|\n", l);
 		ft_push(a, b, 'b');
 		if ((*b)->num >= m)
 			ft_rotate(b, 'b');
 	}	
 	ft_sort_small_stack(a, b);
 	tmp = *a;
-	//next = ft_next((*b)->num, a, max, len);
+	next = ft_next((*b)->num, a, max, len);
 	//printf("%d||\n", next);
-	/*while (*b)
+	while (*b)
 	{
 		next = ft_next((*b)->num, a, max, len);
 		if (position(a, len, next) == 1)
@@ -81,5 +70,5 @@ void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 				ft_reverse(a, 'a');
 		}
 		ft_push(b, a, 'a');
-	}*/
+	}
 }
