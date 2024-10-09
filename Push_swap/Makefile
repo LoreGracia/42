@@ -6,7 +6,7 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 16:01:28 by lgracia-          #+#    #+#              #
-#    Updated: 2024/10/08 18:54:15 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/10/09 18:06:15 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ FLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
 
-SRC = main.c ft_check.c ft_move.c ft_sort_small_stack.c ft_double_moves.c ft_sort_big_stack_r.c ft_sort_big_stack_t.c
+SRC = main.c ft_check.c ft_move.c ft_sort_small_stack.c ft_double_moves.c ft_sort_big_stack_r.c 
 
 OBJ = $(SRC:.c=.o)
 

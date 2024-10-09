@@ -6,11 +6,67 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:18:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/08 20:00:29 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:51:41 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_next(int b, t_stack **a, int max, int len)
+{
+	t_stack *tmp;
+	int 	i;
+
+	i = 2147483647;
+	tmp = *a;
+	if (b == max)
+		return (ft_min(len, a));
+	else
+	{
+		while (len--)
+		{
+			if (tmp->num > b)
+			{
+				if(tmp->num < i)
+					i = tmp->num;
+			}
+			tmp = tmp->next;
+		}
+	}
+	return (i);
+}
+#include <stdio.h>
+void	ft_index(t_stack **a, int len,  int max)
+{
+	t_stack	*tmp;
+	int		l;
+	int		i;
+	int		count;
+	int		length;
+
+	tmp = *a;
+	length = len;
+	i = max;
+	count = 0;
+	while (length--)
+	{
+		l = len;
+		while (l--)
+		{
+			if (tmp->num == ft_next(i, a, max, len)) 
+			{
+				tmp->index = count;
+				i = tmp->num;
+				printf("index of %d is %d\n", tmp->num, tmp->index);
+				count++;
+			}
+			if (!tmp)
+				tmp = *a;
+			tmp = tmp->next;
+		}
+		printf("lenght %d\n", length);
+	}
+}
 
 void	ft_sort_big_stack_r(t_stack **a, t_stack **b, int len, int max)
 {
@@ -18,6 +74,7 @@ void	ft_sort_big_stack_r(t_stack **a, t_stack **b, int len, int max)
 	int l;
 
 	i = 1;
+	ft_index(a, len, max);
 	while (ft_ordered(a, b) != 1)
 	{
 		l = len;
