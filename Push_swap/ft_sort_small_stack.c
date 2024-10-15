@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:47:23 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/09 18:46:16 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/13 15:51:45 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,9 @@ int	ft_max(int	len, t_stack **a)
 	{
 		if (tmp->num > i)
 			i = tmp->num;
+		tmp = tmp->next;
 	}
-	i = ft_bit_max(i);
+	//i = ft_bit_max(i);
 	return (i);
 }
 
