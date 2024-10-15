@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:47:23 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/15 19:17:45 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:43:44 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_sort_three(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
-	while (ft_ordered(a, b) != 1)
+	while (ft_ordered(a, b) < 0)
 	{
 		tmp = *a;
 		while (tmp->next)
@@ -83,15 +83,17 @@ void	ft_sort_five(t_stack **a, t_stack **b, int len, int max)
 	ft_push(a, b, 'b');
 	ft_push(a, b, 'b');
 	ft_sort_three(a, b);
+	printf("1");
 	while (ft_ordered(a, b) != 1)
 	{
 		l = len;
 		while (l--)
 		{
-			if (!((*a)->num == ft_next((*b)->num, a, max, len)))
+			if ((*a)->num == ft_next((*b)->num, a, max, len))
 				ft_push(a, b, 'b');
 			else
 				ft_rotate(a, 'a');
+				//printf("%d\n", ft_next((*b)->num, a, max, len));
 		}
 		while (*b)
 			ft_push(b, a, 'a');

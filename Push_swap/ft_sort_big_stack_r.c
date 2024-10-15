@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:18:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/15 18:41:50 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:43:05 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_index(t_stack **a, int len,  int max)
 				tmp->index = count;
 				i = tmp->num;
 				count++;
-				printf("%d -> %d\n", tmp->num, tmp->index);
 			}
 			if (!tmp->next)
 				tmp = *a;
