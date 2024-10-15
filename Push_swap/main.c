@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:21:07 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/15 17:44:46 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:20:45 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,9 @@ int	main(int argc, char **argv)
 	//else if (ft_ordered(&a, &b) == 0)
 	//	printlist(a);
 	max = ft_max(argc - 1, &a);
-	if (argc <= 4)
-		ft_sort_small_stack(&a, &b);
-	else if (argc > 4)
+	if (argc <= 6)
+		ft_sort_small_stack(&a, &b, argc - 1, max);
+	else if (argc > 6)
 		//printf("%dmax*\n",max);
 		//printlist(a);
 		//ft_sort_big_stack_t(&a, &b, argc - 1);

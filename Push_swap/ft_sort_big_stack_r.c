@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:18:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/15 17:43:32 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/15 18:41:50 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_next(int b, t_stack **a, int max, int len)
 	}
 	return (i);
 }
-#include <stdio.h>
+
 void	ft_index(t_stack **a, int len,  int max)
 {
 	t_stack	*tmp;

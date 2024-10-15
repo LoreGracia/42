@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 18:26:48 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/13 15:11:25 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/15 19:16:30 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,18 @@
 void	ft_swap(t_stack **stack, char c)
 {
 	int		tmp;
+	int		t;
 	t_stack	*a;
 
 	a = *stack;
 	if (a && a->next)
 	{
 		tmp = a->num;
-		tmp = a->index;
+		t = a->index;
 		a->num = a->next->num;
 		a->index = a->next->index;
 		a->next->num = tmp;
-		a->next->index = tmp;
+		a->next->index = t;
 	}
 	if (c == 'a')
 		write(1, "sa\n", 3);
