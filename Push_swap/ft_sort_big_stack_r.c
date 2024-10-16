@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:18:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/16 12:44:30 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:39:24 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ int	ft_next(int b, t_stack **a, int max, int len)
 
 	i = 2147483647;
 	tmp = *a;
-	printf("*%d\n", tmp->num);
-	if (b == max)
+	if (b >= max)
+	{
+		printf("*%d\n", len);
 		return (ft_min(len, a));
+	}
 	else
 	{
 		while (len--)
 		{
-			printf("*%d\n", tmp->next->num);
 			if (tmp->num > b)
 			{
 				if(tmp->num < i)

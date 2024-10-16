@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:47:23 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/16 12:43:57 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:43:09 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static int	first_is_biggest(t_stack **a)
 	return (0);
 }
 
-void	ft_sort_small_stack(t_stack **a, t_stack **b, int len, int max)
+void	ft_sort_small_stack(t_stack **a, t_stack **b, int len)
 {
 	if (len == 3)
 		ft_sort_three(a, b);
 	else
-		ft_sort_five(a, b, len, max);
+		ft_sort_five(a, b, len);
 }
 
 void	ft_sort_three(t_stack **a, t_stack **b)
@@ -76,17 +76,25 @@ void	ft_sort_three(t_stack **a, t_stack **b)
 	return (0);
 }*/
 
-void	ft_sort_five(t_stack **a, t_stack **b, int len, int max)
+void	ft_sort_five(t_stack **a, t_stack **b, int len)
 {
+	int	i;
+
+	i = 3;
 	ft_push(a, b, 'b');
 	ft_push(a, b, 'b');
 	ft_sort_three(a, b);
 	while (ft_ordered(a, b) != 1)
 	{
-		//printf("next %d\n", ft_next((*b)->num, a, max, len - 3));
-		printf("%d\n", (*b)->next->num);
-		if (*b && (*a)->num == ft_next((*b)->num, a, max, len - 3))
+		printf("next %d\n", ft_next((*b)->num, a, ft_max(len - i, a), len - i));
+		printf("b1 is %d\n", (*b)->num);
+		printf("b1 %d vs a max %d\n", (*b)->num, ft_max(len - i, a));
+		if (*b && (*a)->num == ft_next((*b)->num, a, ft_max(len - i, a), len - i))
+		{
 			ft_push(b, a, 'a');
+			i++;
+			printf("i %d\n", i);
+		}
 		else
 			ft_rotate(a, 'a');
 	}
