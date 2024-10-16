@@ -6,19 +6,19 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:47:23 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/15 19:43:44 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/16 12:43:57 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
-static void	if_simple_compare(t_stack **a, t_stack *tmp)
+/*static void	if_simple_compare(t_stack **a, t_stack *tmp)
 {
 	if ((*a)->num > (*a)->next->num)
 		ft_swap(a, 'a');
 	else if ((*a)->num > tmp->num)
 		ft_rotate(a, 'a');
-}
+}*/
 
 static int	first_is_biggest(t_stack **a)
 {
@@ -46,7 +46,7 @@ void	ft_sort_three(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
-	while (ft_ordered(a, b) < 0)
+	while (ft_ordered(a, b) == -1)
 	{
 		tmp = *a;
 		while (tmp->next)
@@ -62,7 +62,7 @@ void	ft_sort_three(t_stack **a, t_stack **b)
 	}
 }
 
-static int	last_is_smallest(t_stack **a, t_stack *tmp)
+/*static int	last_is_smallest(t_stack **a, t_stack *tmp)
 {
 	t_stack *stack;
 
@@ -74,30 +74,22 @@ static int	last_is_smallest(t_stack **a, t_stack *tmp)
 			stack = stack->next;
 		}
 	return (0);
-}
+}*/
 
 void	ft_sort_five(t_stack **a, t_stack **b, int len, int max)
 {
-	int l;
-
 	ft_push(a, b, 'b');
 	ft_push(a, b, 'b');
 	ft_sort_three(a, b);
-	printf("1");
 	while (ft_ordered(a, b) != 1)
 	{
-		l = len;
-		while (l--)
-		{
-			if ((*a)->num == ft_next((*b)->num, a, max, len))
-				ft_push(a, b, 'b');
-			else
-				ft_rotate(a, 'a');
-				//printf("%d\n", ft_next((*b)->num, a, max, len));
-		}
-		while (*b)
+		//printf("next %d\n", ft_next((*b)->num, a, max, len - 3));
+		printf("%d\n", (*b)->next->num);
+		if (*b && (*a)->num == ft_next((*b)->num, a, max, len - 3))
 			ft_push(b, a, 'a');
-	}	
+		else
+			ft_rotate(a, 'a');
+	}
 }
 
 int	ft_median(int len, t_stack **a)
@@ -117,7 +109,7 @@ int	ft_median(int len, t_stack **a)
 	return (i / len);
 }
 
-static int ft_bit_max(int i)
+/*static int ft_bit_max(int i)
 {
 	if (i < 256)
 		i = 8;
@@ -126,7 +118,7 @@ static int ft_bit_max(int i)
 	else
 		i = 32;
 	return (i);
-}
+}*/
 
 int	ft_max(int	len, t_stack **a)
 {

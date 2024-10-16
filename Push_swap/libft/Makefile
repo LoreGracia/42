@@ -6,7 +6,7 @@
 #    By: lgracia- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 18:19:07 by lgracia-          #+#    #+#              #
-#    Updated: 2024/09/12 15:30:10 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/10/16 11:00:37 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(NAME): $(OBJ)
 	ar -rcs $(NAME) $(OBJ)
 
 %.o:%.c Makefile
-	$(CC) $(FLAGS) -MMD -c $< -o $@
+	$(CC) -g $(FLAGS) -MMD -c $< -o $@
 
 clean:
 	rm -fr $(OBJ)
