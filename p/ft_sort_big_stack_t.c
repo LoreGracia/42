@@ -39,7 +39,6 @@ int	ft_next(int b, t_stack **a, int max, int len)
 
 void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 {
-	t_stack *tmp;
 	int	m;
 	int 	l;
 	int 	next;
@@ -53,7 +52,6 @@ void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 			ft_rotate(b, 'b');
 	}	
 	ft_sort_small_stack(a, b);
-	tmp = *a;
 	next = ft_next((*b)->num, a, max, len);
 	//printf("%d||\n", next);
 	while (*b)
@@ -61,12 +59,12 @@ void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 		next = ft_next((*b)->num, a, max, len);
 		if (position(a, len, next) == 1)
 		{
-			while (tmp->num != next)
+			while ((*a)->num != next)
 				ft_rotate(a, 'a');
 		}
 		else
 		{
-			while (tmp->num != next)
+			while ((*a)->num != next)
 				ft_reverse(a, 'a');
 		}
 		ft_push(b, a, 'a');
