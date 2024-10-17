@@ -57,7 +57,7 @@ void	ft_sort_big_stack_t(t_stack **a, t_stack **b, int len, int max)
 	while (*b)
 	{
 		next = ft_next((*b)->num, a, max, len);
-while ((*a)->num !n next) 
+while ((*a)->num != next) 
 {
 		if (position(a, len, next) == 1)
 		{
