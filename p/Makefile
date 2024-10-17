@@ -6,7 +6,7 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 16:01:28 by lgracia-          #+#    #+#              #
-#    Updated: 2024/10/05 16:11:16 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/10/17 18:35:29 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ) Makefile
 	@$(MAKE) -C ./libft
-	@cc $(FLAGS) -MMD $(OBJ) ./libft/libft.a -o $(NAME)
+	cc $(FLAGS) -MMD $(OBJ) ./libft/libft.a -o $(NAME)
 	@echo "Compiled"
+
+%.o: %.c
+	cc $(FLAGS) -g -MMD -c $< -o $@
 
 clean:
 	@$(MAKE) -C ./libft fclean

@@ -6,19 +6,19 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:47:23 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/08 12:07:55 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/17 18:26:19 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	if_simple_compare(t_stack **a, t_stack *tmp)
+/*static void	if_simple_compare(t_stack **a, t_stack *tmp)
 {
 	if ((*a)->num > (*a)->next->num)
 		ft_swap(a, 'a');
 	else if ((*a)->num > tmp->num)
 		ft_rotate(a, 'a');
-}
+}*/
 
 static int	first_is_biggest(t_stack **a)
 {
@@ -54,7 +54,7 @@ static int	first_is_biggest(t_stack **a)
 	}
 }*/
 
-static int	last_is_smallest(t_stack **a, t_stack *tmp)
+/*static int	last_is_smallest(t_stack **a, t_stack *tmp)
 {
 	t_stack *stack;
 
@@ -66,7 +66,7 @@ static int	last_is_smallest(t_stack **a, t_stack *tmp)
 			stack = stack->next;
 		}
 	return (0);
-}
+}*/
 
 void	ft_sort_small_stack(t_stack **a, t_stack **b)
 {
@@ -77,7 +77,7 @@ void	ft_sort_small_stack(t_stack **a, t_stack **b)
 		tmp = *a;
 		while (tmp->next)
 			tmp = tmp->next;
-		  	//ft_reverse(a, 'a');
+		  //ft_reverse(a, 'a');
 		//if_simple_compare(a, tmp);
 		if (first_is_biggest(a) == 1)
 			ft_rotate(a, 'a');
@@ -113,7 +113,7 @@ int	ft_median(int len, t_stack **a)
 	return (i / len);
 }
 
-static int ft_bit_max(int i)
+/*static int ft_bit_max(int i)
 {
 	if (i < 256)
 		i = 8;
@@ -122,7 +122,7 @@ static int ft_bit_max(int i)
 	else
 		i = 32;
 	return (i);
-}
+}*/
 
 int	ft_max(int	len, t_stack **a)
 {
