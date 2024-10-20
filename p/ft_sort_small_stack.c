@@ -38,17 +38,17 @@ static int	first_is_biggest(t_stack **a)
 {
 	t_stack	*tmp;
 
-	while (ft_ordered(a, b) != 1)
-	{
-		if (first_is_biggest(a) == 1)
-		ft_rotate(a, 'a');
-		tmp = *a;
+	while (ft_ordered(a, b) == 1)
+	{;
+    		tmp = *a
 		while (tmp->next)
 			tmp = tmp->next;
+   		if (first_is_biggest(a) == 1)
+			ft_rotate(a, 'a');
 		if ((*a)->num > (*a)->next->num)
-		ft_swap(a, 'a');
-	else if ((*a)->num > tmp->num)
-		ft_rotate(a, 'a');
+			ft_swap(a, 'a');
+		else if ((*a)->num > tmp->num)
+			ft_rotate(a, 'a');
 		else
 			ft_rotate(a, 'a');
 	}
