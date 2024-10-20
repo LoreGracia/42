@@ -72,7 +72,7 @@ void	ft_sort_small_stack(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
-	while (ft_ordered(a, b) != 1)
+	while (ft_ordered(a, b) == 1)
 	{
 		tmp = *a;
 		while (tmp->next)
