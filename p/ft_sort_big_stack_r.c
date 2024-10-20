@@ -28,27 +28,59 @@ void	ft_sort_bits(t_stack **a, t_stack **b, int i)
 		tmp = tmp->next;
 	}
 }
-#include <stdio.h>
-void	ft_sort_big_stack_r(t_stack **a, t_stack **b, int i, int max)
+
+void	ft_index(t_stack **a, int len,  int max)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
+	int		l;
+	int		i;
+	int		count;
+	int		length;
 
 	tmp = *a;
-	while (tmp)
+	length = len;
+	i = max;
+	count = 0;
+	while (length != 0 && count < len)
 	{
-		if (!(tmp->num >> i & 1))
-			ft_push(a, b, 'b');
-		else
-			ft_rotate(a, 'a');
-		if (!tmp->next)
-			break ;
-		tmp = tmp->next;
+		l = len + 1;
+		while (l != 0 && count < len)
+		{
+			if (tmp->num == ft_next(i, a, max, len)) 
+			{
+				tmp->index = count;
+				i = tmp->num;
+				count++;
+			}
+			if (!tmp->next)
+				tmp = *a;
+			else
+				tmp = tmp->next;
+			l--;
+		}
+		length--;
 	}
-	ft_sort_bits(a, b, i++);
-	printf("%d / %d*\n", i, max);	
-	while (*b)
-		ft_push(b, a, 'a');
-	if (i != max && ft_ordered(a, b) != 1)
-		ft_sort_big_stack_r(a, b, i++, max);
-	printf("%d / %d*\n", i, max);	
+}
+
+void	ft_sort_big_stack_r(t_stack **a, t_stack **b, int len, int max)
+{
+	int i;
+	int l;
+
+	i = 1;
+	ft_index(a, len, max);
+	while (ft_ordered(a, b) != 1)
+	{
+		l = len;
+		while (l--)
+		{
+			if (!((*a)->index >> i & 1))
+				ft_push(a, b, 'b');
+			else
+				ft_rotate(a, 'a');
+		}
+		while (*b)
+			ft_push(b, a, 'a');
+		i++;
+	}
 }
