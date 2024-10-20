@@ -157,7 +157,7 @@ int	ft_min(int	len, t_stack **a)
 	return (i);
 }
 
-void	pos(t_stack **stack, int len)
+/*void	pos(t_stack **stack, int len)
 {
 	t_stack *tmp;
 
@@ -173,14 +173,12 @@ void	pos(t_stack **stack, int len)
 			break ;
 		tmp = tmp->next;
 	}
-}	
+}*/	
 
 int	position(t_stack **stack, int len, int next)
 {
 	t_stack *tmp;
-	int i;
 
-	i = 0;
 	tmp = *stack;
 	len = len / 2;
 	while (tmp->num != next)
