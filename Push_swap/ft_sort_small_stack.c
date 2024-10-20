@@ -183,9 +183,7 @@ int	ft_min(int	len, t_stack **a)
 int	position(t_stack **stack, int len, int next)
 {
 	t_stack *tmp;
-	int i;
 
-	i = 0;
 	tmp = *stack;
 	len = len / 2;
 	while (tmp->num != next)
