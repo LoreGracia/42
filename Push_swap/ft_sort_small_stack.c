@@ -86,14 +86,17 @@ void	ft_sort_five(t_stack **a, t_stack **b, int len)
 	ft_sort_three(a, b);
 	while (ft_ordered(a, b) != 1)
 	{
-		if (*b && (*a)->num == ft_next((*b)->num, a, ft_max(len - i, a), len - i))
+		next = ft_next((*b)->num, a, ft_max(len - i, a), len - i);
+		if (*b && (*a)->num == next)
 		{
 			ft_push(b, a, 'a');
 			if (i)
 				i--;
 		}
-		else
+		else if (position(a, len, next) == 1)
 			ft_rotate(a, 'a');
+		else
+			ft_reverse(a, 'a');
 	}
 }
 
