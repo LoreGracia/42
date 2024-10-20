@@ -44,6 +44,7 @@ void	ft_sort_small_stack(t_stack **a, t_stack **b, int len);
 void	ft_sort_three(t_stack **a, t_stack **b);
 void	ft_sort_five(t_stack **a, t_stack **b, int len);
 void	ft_sort_big_stack_r(t_stack **a, t_stack **b, int len, int max);
+int		position(t_stack **a, int len, int next);
 
 int	ft_median(int len, t_stack **a);
 
