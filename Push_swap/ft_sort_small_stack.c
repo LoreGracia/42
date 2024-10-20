@@ -79,6 +79,7 @@ void	ft_sort_three(t_stack **a, t_stack **b)
 void	ft_sort_five(t_stack **a, t_stack **b, int len)
 {
 	int	i;
+	int	next;
 
 	i = 2;
 	ft_push(a, b, 'b');
