@@ -162,7 +162,7 @@ int	ft_min(int	len, t_stack **a)
 	return (i);
 }
 
-void	pos(t_stack **stack, int len)
+/*void	pos(t_stack **stack, int len)
 {
 	t_stack *tmp;
 
@@ -178,7 +178,7 @@ void	pos(t_stack **stack, int len)
 			break ;
 		tmp = tmp->next;
 	}
-}	
+}*/	
 
 int	position(t_stack **stack, int len, int next)
 {
