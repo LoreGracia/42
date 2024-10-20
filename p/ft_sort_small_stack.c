@@ -67,12 +67,12 @@ static int	first_is_biggest(t_stack **a)
 		}
 	return (0);
 }*/
-
+#include <stdio.h>
 void	ft_sort_small_stack(t_stack **a, t_stack **b)
 {
 	t_stack	*tmp;
 
-	while (ft_ordered(a, b) == 1)
+	while (ft_ordered(a, b) == -1)
 	{
 		tmp = *a;
 		while (tmp->next)

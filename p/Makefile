@@ -14,7 +14,7 @@ FLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
 
-SRC = main.c ft_check.c ft_move.c ft_sort_small_stack.c ft_double_moves.c ft_sort_big_stack_r.c ft_sort_big_stack_t.c
+SRC = main.c ft_check.c ft_move.c ft_sort_small_stack.c ft_double_moves.c ft_sort_big_stack_t.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) Makefile
 	@$(MAKE) -C ./libft
-	cc $(FLAGS) -MMD $(OBJ) ./libft/libft.a -o $(NAME)
+	cc $(FLAGS) $(OBJ) ./libft/libft.a -o $(NAME)
 	@echo "Compiled"
 
 %.o: %.c
@@ -34,7 +34,7 @@ $(NAME): $(OBJ) Makefile
 
 clean:
 	@$(MAKE) -C ./libft fclean
-	@rm $(OBJ)
+	@rm $(OBJ) $(DEP)
 	@echo "Cleaned"
 
 fclean: clean

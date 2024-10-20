@@ -78,7 +78,7 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 	int max;
-	int median;
+//	int median;
 
 	b = NULL;
 	if (argc < 2)
@@ -93,8 +93,8 @@ int	main(int argc, char **argv)
 	//else if (ft_ordered(&a, &b) == 0)
 	//	printlist(a);
 	max = ft_max(argc - 1, &a);
-	median = ft_median(argc - 1, &a);
-	pos(&a, argc -1);
+//	median = ft_median(argc - 1, &a);
+	//pos(&a, argc -1);
 	if (argc <= 4)
 		ft_sort_small_stack(&a, &b);
 	else
