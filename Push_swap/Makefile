@@ -33,7 +33,7 @@ $(NAME): $(OBJ) Makefile
 
 clean:
 	@$(MAKE) -C ./libft fclean
-	@rm $(OBJ)
+	@rm $(OBJ) $(DEP)
 	@echo "Cleaned"
 
 fclean: clean

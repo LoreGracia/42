@@ -23,8 +23,8 @@ static int	blanks(const char i)
 
 long	ft_atoi(const char *nptr)
 {
-	int		i;
-	long	ptr;
+	long int	i;
+	long int	ptr;
 	int		sign;
 
 	i = 0;
@@ -46,10 +46,10 @@ long	ft_atoi(const char *nptr)
 	ptr *= sign;
 	return (ptr);
 }
-/*
+/*:
 #include <stdio.h>
 
 int	main()
 {
-	printf("%d\n", ft_atoi("\n\t\r-123-45678"));
+	printf("%ld\n", ft_atoi("\n\t\r123456789112"));
 }*/

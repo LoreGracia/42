@@ -30,13 +30,13 @@ int	ft_check(char **argv, int argc)
 {
 	int		i;
 	int		j;
-	long	tmp;
+	long		tmp;
 
 	i = 1;
 	while (i < argc)
 	{
 		tmp = ft_atoi(argv[i]);
-		if (ft_atoi(argv[i]) < -2147483648 || ft_atoi(argv[i]) > 2147483647)
+		if (tmp < -2147483647 || tmp > 2147483647)
 			return (-1);
 		j = 1;
 		while (i + j < argc)

@@ -98,6 +98,18 @@ void	ft_sort_five(t_stack **a, t_stack **b, int len)
 			ft_rotate(a, 'a');
 		else
 			ft_reverse(a, 'a');
+		if (!*b)
+			break ;
+	}
+	if (position(a, len, ft_min(len, a)) == 1 || position(a, len, ft_max(len, a)) == 1)
+	{
+		while (ft_ordered(a, b) != 1)
+			ft_rotate(a, 'a');
+	}
+	else
+	{
+		while (ft_ordered(a, b) != 1)
+			ft_reverse(a, 'a');
 	}
 }
 
@@ -129,7 +141,7 @@ int	ft_median(int len, t_stack **a)
 	return (i);
 }*/
 
-int	ft_max(int	len, t_stack **a)
+int	ft_max(int len, t_stack **a)
 {
 	t_stack *tmp;
 	int i;
@@ -146,7 +158,7 @@ int	ft_max(int	len, t_stack **a)
 	return (i);
 }
 
-int	ft_min(int	len, t_stack **a)
+int	ft_min(int len, t_stack **a)
 {
 	t_stack *tmp;
 	int i;
