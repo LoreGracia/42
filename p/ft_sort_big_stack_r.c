@@ -12,23 +12,6 @@
 
 #include "push_swap.h"
 
-void	ft_sort_bits(t_stack **a, t_stack **b, int i)
-{
-	t_stack *tmp;
-
-	tmp = *b;
-	while (tmp)
-	{
-		if ((tmp->num >> i & 1))
-			ft_push(b, a, 'a');
-		else 
-			ft_rotate(b, 'b');
-		if (!tmp->next)
-			break ;
-		tmp = tmp->next;
-	}
-}
-
 void	ft_index(t_stack **a, int len,  int max)
 {
 	t_stack	*tmp;
