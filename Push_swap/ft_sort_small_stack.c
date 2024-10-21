@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 10:47:23 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/16 16:53:17 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:43:05 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 static int	first_is_biggest(t_stack **a)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	tmp = *a;
 	while ((*a)->num >= tmp->num)
@@ -36,7 +36,7 @@ static int	first_is_biggest(t_stack **a)
 
 void	ft_sort_small_stack(t_stack **a, t_stack **b, int len)
 {
-	if (len == 3)
+	if (len <= 3)
 		ft_sort_three(a, b);
 	else
 		ft_sort_five(a, b, len);
@@ -101,7 +101,8 @@ void	ft_sort_five(t_stack **a, t_stack **b, int len)
 		if (!*b)
 			break ;
 	}
-	if (position(a, len, ft_min(len, a)) == 1 || position(a, len, ft_max(len, a)) == 1)
+	if (position(a, len, ft_min(len, a)) == 1 || \
+		position(a, len, ft_max(len, a)) == 1)
 	{
 		while (ft_ordered(a, b) != 1)
 			ft_rotate(a, 'a');

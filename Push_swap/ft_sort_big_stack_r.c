@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:18:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/16 16:53:24 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:46:00 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_sort_big_stack_r(t_stack **a, t_stack **b, int len, int max)
 	int i;
 	int l;
 
-	i = 1;
+	i = 0;
 	ft_index(a, len, max);
 	while (ft_ordered(a, b) != 1)
 	{

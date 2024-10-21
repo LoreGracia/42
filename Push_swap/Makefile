@@ -6,11 +6,11 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 16:01:28 by lgracia-          #+#    #+#              #
-#    Updated: 2024/10/16 12:03:02 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/10/21 12:04:17 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 NAME = push_swap
 

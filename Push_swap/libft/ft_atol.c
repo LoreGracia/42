@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 18:23:32 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/21 12:13:18 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:28:47 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static int	blanks(const char i)
 	return (1);
 }
 
-int	ft_atoi(const char *nptr)
+long	ft_atol(const char *nptr)
 {
-	int	i;
-	int	ptr;
-	int	sign;
+	long int	i;
+	long int	ptr;
+	int		sign;
 
 	i = 0;
 	ptr = 0;
@@ -37,6 +37,8 @@ int	ft_atoi(const char *nptr)
 		if (nptr[i] == '-')
 			sign *= -1;
 		i++;
+		if (nptr[i] == ' ')
+			exit(write(1, "ERROR\n", 6) * 0);
 	}
 	while (nptr[i] && ft_isdigit(nptr[i]) > 0)
 	{

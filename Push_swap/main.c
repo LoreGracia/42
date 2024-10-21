@@ -6,12 +6,11 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 18:21:07 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/16 16:34:59 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:31:27 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 t_stack	*ft_stacknew(char **argv)
 {
@@ -43,7 +42,7 @@ int	ft_stacksize(t_stack *lst)
 	return (i);
 }
 
-void	printlist(t_stack *lst)
+/*void	printlist(t_stack *lst)
 {
 	int	size;
 	int	str;
@@ -56,7 +55,7 @@ void	printlist(t_stack *lst)
 		lst = lst->next;
 		size--;
 	}
-}
+}*/
 
 void	ft_stackclear(t_stack **lst)
 {
@@ -72,7 +71,7 @@ void	ft_stackclear(t_stack **lst)
 	}
 	*lst = NULL;
 }
-#include <stdio.h>
+
 int	main(int argc, char **argv)
 {
 	t_stack	*a;
@@ -101,8 +100,8 @@ int	main(int argc, char **argv)
 		ft_sort_big_stack_r(&a, &b, argc - 1, max);
 		//ft_index(&a, argc -1, max);
 		//printf("%d\n", ft_next(a->num, &a, max, argc - 1));
-	if (ft_ordered(&a, &b) == 1)
-		return (ft_stackclear(&a), ft_stackclear(&b), 0);
-	else
-		return (printlist(a), ft_stackclear(&a), ft_stackclear(&b), 0);
+//	if (ft_ordered(&a, &b) == 1)
+	return (ft_stackclear(&a), ft_stackclear(&b), 0);
+	//else
+	//	return (printlist(a), ft_stackclear(&a), ft_stackclear(&b), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 10:31:27 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/04 11:38:59 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/21 12:14:05 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ int	ft_check(char **argv, int argc)
 	i = 1;
 	while (i < argc)
 	{
-		tmp = ft_atoi(argv[i]);
-		if (tmp < -2147483647 || tmp > 2147483647)
+		tmp = ft_atol(argv[i]);
+		if (tmp < -2147483648 || tmp > 2147483647)
 			return (-1);
 		j = 1;
 		while (i + j < argc)
 		{
-			if (ft_atoi(argv[i]) == ft_atoi(argv[i + j]))
+			if (ft_atol(argv[i]) == ft_atol(argv[i + j]))
 				return (-1);
 			j++;
 		}
