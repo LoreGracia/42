@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/07 20:14:24 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/21 12:37:38 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:43:01 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int		ft_ordered(t_stack	**stack, t_stack **b);
 void	ft_stackclear(t_stack **lst);
 void	ft_swap(t_stack **stack, char c);
 void	ft_push(t_stack **a, t_stack **b, char c);
-void	ft_pp(t_stack **a, t_stack **b);
 void	ft_rotate(t_stack **stack, char c);
 void	ft_rr(t_stack **a, t_stack **b);
 void	ft_reverse(t_stack **stack, char c);
@@ -45,7 +44,5 @@ void	ft_sort_three(t_stack **a, t_stack **b);
 void	ft_sort_five(t_stack **a, t_stack **b, int len);
 void	ft_sort_big_stack_r(t_stack **a, t_stack **b, int len, int max);
 int		position(t_stack **a, int len, int next);
-
-int		ft_median(int len, t_stack **a);
 
 #endif

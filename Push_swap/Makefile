@@ -6,7 +6,7 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 16:01:28 by lgracia-          #+#    #+#              #
-#    Updated: 2024/10/21 12:04:17 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/10/22 11:45:40 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 NAME = push_swap
 
-SRC = main.c ft_check.c ft_move.c ft_sort_small_stack.c ft_double_moves.c ft_sort_big_stack_r.c 
+SRC = main.c ft_check.c ft_move.c ft_sort_small_stack.c ft_double_moves.c ft_sort_big_stack_r.c ft_utils.c
 
 OBJ = $(SRC:.c=.o)
 

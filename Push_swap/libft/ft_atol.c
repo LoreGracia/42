@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 18:23:32 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/21 12:28:47 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/22 11:23:05 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ long	ft_atol(const char *nptr)
 {
 	long int	i;
 	long int	ptr;
-	int		sign;
+	int			sign;
 
 	i = 0;
 	ptr = 0;

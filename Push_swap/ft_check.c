@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 10:31:27 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/21 12:14:05 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:40:55 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_check(char **argv, int argc)
 {
 	int		i;
 	int		j;
-	long		tmp;
+	long	tmp;
 
 	i = 1;
 	while (i < argc)
