@@ -6,7 +6,7 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 12:21:03 by lgracia-          #+#    #+#              #
-#    Updated: 2024/10/25 11:51:58 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/10/27 15:52:26 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(NAME): $(OBJ)
 	@$(MAKE) -C ./printf
 	@cmake -B build ./MLX
 	@cmake --build build -j4
-	@cc $(FLAGS) $(OBJ) $(LIBs) $(INC) -o $(NAME)
+	@cc -lm $(FLAGS) $(OBJ) $(LIBs) $(INC) -o $(NAME)
 	@echo "Compiled"
 
 %.o: %.c Makefile
