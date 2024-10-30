@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 16:20:11 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:49:00 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,6 @@ int	fractol(int argc, char **argv)
 {
 	if (argc < 2)
 		return (0);
-	printf("1\n");
 	mlx_t* mlx;
 	mlx_image_t* img;
 	mlx = mlx_init(WIDTH, HEIGHT, "Test", false);
@@ -168,6 +167,9 @@ int	fractol(int argc, char **argv)
 		//	else
 		//		julia_t(img, 0, ft_atoi(argv[2]));
 	}
+	mlx_loop(mlx);
+	mlx_delete_image(mlx, img);
+	mlx_terminate(mlx);
 	return (1);
 }
 
@@ -183,9 +185,12 @@ int	main(int argc, char **argv)
 			return (write(2, "Try './fractol m 2'", 20), 0); 
 		else if (!argv[2] && argv[1][0] == 'p')
 			return (write(2, "Try './fractol j 2'", 20), 0); 
-		i = fractol(argc, argv);
-		if (i == 0)
-			return (0);
+		if (argc > 2)
+		{
+			i = fractol(argc, argv);
+			if (i == 0)
+				return (0);
+		}	
 	}
 	if (argv[1][0] == 'p')
 		panda();

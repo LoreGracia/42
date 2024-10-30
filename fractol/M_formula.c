@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 16:03:05 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/30 17:05:39 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	t_esc(int x, int y, mlx_image_t *img, int d)
 {
 	int i;
 	int max;
-	int color;
+	unsigned int color;
 	int x0;
 	int y0;
 	int	xtmp;
@@ -75,15 +75,18 @@ void	t_esc(int x, int y, mlx_image_t *img, int d)
 	max = 1000;
 	x0 = x;
 	y0 = y;
+//	printf("0\n");
 	while (x*x + y*y <= (2*2) && i < max)
 	{
 		M_formula(&x, &y, &xtmp, d, x0, y0);
 		i += 1;
 	}
+//	printf("1\n");
 	if (i == max)
-		color = 0;
+		color = 0x000000;
 	else
-		color = i;
+		color = melon(i, max);
+	printf("%x\n", color);
 	mlx_put_pixel(img, x0, y0, color);
 }
 

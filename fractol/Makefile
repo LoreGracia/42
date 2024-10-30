@@ -6,7 +6,7 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 12:21:03 by lgracia-          #+#    #+#              #
-#    Updated: 2024/10/30 16:03:39 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/10/30 17:03:12 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ FLAGS = -Wall -Wextra -Werror
 
 NAME = fractol
 
-SRC = main.c M_formula.c 
+SRC = main.c M_formula.c Palette.c 
 
 OBJ = $(SRC:.c=.o)
 

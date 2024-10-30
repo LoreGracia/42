@@ -6,15 +6,27 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:15:30 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 12:17:04 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/30 17:04:44 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	melon()
+#include "fractol.h"
+
+unsigned int	melon(int i, int max)
 {
-	blue = #50EBCE;
-	green = #ADFFC7;
-	white = #FFFFFF;
-	pink = #FFC3C2;
-	red = #FF6E6B;
+	int p;
+
+	p = i * 100 / max;
+	if (p < 20)
+		return (0x50EBCE); //blue
+	else if (p < 40 && p > 20)
+		return (0xADFFC7); //green
+	else if (p < 60 && p > 40)
+		return (0xFFFFFF); //white
+	else if (p < 80 && p > 60)
+		return(0xFFC3C2); //pink
+	else if (p < 100 && p > 80)
+		return (0xFF6E6B); //red
+	else
+		return (0xFFFFFF);
 }
