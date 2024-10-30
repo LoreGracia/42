@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 17:05:39 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/30 18:13:17 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	two(int *x, int *y, int *xtmp, int x0, int y0)
 
 void	five(int *x, int *y, int *xtmp, int x0, int y0)
 {
+
 	*xtmp = (*x)*2 + (*y)^2 + x0;
 	*y = 2*(*x)*(*y) + y0;
 	*x = *xtmp;
@@ -56,7 +57,7 @@ void	M_formula(int *x, int *y, int *xtmp, int d, int x0, int y0)
 		nOne(x, y, xtmp, x0, y0);
 	else if (d == 1) 
 		one(x, y, xtmp, x0, y0);
-	else if (d == 2)
+	if (d == 2)
 		two(x, y, xtmp, x0, y0);
 	else if (d == 5)
 		five(x, y, xtmp, x0, y0);
@@ -83,10 +84,11 @@ void	t_esc(int x, int y, mlx_image_t *img, int d)
 	}
 //	printf("1\n");
 	if (i == max)
-		color = 0x000000;
+		color = 0x000000FF;
 	else
 		color = melon(i, max);
-	printf("%x\n", color);
+	//printf("%x\n", color);
+	printf("i %d x %d y %d color %x\n", i, x0, y0, color);
 	mlx_put_pixel(img, x0, y0, color);
 }
 
