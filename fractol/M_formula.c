@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 18:13:17 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/30 19:08:59 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,3 @@ void	t_esc(int x, int y, mlx_image_t *img, int d)
 	printf("i %d x %d y %d color %x\n", i, x0, y0, color);
 	mlx_put_pixel(img, x0, y0, color);
 }
-
