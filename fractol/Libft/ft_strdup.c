@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 15:24:41 by lgracia-         ###   ########.fr       */
+/*   Created: 2024/06/24 19:46:21 by lgracia-          #+#    #+#             */
+/*   Updated: 2024/07/11 10:27:28 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h> 
-# include <math.h>
-# include "MLX/include/MLX42/MLX42_Int.h"
-# include "printf/ft_printf.h"
-# include "Libft/libft.h"
+char	*ft_strdup(const char *s)
+{
+	int		i;
+	int		len;
+	char	*str;
 
-# define WIDTH 812
-# define HEIGHT 812
-
-static mlx_image_t* image;
-
-void	t_esc(int x, int y, mlx_image_t *img, int d);
-
-#endif
+	len = ft_strlen(s);
+	str = malloc((len + 1) * sizeof(char));
+	if (str == 0)
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+/*
+int	main(void)
+{
+	char *s = ft_strdup("hello there");
+	printf("%s\n", s);
+}*/

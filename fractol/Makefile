@@ -6,7 +6,7 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 12:21:03 by lgracia-          #+#    #+#              #
-#    Updated: 2024/10/29 12:25:04 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/10/30 16:03:39 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ FLAGS = -Wall -Wextra -Werror
 
 NAME = fractol
 
-SRC = main.c  
+SRC = main.c M_formula.c 
 
 OBJ = $(SRC:.c=.o)
 
 DEP = $(SRC:.c=.d)
 
-LIBs =  ./printf/libftprintf.a ./build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBs =  ./printf/libftprintf.a ./Libft/libft.a ./build/libmlx42.a -ldl -lglfw -pthread -lm
 
 INC = -I ./MLX/include
 
@@ -30,6 +30,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C ./printf
+	@$(MAKE) -C ./Libft
 	@cmake -B build ./MLX
 	@cmake --build build -j4
 	@cc -lm -g $(FLAGS) $(OBJ) $(LIBs) $(INC) -o $(NAME)
@@ -45,6 +46,7 @@ clean:
 fclean: clean
 	@rm -r ./build
 	@$(MAKE) -C ./printf fclean
+	@$(MAKE) -C ./Libft fclean
 	@rm $(NAME)
 	@echo "Full cleaned"
 

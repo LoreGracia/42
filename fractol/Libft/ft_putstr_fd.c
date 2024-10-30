@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 15:24:41 by lgracia-         ###   ########.fr       */
+/*   Created: 2024/06/30 15:31:28 by lgracia-          #+#    #+#             */
+/*   Updated: 2024/06/30 15:40:11 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h> 
-# include <math.h>
-# include "MLX/include/MLX42/MLX42_Int.h"
-# include "printf/ft_printf.h"
-# include "Libft/libft.h"
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	len;
 
-# define WIDTH 812
-# define HEIGHT 812
-
-static mlx_image_t* image;
-
-void	t_esc(int x, int y, mlx_image_t *img, int d);
-
-#endif
+	len = ft_strlen(s);
+	write (fd, s, len);
+}
+/*
+int	main(void)
+{
+	ft_putstr_fd("hello there", 1);
+}*/

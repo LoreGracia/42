@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 15:24:41 by lgracia-         ###   ########.fr       */
+/*   Created: 2024/06/30 12:06:28 by lgracia-          #+#    #+#             */
+/*   Updated: 2024/07/13 15:30:13 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h> 
-# include <math.h>
-# include "MLX/include/MLX42/MLX42_Int.h"
-# include "printf/ft_printf.h"
-# include "Libft/libft.h"
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+	int		i;
 
-# define WIDTH 812
-# define HEIGHT 812
+	i = 0;
+	while (s[i] != '\0')
+	{
+		f(i, s + i);
+		i++;
+	}
+}
+/*
 
-static mlx_image_t* image;
+#include <stdio.h>
 
-void	t_esc(int x, int y, mlx_image_t *img, int d);
+void	function(unsigned int i, char *s)
+{
+	printf("%c\n", ft_tolower(s[i]));
+}
 
-#endif
+int	main(void)
+{
+	char 	*str = "HELLO THERE";
+	int		i = 0;
+
+	ft_striteri(str, function);
+}*/

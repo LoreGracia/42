@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/29 19:41:07 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:45:39 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,66 @@ int	line()
 	return (0);
 }
 
-int	main(int argc, char **argv)
+void	mandelbrot_t(mlx_image_t *img, int y, int d)
+{
+	int x;
+	size_t	i;
+
+	x = 0;
+	i = 0;
+	while (x <= (int)img->width && y != (int)img->height)
+	{
+		x++;
+	//	mlx_put_pixel(img, x, y, color);
+		t_esc(x, y, img, d);
+		if (x == (int)img->width && y < (int)img->height)
+			mandelbrot_t(img, y+1, d);
+		if (x == (int)img->width && y == (int)img->height)
+			break ;
+	}
+}
+
+int	fractol(int argc, char **argv)
 {
 	if (argc < 2)
 		return (0);
+	mlx_t* mlx;
+	mlx_image_t* img;
+	mlx = mlx_init(WIDTH, HEIGHT, "Test", false);
+	if (!mlx)
+		return (0);
+	img = mlx_new_image(mlx, 400, 300);
+	if (!img)
+		return (0);
+	if (argv[1][0] == 'm')
+	{
+		if (!argv[2])
+			return (write(2, "Try './fractol m 2'", 20), 0); 
+		else
+			mandelbrot_t(img, 0, ft_atoi(argv[2]));
+	}
+	else if (argv[1][0] == 'j')
+	{
+			if (!argv[2])
+				return (write(2, "Try './fractol j 2'", 20), 0); 
+		//	else
+		//		julia_t(img, 0, ft_atoi(argv[2]));
+	}
+	return (1);
+}
+
+int	main(int argc, char **argv)
+{
+	int i;
+
+	if (argc < 2)
+		return (0);
+	if (argc > 2)
+	{
+		i = fractol(argc, argv);
+		if (i == 0)
+			return (0);
+	}
 	if (argv[1][0] == 'p')
 		panda();
 	else if (argv[1][0] == 'l')

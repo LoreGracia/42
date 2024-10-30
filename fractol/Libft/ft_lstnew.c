@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 15:24:41 by lgracia-         ###   ########.fr       */
+/*   Created: 2024/07/02 16:16:45 by lgracia-          #+#    #+#             */
+/*   Updated: 2024/07/02 18:48:42 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h> 
-# include <math.h>
-# include "MLX/include/MLX42/MLX42_Int.h"
-# include "printf/ft_printf.h"
-# include "Libft/libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*nodo;
 
-# define WIDTH 812
-# define HEIGHT 812
+	nodo = malloc(sizeof(t_list));
+	if (nodo == 0)
+		return (NULL);
+	nodo->content = content;
+	nodo->next = NULL;
+	return (nodo);
+}
+/*
+#include <stdio.h>
 
-static mlx_image_t* image;
+int	main(void)
+{
+	t_list	*nodo;
+	char *str;
 
-void	t_esc(int x, int y, mlx_image_t *img, int d);
-
-#endif
+	nodo = ft_lstnew("hello there");
+	str = nodo->content;
+	printf("%s\n", str);
+}*/
