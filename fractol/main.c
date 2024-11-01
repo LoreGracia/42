@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/10/30 18:22:02 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/01 12:26:35 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,29 @@ int	line()
 	return (0);
 }
 
+float	to_float(int x, int y, mlx_image_t *img)
+{
+	int	max;
+	float i;
+
+	max = 2;
+	if (!x && !y)
+		return (0);
+	if (x)
+	{
+		i = x * max / img->width;
+		printf("%d x %d max %d width %f result\n",x, max, img->width, i);
+		return (i);
+	}
+	else if (y)
+	{
+		i = y * max / img->height;
+		printf("%d y %d max %d height %f y\n", y, max, img->height, i);
+		return (i);
+	}
+	return (0);
+}
+
 void	mandelbrot_t(mlx_image_t *img, int y, int d)
 {
 	int x;
@@ -140,7 +163,7 @@ void	mandelbrot_t(mlx_image_t *img, int y, int d)
 	{
 		x++;
 	//	mlx_put_pixel(img, x, y, color);
-		t_esc(x, y, img, d);
+		t_esc(to_float(x, 0, img), x, to_float(0, y, img), y, img, d);
 		if (x == (int)img->width && y < (int)img->height)
 			mandelbrot_t(img, y+1, d);
 		if (x == (int)img->width && y == (int)img->height)
@@ -157,7 +180,7 @@ int	fractol(int argc, char **argv)
 	mlx = mlx_init(WIDTH, HEIGHT, "Test", false);
 	if (!mlx)
 		return (0);
-	img = mlx_new_image(mlx, 400, 300);
+	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (!img)
 		return (0);
 	if (argv[1][0] == 'm')
