@@ -6,7 +6,7 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 12:21:03 by lgracia-          #+#    #+#              #
-#    Updated: 2024/11/04 15:30:50 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/11/05 10:42:35 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ = $(SRC:.c=.o)
 
 DEP = $(SRC:.c=.d)
 
-LIBs =  ./printf/libftprintf.a ./Libft/libft.a ./build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBs =  ./Printf/libftprintf.a ./Libft/libft.a ./build/libmlx42.a -ldl -lglfw -pthread -lm
 
 INC = -I ./MLX/include
 
@@ -29,7 +29,7 @@ all: $(NAME)
 -include $(DEP)
 
 $(NAME): $(OBJ)
-	@$(MAKE) -C ./printf
+	@$(MAKE) -C ./Printf
 	@$(MAKE) -C ./Libft
 	@cmake -B build ./MLX
 	@cmake --build build -j4

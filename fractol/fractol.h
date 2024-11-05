@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/04 16:28:51 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/05 10:43:11 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h> 
 # include <math.h>
 # include "MLX/include/MLX42/MLX42_Int.h"
-# include "printf/ft_printf.h"
+# include "Printf/ft_printf.h"
 # include "Libft/libft.h"
 
 # define WIDTH 812
