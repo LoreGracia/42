@@ -6,7 +6,7 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 12:21:03 by lgracia-          #+#    #+#              #
-#    Updated: 2024/11/05 10:42:35 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/11/05 19:56:22 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ clean:
 
 fclean: clean
 	@rm -r ./build
-	@$(MAKE) -C ./printf fclean
+	@$(MAKE) -C ./Printf fclean
 	@$(MAKE) -C ./Libft fclean
 	@rm $(NAME)
 	@echo "Full cleaned"

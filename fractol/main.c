@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/04 16:39:57 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/05 19:55:26 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ int	line()
 	mlx_delete_image(mlx, img);
 	mlx_terminate(mlx);
 	return (0);
+}
+
+void	my_keyhook(mlx_key_data_t keydata, void* param)
+{
+	mlx_t* a;
+	a = param;
+
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	{
+		//mlx_close_callback();
+		mlx_close_window(param);
+//		exit (0);
+	}
 }
 
 float	to_float(int x, int y, mlx_image_t *img)
@@ -126,6 +139,7 @@ int	fractol(int argc, char **argv)
 		if (mlx_image_to_window(mlx, img, 0, 0) < 0)
 			return (0);
 	}
+	mlx_key_hook(mlx, &my_keyhook, NULL);
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, img);
 	mlx_terminate(mlx);
