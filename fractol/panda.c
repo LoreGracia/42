@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:30:31 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/04 15:31:16 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:38:16 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,18 @@ int panda()
 	mlx = mlx_init(WIDTH, HEIGHT, "Test", false);
 	if (!mlx)
         return (0);
-	img = mlx_new_image(mlx, 812, 812);
+	img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (!img)
         return (0);
 	memset(img->pixels, 120, img->width * img->height * sizeof(int32_t));
 	if (mlx_image_to_window(mlx, img, 0, 0) < 0)
         return (0);
-	cercle(WIDTH/2 - 200, WIDTH/2 - 200, 100, img, 0x000000FF);
-	cercle(WIDTH/2 + 200, WIDTH/2 - 200, 100, img, 0x000000FF);
-	cercle(WIDTH/2, WIDTH/2, 300, img, 0xFFFFFFFF);
-	cercle(WIDTH/2 - 150, WIDTH/2, 50, img, 0x000000FF);
-	cercle(WIDTH/2 + 150, WIDTH/2, 50, img, 0x000000FF);
-	cercle(WIDTH/2, WIDTH/2 + 100, 30, img, 0x000000FF);
+	cercle(WIDTH/2 - 200, HEIGHT/2 - 200, 100, img, 0x000000FF);
+	cercle(WIDTH/2 + 200, HEIGHT/2 - 200, 100, img, 0x000000FF);
+	cercle(WIDTH/2, HEIGHT/2, 300, img, 0xFFFFFFFF);
+	cercle(WIDTH/2 - 150, HEIGHT/2, 50, img, 0x000000FF);
+	cercle(WIDTH/2 + 150, HEIGHT/2, 50, img, 0x000000FF);
+	cercle(WIDTH/2, HEIGHT/2 + 100, 30, img, 0x000000FF);
 	mlx_key_hook(mlx, &ft_hook, NULL);
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, img);
