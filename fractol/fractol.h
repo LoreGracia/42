@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/07 15:56:45 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:15:40 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@
 # include "Libft/libft.h"
 
 # define WIDTH 800
-# define HEIGHT 800
+# define HEIGHT WIDTH
+# define MAX_ITER 100
 
 static mlx_image_t* image;
 
-void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img, int d);
+void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img);
 unsigned int	melon(int i);
 
 int	panda();

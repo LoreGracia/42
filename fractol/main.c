@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/07 16:21:01 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:15:18 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	my_keyhook(mlx_key_data_t keydata, void* param)
 	}
 }
 
-float	to_float(int x, int y, mlx_image_t *img, float max)
+/*float	to_float(int x, int y, mlx_image_t *img, float max)
 {
 	float i;
 
@@ -108,11 +108,18 @@ float	to_floats(int x, int y, mlx_image_t *img)
 			return (to_float(y - (int)img->height/2, 0, img, 5.5));
 	}
 	return (0);
+}*/
+float	to_flo(int val)
+{
+	float	px_size = 0.005;
+
+	val -= WIDTH/2;
+	return (val * px_size);
 }
 
 void	mandelbrot_t(mlx_image_t *img, int y, int d)
 {
-	int x;
+	int		x;
 	size_t	i;
 
 	x = 0;
@@ -122,7 +129,7 @@ void	mandelbrot_t(mlx_image_t *img, int y, int d)
 		x++;
 	//	mlx_put_pixel(img, x, y, color);
 //		printf("%d x %d y\n", x, y);
-		t_esc(to_floats(x, 0, img), x, to_floats(0, y, img), y, img, d);
+		t_esc(to_flo(x), x, to_flo(y), y, img);
 		if (x == (int)img->width && y < (int)img->height)
 			mandelbrot_t(img, y+1, d);
 		if (x == (int)img->width && y == (int)img->height)

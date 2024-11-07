@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/07 16:18:47 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:05:28 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,27 +63,28 @@ void	M_formula(int *x, int *y, int *xtmp, int d, int x0, int y0)
 		five(x, y, xtmp, x0, y0);
 }
 
-void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img, int d)
+void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img)
 {
-	int i;
-	int max;
-	unsigned int color;
-	int	xtmp;
+	int				i;
+	unsigned int	color;
+	float			xtmp;
+	float			xo;
+	float			yo;
 
 	i = 0;
-	max = 1000;
-	d = d + 0;
-	printf("%d x0 %d y0 %f x %f y\n", x0, y0, x, y);
-	while (x*x + y*y <= (2*2) && i < max)
+//	printf("%d x0 %d y0 %f x %f y\n", x0, y0, x, y);
+	xo = x;
+	yo = y;
+	while (x*x + y*y <= (2*2) && i < MAX_ITER)
 	{	
-		xtmp = (x)*(x) - (y)*(y) + x0;
-		y = 2*(x)*(y) + y0;
+		xtmp = (x)*(x) - (y)*(y) + xo;
+		y = 2*(x)*(y) + yo;
 		x = xtmp;
 	//	M_formula(&x, &y, &xtmp, d, x0, y0);
 		i += 1;
 	}
-	if (i == max)
-		color = 0xFFFFFFFF;
+	if (i == MAX_ITER)
+		color = 0x000000FF;
 	else
 		color = melon(i);
 	printf("i %d x %d y %d color %x\n", i, x0, y0, color);
