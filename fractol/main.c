@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/06 17:33:33 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:21:01 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ float	to_float(int x, int y, mlx_image_t *img, float max)
 {
 	float i;
 
-	if (x)
+	if (x && x != 0)
 	{
 		i = x * max / (float)img->width;
-		//printf("%d x %f result\n", x, i);
+	//	printf("%d x %f result\n", x, i);
 		return (i);
 	}
-	else if (y)
+	else if (y && y != 0)
 	{
 		i = y * max / (float)img->height;
 	//	printf("%d y %f y\n", y, i);
@@ -91,21 +91,21 @@ float	to_floats(int x, int y, mlx_image_t *img)
 {
 	if (!x && !y)
 		return (0);
-	else if (x)
+	else if (x && x != 0)
 	{
 		if (x < (int)img->width/2)
 		{
-			return (to_float(x * -1, 0, img, -2.5));
+			return (to_float(x - (int)img->width/2, 0, img, -5.5));
 		}
 		else if (x > (int)img->width/2)
-			return (to_float(x, 0, img, 2.5));
+			return (to_float(x - (int)img->width/2, 0, img, 5.5));
 	}
-	else if (y)
+	else if (y && y != 0)
 	{
 		if (y < (int)img->height/2)
-			return (to_float(y * -1, 0, img, -2.5));
+			return (to_float(y - (int)img->height/2, 0, img, -5.5));
 		else if (y > (int)img->height/2)
-			return (to_float(y, 0, img, 2.5));
+			return (to_float(y - (int)img->height/2, 0, img, 5.5));
 	}
 	return (0);
 }

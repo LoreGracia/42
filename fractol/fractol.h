@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/06 15:38:42 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:56:45 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include "Printf/ft_printf.h"
 # include "Libft/libft.h"
 
-# define WIDTH 812
-# define HEIGHT 812
+# define WIDTH 800
+# define HEIGHT 800
 
 static mlx_image_t* image;
 
