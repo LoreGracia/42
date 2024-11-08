@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/07 19:15:18 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/08 20:01:43 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,13 @@ float	to_floats(int x, int y, mlx_image_t *img)
 	}
 	return (0);
 }*/
-float	to_flo(int val)
+float	to_flo(int val, float *px_size)
 {
-	float	px_size = 0.005;
-
 	val -= WIDTH/2;
-	return (val * px_size);
+	return (val * (*px_size));
 }
 
-void	mandelbrot_t(mlx_image_t *img, int y, int d)
+void	mandelbrot_t(mlx_image_t *img, int y, int d, float* px_size)
 {
 	int		x;
 	size_t	i;
@@ -129,23 +127,24 @@ void	mandelbrot_t(mlx_image_t *img, int y, int d)
 		x++;
 	//	mlx_put_pixel(img, x, y, color);
 //		printf("%d x %d y\n", x, y);
-		t_esc(to_flo(x), x, to_flo(y), y, img);
+		t_esc(to_flo(x, px_size), x, to_flo(y, px_size), y, img);
 		if (x == (int)img->width && y < (int)img->height)
-			mandelbrot_t(img, y+1, d);
+			mandelbrot_t(img, y+1, d, px_size);
 		if (x == (int)img->width && y == (int)img->height)
 			break ;
 	}
 }
 
-void my_scrollhook(double xdelta, double ydelta, void* param)
+void my_scrollhook(double xdelta, double ydelta, void* px_size)
 {
+	//(void)px_size;
 	// Simple up or down detection.
-	param = 0;
-
 	if (ydelta > 0)
-		puts("Up!");
+		*((float*)px_size) += 0.05;
+	//	puts("Up!");
 	else if (ydelta < 0)
-		puts("Down!");
+		*((float*)px_size) -= 0.05;
+	//	puts("Down!");
 	
 	// Can also detect a mousewheel that goes along the X (e.g: MX Master 3)
 	if (xdelta < 0)
@@ -158,7 +157,9 @@ int	fractol(int argc, char **argv)
 {
 	mlx_t* mlx;
 	mlx_image_t* img;
+	float	px_size;
 
+	px_size = PX_SIZE;
 	if (argc < 2 || argv[3])
 		return (0);
 	mlx = mlx_init(WIDTH, HEIGHT, "Fractal", false);
@@ -171,7 +172,7 @@ int	fractol(int argc, char **argv)
 	if (argv[1][0] == 'm')
 	{
 		//memset(img->pixels, 255, img->width * img->height * sizeof(int32_t));
-		mandelbrot_t(img, 0, ft_atoi(argv[2]));
+		mandelbrot_t(img, 0, ft_atoi(argv[2]), &px_size);
 		if (mlx_image_to_window(mlx, img, 0, 0) < 0)
 			return (0);
 	}
@@ -182,8 +183,8 @@ int	fractol(int argc, char **argv)
 		if (mlx_image_to_window(mlx, img, 0, 0) < 0)
 			return (0);
 	}
+	mlx_scroll_hook(mlx, &my_scrollhook, &px_size);
 	mlx_key_hook(mlx, &my_keyhook, NULL);
-	mlx_scroll_hook(mlx, &my_scrollhook, NULL);
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, img);
 	mlx_terminate(mlx);

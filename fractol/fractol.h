@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/07 19:15:40 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/08 19:22:28 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define WIDTH 800
 # define HEIGHT WIDTH
 # define MAX_ITER 100
+# define PX_SIZE 0.005
 
 static mlx_image_t* image;
 

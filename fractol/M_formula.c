@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/07 19:05:28 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/08 19:20:39 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img)
 		color = 0x000000FF;
 	else
 		color = melon(i);
-	printf("i %d x %d y %d color %x\n", i, x0, y0, color);
+//	printf("i %d x %d y %d color %x\n", i, x0, y0, color);
 	mlx_put_pixel(img, x0, y0, color);
 }
