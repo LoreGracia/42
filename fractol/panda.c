@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:30:31 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/06 15:38:16 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/09 21:29:54 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,25 @@ void	cercle(int cx, int cy, int r, mlx_image_t* img, unsigned int color)
 	}
 }
 
+void my_hook(void* param)
+{
+	mlx_t* mlx = param;
+
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(mlx);
+	if (mlx_is_key_down(mlx, MLX_KEY_UP))
+		img->instances[0].y += 5;
+	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
+		img->instances[0].y -= 5;
+	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
+		img->instances[0].x += 5;
+	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+		img->instances[0].x -= 5;
+}
+
 int panda()
 {
 	mlx_t* mlx;
-	mlx_image_t* img;
 	mlx = mlx_init(WIDTH, HEIGHT, "Test", false);
 	if (!mlx)
         return (0);
@@ -81,6 +96,7 @@ int panda()
 	cercle(WIDTH/2 + 150, HEIGHT/2, 50, img, 0x000000FF);
 	cercle(WIDTH/2, HEIGHT/2 + 100, 30, img, 0x000000FF);
 	mlx_key_hook(mlx, &ft_hook, NULL);
+	mlx_loop_hook(mlx, my_hook, mlx);
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, img);
 	mlx_terminate(mlx);
