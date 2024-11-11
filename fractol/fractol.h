@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:45:26 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:02:34 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include "Printf/ft_printf.h"
 # include "Libft/libft.h"
 
-# define WIDTH 800
+# define WIDTH 800*0.2 
 # define HEIGHT WIDTH
 # define MAX_ITER 100
-# define PX_SIZE 0.005
+# define PX_SIZE 0.005/ (WIDTH /800)
 
 static mlx_image_t* img;
 
@@ -39,6 +39,7 @@ typedef struct s_fract
 
 void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img, int d);
 unsigned int	melon(int i);
+int		mandelbrot(char **argv, float px_size);
 
 int	panda();
 int line();
