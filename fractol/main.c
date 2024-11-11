@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/09 21:34:45 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:46:44 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,20 @@ void my_scrollhook(double xdelta, double ydelta, void* px_size)
 	//(void)px_size;
 	// Simple up or down detection.
 	if (ydelta > 0)
+	{
 		*((float*)px_size) += 0.05;
+	//	mlx_close_window(mlx);
+	//	ft_printf("%d\n", mlx_strerror(mlx_errno));
+	//	return(-1);
+	}
 	//	puts("Up!");
 	else if (ydelta < 0)
+	{
 		*((float*)px_size) -= 0.05;
+	//	mlx_close_window(mlx);
+	//	ft_printf("%d\n", mlx_strerror(mlx_errno));
+	//	return(-1);
+	}
 	//	puts("Down!");
 	
 	// Can also detect a mousewheel that goes along the X (e.g: MX Master 3)
@@ -112,12 +122,44 @@ void my_scrollhook(double xdelta, double ydelta, void* px_size)
 		puts("Sliiiide to the right!");
 }
 
-int	mandelbrot(char **argv)
+void ft_scrollhook(double xdelta, double ydelta, void* mlx)
+{
+	//(void)px_size;
+	// Simple up or down detection.
+	if (ydelta > 0)
+	{
+		if (mlx_image_to_window(mlx, img, 0, 0) == -1)
+		{
+			mlx_delete_image(mlx, img);
+			mlx_close_window(mlx);
+			ft_printf("%d\n", mlx_strerror(mlx_errno));
+			return;
+		}	
+	}
+	//	puts("Up!");
+	else if (ydelta < 0)
+	{
+		mlx_delete_image(mlx, img);
+		if (mlx_image_to_window(mlx, img, 0, 0) == -1)
+		{
+			mlx_close_window(mlx);
+			ft_printf("%d\n", mlx_strerror(mlx_errno));
+			return;
+		}	
+	}
+	//	puts("Down!");
+	
+	// Can also detect a mousewheel that goes along the X (e.g: MX Master 3)
+	if (xdelta < 0)
+		puts("Sliiiide to the left!");
+	else if (xdelta > 0)
+		puts("Sliiiide to the right!");
+}
+
+int	mandelbrot(char **argv, float px_size)
 {
 	mlx_t* mlx;
-	float	px_size;
 	
-	px_size = PX_SIZE;
 	mlx = mlx_init(WIDTH, HEIGHT, "Fractal", false);
 	if (!mlx)
 	{
@@ -139,6 +181,7 @@ int	mandelbrot(char **argv)
 		return(-1);
 	}
 	mlx_scroll_hook(mlx, &my_scrollhook, &px_size);
+	//mlx_scroll_hook(mlx, &ft_scrollhook, &px_size);
 	mlx_loop_hook(mlx, ft_hook_esc_arrows, mlx);
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, img);
@@ -151,7 +194,7 @@ int	fractol(char **argv)
 	if (argv[1][0] == 'm')
 	{
 		//memset(img->pixels, 255, img->width * img->height * sizeof(int32_t));
-		if ((mandelbrot(argv) == -1))
+		if ((mandelbrot(argv, 0.005) == -1))
 				return (-1);
 	}
 	else if (argv[1][0] == 'j')
