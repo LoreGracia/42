@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:30:31 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/09 21:29:54 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/12 13:39:04 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void my_hook(void* param)
 int panda()
 {
 	mlx_t* mlx;
-	mlx = mlx_init(WIDTH, HEIGHT, "Test", false);
+	mlx = mlx_init(WIDTH, HEIGHT, "Test", true);
 	if (!mlx)
         return (0);
 	img = mlx_new_image(mlx, WIDTH, HEIGHT);

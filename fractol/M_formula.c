@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/09 17:00:21 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:51:09 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ float	ft_pow(float val, float pow)
 void	nOne(float *x, float *y, float *xtmp, float x0, float y0)
 {
 	float	d;
+	(void)xtmp;
 
 	d = ft_pow(*x, 2) + ft_pow(*y, 2);
 	if (d == 0)
 		return ;
-	*xtmp = (*x)/d + x0;
+	*x = (*x)/d + x0;
 	*y = -(*y)/d + y0;
 }
 
@@ -41,7 +42,7 @@ void	nTwo(float *x, float *y, float *xtmp, float x0, float y0)
 	d = ft_pow(*x, 4) + 2 * (*x)*(*x) * (*y)*(*y) + ft_pow(*y, 4);
 	if (d == 0)
 		return ;
-	*xtmp = ((*x)*(*x) + (*y)*(*y)) / d + x0;
+	*xtmp = ((*x)*(*x) - (*y)*(*y)) / d + x0;
 	*y = -2*(*x)*(*y) / d + y0;
 	*x = *xtmp;
 }
@@ -68,13 +69,13 @@ void	two(float *x, float *y, float *xtmp, float x0, float y0)
 	*x = *xtmp;
 }
 
-void	n(float *x, float *y, float *xtmp, float x0, float y0, int d)
+void	n(float *x, float *y, float *xtmp, float x0, float y0, float d)
 {
 	float	i;
 
-	i = (float)d*(float)atan2((double)*y,(double)*x);
-	*xtmp = ft_pow((ft_pow(*x, 2) + ft_pow(*x, 2)), (float)d/2)*cos(i) + x0;
-	*y = ft_pow((ft_pow(*x, 2) + ft_pow(*x, 2)), (float)d/2)*sin(i) + y0;
+	i = d*(float)atan2((double)*y,(double)*x);
+	*xtmp = ft_pow((ft_pow(*x, 2) + ft_pow(*y, 2)), d/2) * cos(i) + x0;
+	*y = ft_pow((ft_pow(*x, 2) + ft_pow(*y, 2)), d/2) * sin(i) + y0;
 	*x = *xtmp;
 }
 
@@ -92,7 +93,9 @@ void	M_formula(float *x, float *y, float *xtmp, float d, float x0, float y0)
 	else if (d == 5)
 		five(x, y, xtmp, x0, y0);
 	else
+	{
 		n(x, y, xtmp, x0, y0, d);
+	}
 }
 
 void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img, int d)
