@@ -6,28 +6,11 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:57 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/13 19:41:59 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:46:14 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	ft_hook_esc_arrows(void *param)
-{
-	mlx_t	*mlx;
-
-	mlx = param;
-	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(mlx);
-	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-		img->instances[0].y += 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-		img->instances[0].y -= 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-		img->instances[0].x += 5;
-	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		img->instances[0].x -= 5;
-}
 
 /*float	to_float(int x, int y, mlx_image_t *img, float max)
 {
@@ -77,7 +60,7 @@ float	to_flo(int val, float px_size, mlx_image_t *img)
 	return (val * (px_size));
 }
 
-int	mandelbrot(mlx_image_t *img, int y, int d, float px_size)
+void	mandelbrot(mlx_image_t* img, int y, int d, float px_size)
 {
 	int		x;
 	size_t	i;
@@ -93,32 +76,7 @@ int	mandelbrot(mlx_image_t *img, int y, int d, float px_size)
 		if (x == (int)img->width && y == (int)img->height)
 			break ;
 	}
-	return (0);
 }
-
-void	ft_scrollhook(double xdelta, double ydelta, void *param)
-{
-	t_env	*e;
-
-	e = param;
-	if (ydelta > 0)
-	{
-	//	printf("%f\n", e->px_size);
-			e->px_size /= 1.1;
-	//	printf("%f\n", e->px_size);
-		e->f(img, e->y, e->d, e->px_size);
-	}
-	if (ydelta < 0)
-	{
-		e->px_size *= 1.1;
-		e->f(img, e->y, e->d, e->px_size);
-	}	if (xdelta < 0)
-		puts("Sliiiide to the left!");
-	else if (xdelta > 0)
-		puts("Sliiiide to the right!");
-}
-
-
 
 /*int	mandelbrot(char **argv)
 {

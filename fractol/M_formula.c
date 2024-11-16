@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/13 16:51:09 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:00:09 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	n(float *x, float *y, float *xtmp, float x0, float y0, float d)
 }
 
 
-void	M_formula(float *x, float *y, float *xtmp, float d, float x0, float y0)
+void	Mformula(float *x, float *y, float *xtmp, float d, float x0, float y0)
 {
 	if (d == -2)
 		nTwo(x, y, xtmp, x0, y0);
@@ -107,21 +107,16 @@ void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img, int d)
 	float			yo;
 
 	i = 0;
-//	printf("%d x0 %d y0 %f x %f y\n", x0, y0, x, y);
 	xo = x;
 	yo = y;
-	while (x*x + y*y <= (2*2) && i < MAX_ITER)
-	{	
-		/*xtmp = (x)*(x) - (y)*(y) + xo;
-		y = 2*(x)*(y) + yo;
-		x = xtmp;*/
-		M_formula(&x, &y, &xtmp, d, xo, yo);
+	while (x * x + y * y <= (2 * 2) && i < MAX_ITER)
+	{
+		Mformula(&x, &y, &xtmp, d, xo, yo);
 		i += 1;
 	}
 	if (i == MAX_ITER)
 		color = 0x000000FF;
 	else
 		color = melon(i);
-//	printf("i %d x %d y %d color %x\n", i, x0, y0, color);
 	mlx_put_pixel(img, x0, y0, color);
 }
