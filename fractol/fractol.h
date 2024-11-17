@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/16 20:00:55 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/17 13:01:28 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ void			ft_scrollhook(double xdelta, double ydelta, void *param);
 void			ft_hook_esc_arrows(void *param);
 void			ft_clear(t_env *e);
 void			julia(mlx_image_t* img, int x, int y, float px_size);
+void			three(float *x, float *y, float x0, float y0);
+void			five(float *x, float *y, float x0, float y0);
+void			two(float *x, float *y, float x0, float y0);
+void			n(float *x, float *y, float x0, float y0, float d);
+float			p(float val, float pow);
+
 
 void			panda(mlx_image_t* img, int x, int y, float px_size);
 void			line(mlx_image_t* img, int x, int y, float px_size);

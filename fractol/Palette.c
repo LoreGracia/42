@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:15:30 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/07 19:10:50 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:24:48 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
 
 unsigned int	melon(int p)
 {
-	if (p  == 0)
-		return (0x50EBCEFF); //blue
+	if (p == 0)
+		return (0x50EBCEFF);
 	if (p == 1)
-		return (0xADFFC7FF); //green
+		return (0xADFFC7FF);
 	if (p == 2)
-		return (0xFFFFFFFF); //white
+		return (0xFFFFFFFF);
 	if (p == 3)
-		return (0xFFC3C2FF); //pink
-	return (0xFF6E6BFF); //red
+		return (0xFFC3C2FF);
+	return (0xFF6E6BFF);
 }

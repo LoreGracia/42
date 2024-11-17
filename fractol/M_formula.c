@@ -6,13 +6,13 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/16 20:00:09 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/17 13:01:55 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-float	ft_pow(float val, float pow)
+float	p(float val, float pow)
 {
 	float	i;
 
@@ -23,78 +23,45 @@ float	ft_pow(float val, float pow)
 	return (i);
 }
 
-void	nOne(float *x, float *y, float *xtmp, float x0, float y0)
+void	n0ne(float *x, float *y, float x0, float y0)
 {
 	float	d;
-	(void)xtmp;
 
-	d = ft_pow(*x, 2) + ft_pow(*y, 2);
+	d = p(*x, 2) + p(*y, 2);
 	if (d == 0)
 		return ;
-	*x = (*x)/d + x0;
-	*y = -(*y)/d + y0;
+	*x = (*x) / d + x0;
+	*y = -(*y) / d + y0;
 }
 
-void	nTwo(float *x, float *y, float *xtmp, float x0, float y0)
+void	ntwo(float *x, float *y, float x0, float y0)
 {
-	float d;
+	float	d;
+	float	xtmp;
 
-	d = ft_pow(*x, 4) + 2 * (*x)*(*x) * (*y)*(*y) + ft_pow(*y, 4);
+	d = p(*x, 4) + 2 * (*x) * (*x) * (*y) * (*y) + p(*y, 4);
 	if (d == 0)
 		return ;
-	*xtmp = ((*x)*(*x) - (*y)*(*y)) / d + x0;
-	*y = -2*(*x)*(*y) / d + y0;
-	*x = *xtmp;
+	xtmp = ((*x) * (*x) - (*y) * (*y)) / d + x0;
+	*y = -2 * (*x) * (*y) / d + y0;
+	*x = xtmp;
 }
 
-void	three(float *x, float *y, float *xtmp, float x0, float y0)
-{
-	*xtmp = (*x)*(*x)*(*x) - 3 *(*x)*((*y)*(*y)) + x0;
-	*y = 3*(*x)*(*x)*(*y)-(*y)*(*y)*(*y) + y0;
-	*x = *xtmp;
-}
-
-void	five(float *x, float *y, float *xtmp, float x0, float y0)
-{
-	*xtmp = ft_pow(*x, 5)-10*ft_pow(*x, 3)*(*y)*(*y)+5*(*x)*ft_pow(*y, 4)+x0;
-	*y =  5 *ft_pow(*x, 4)*(*y)-10*(*x)*(*x)*ft_pow(*y, 3)+ft_pow(*y, 5)+y0;
-	*x = *xtmp;
-
-}
-
-void	two(float *x, float *y, float *xtmp, float x0, float y0)
-{
-	*xtmp = ft_pow(*x, 2) - (*y)*(*y) + x0;
-	*y = 2*(*x)*(*y) + y0;
-	*x = *xtmp;
-}
-
-void	n(float *x, float *y, float *xtmp, float x0, float y0, float d)
-{
-	float	i;
-
-	i = d*(float)atan2((double)*y,(double)*x);
-	*xtmp = ft_pow((ft_pow(*x, 2) + ft_pow(*y, 2)), d/2) * cos(i) + x0;
-	*y = ft_pow((ft_pow(*x, 2) + ft_pow(*y, 2)), d/2) * sin(i) + y0;
-	*x = *xtmp;
-}
-
-
-void	Mformula(float *x, float *y, float *xtmp, float d, float x0, float y0)
+void	m_formula(float *x, float *y, float d, float x0, float y0)
 {
 	if (d == -2)
-		nTwo(x, y, xtmp, x0, y0);
+		ntwo(x, y, x0, y0);
 	else if (d == -1)
-		nOne(x, y, xtmp, x0, y0);
+		n0ne(x, y, x0, y0);
 	else if (d == 2)
-		two(x, y, xtmp, x0, y0);
+		two(x, y, x0, y0);
 	else if (d == 3)
-		three(x, y, xtmp, x0, y0);
+		three(x, y, x0, y0);
 	else if (d == 5)
-		five(x, y, xtmp, x0, y0);
+		five(x, y, x0, y0);
 	else
 	{
-		n(x, y, xtmp, x0, y0, d);
+		n(x, y, x0, y0, d);
 	}
 }
 
@@ -102,7 +69,6 @@ void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img, int d)
 {
 	int				i;
 	unsigned int	color;
-	float			xtmp;
 	float			xo;
 	float			yo;
 
@@ -111,7 +77,7 @@ void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img, int d)
 	yo = y;
 	while (x * x + y * y <= (2 * 2) && i < MAX_ITER)
 	{
-		Mformula(&x, &y, &xtmp, d, xo, yo);
+		m_formula(&x, &y, d, xo, yo);
 		i += 1;
 	}
 	if (i == MAX_ITER)

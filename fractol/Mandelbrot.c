@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:57 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/16 16:46:14 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/17 15:30:52 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ float	to_flo(int val, float px_size, mlx_image_t *img)
 	return (val * (px_size));
 }
 
-void	mandelbrot(mlx_image_t* img, int y, int d, float px_size)
+void	mandelbrot(mlx_image_t *img, int y, int d, float px_size)
 {
 	int		x;
 	size_t	i;
