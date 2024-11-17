@@ -6,17 +6,15 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 19:49:32 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/17 15:30:29 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/17 17:30:45 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	julia(mlx_image_t *img, int x, int y, float px_size)
+void	julia(void *p, int y)
 {
-	(void)x;
 	(void)y;
-	(void)px_size;
-	(void)img;
+	(void)p;
 	ft_printf("on progress\n");
 }

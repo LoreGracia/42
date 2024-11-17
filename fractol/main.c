@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/17 15:33:36 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/17 17:12:50 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	draw(char **argv, t_env *e)
 		mlx_close_window(e->mlx);
 		return (ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
 	}
-	e->f(e->img, e->y, e->d, e->px_size);
+	e->f(e, e->y);
 	if (mlx_image_to_window(e->mlx, e->img, 0, 0) == -1)
 	{
 		mlx_close_window(e->mlx);

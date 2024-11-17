@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/17 13:01:55 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:46:27 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,26 @@ void	m_formula(float *x, float *y, float d, float x0, float y0)
 	}
 }
 
-void	t_esc(float x, int x0, float y, int y0, mlx_image_t *img, int d)
+void	t_esc(float x, float y, t_env *e)
 {
 	int				i;
-	unsigned int	color;
+	unsigned int	c;
 	float			xo;
 	float			yo;
 
+	//printf("%f x %f y\n", x, y);
 	i = 0;
 	xo = x;
 	yo = y;
 	while (x * x + y * y <= (2 * 2) && i < MAX_ITER)
 	{
-		m_formula(&x, &y, d, xo, yo);
+		m_formula(&x, &y, e->d, xo, yo);
 		i += 1;
 	}
 	if (i == MAX_ITER)
-		color = 0x000000FF;
+		c = 0x000000FF;
 	else
-		color = melon(i);
-	mlx_put_pixel(img, x0, y0, color);
+		c = melon(i);
+	mlx_put_pixel(e->img, f_flo(xo, e->px_size, e->img), f_flo(yo, e->px_size, e->img), c);
+	printf("%f x %f y\n", f_flo(xo, e->px_size, e->img), f_flo(yo, e->px_size, e->img));
 }

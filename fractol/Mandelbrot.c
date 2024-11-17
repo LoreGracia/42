@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:57 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/17 15:30:52 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:59:06 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,56 +60,32 @@ float	to_flo(int val, float px_size, mlx_image_t *img)
 	return (val * (px_size));
 }
 
-void	mandelbrot(mlx_image_t *img, int y, int d, float px_size)
+float	f_flo(float val, float px_size, mlx_image_t *img)
+{
+	val /= px_size;
+	val += img->width / 2;
+	if (val >= (int)val + 0.5f)
+		val += 1;
+	return (val);
+}
+
+void	mandelbrot(void *p, int y)
 {
 	int		x;
 	size_t	i;
+	t_env 	*e;
 
 	x = 0;
 	i = 0;
-	while (x <= (int)img->width && y != (int)img->height)
+	e = p;
+	while (x <= (int)e->img->width && y != (int)e->img->height)
 	{
 		x++;
-		t_esc(to_flo(x, px_size, img), x, to_flo(y, px_size, img), y, img, d);
-		if (x == (int)img->width && y < (int)img->height)
-			mandelbrot(img, y + 1, d, px_size);
-		if (x == (int)img->width && y == (int)img->height)
+		printf("%d x0 %d y0\n", x, y);
+		t_esc(to_flo(x, e->px_size, e->img), to_flo(y, e->px_size, e->img), e);
+		if (x == (int)e->img->width && y < (int)e->img->height)
+			mandelbrot(e, y + 1);
+		if (x == (int)e->img->width && y == (int)e->img->height)
 			break ;
 	}
 }
-
-/*int	mandelbrot(char **argv)
-{
-	t_env	*e;
-
-	e = malloc(sizeof(t_env));
-	if (e == 0)
-		return (-1);
-	e->px_size = 0.005 / (WIDTH / 800);
-	e->y = 0;
-	e->d = ft_atoi(argv[2]);
-	e->f = mandelbrot_t;
-	e->mlx = mlx_init(WIDTH, HEIGHT, "Fractal", false);
-	if (!e->mlx)
-		return (ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
-	img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
-	if (!img)
-	{
-		mlx_close_window(e->mlx);
-		return (ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
-	}
-	e->f(img, e->y, e->d, e->px_size);
-	//mandelbrot_t(img, e->y, e->d, e->px_size);
-	if (mlx_image_to_window(e->mlx, img, 0, 0) == -1)
-	{
-		mlx_close_window(e->mlx);
-		return (ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
-	}
-	//mlx_scroll_hook(e->mlx, &my_scrollhook, &e->px_size);
-	mlx_scroll_hook(e->mlx, &ft_scrollhook, e);
-	mlx_loop_hook(e->mlx, ft_hook_esc_arrows, e->mlx);
-	mlx_loop(e->mlx);
-	mlx_delete_image(e->mlx, img);
-	mlx_terminate(e->mlx);
-	return (0);
-}*/

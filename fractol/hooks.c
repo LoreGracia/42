@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:45:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/16 19:55:28 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/17 17:34:15 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	ft_scrollhook(double xdelta, double ydelta, void *param)
 	if (ydelta > 0)
 	{
 		e->px_size /= 1.1;
-		e->f(e->img, e->y, e->d, e->px_size);
+		e->f(e, e->y);
 	}
 	if (ydelta < 0)
 	{
 		e->px_size *= 1.1;
-		e->f(e->img, e->y, e->d, e->px_size);
+		e->f(e, e->y);
 	}
 	if (xdelta < 0)
 		puts("Sliiiide to the left!");
