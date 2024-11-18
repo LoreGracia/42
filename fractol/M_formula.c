@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/17 19:46:27 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:52:04 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@ float	p(float val, float pow)
 	return (i);
 }
 
-void	n0ne(float *x, float *y, float x0, float y0)
+void	n0ne(float *x, float *y, t_env *e)
 {
 	float	d;
 
 	d = p(*x, 2) + p(*y, 2);
 	if (d == 0)
 		return ;
-	*x = (*x) / d + x0;
-	*y = -(*y) / d + y0;
+	*x = (*x) / d + e->x0;
+	*y = -(*y) / d + e->y0;
 }
 
-void	ntwo(float *x, float *y, float x0, float y0)
+void	ntwo(float *x, float *y, t_env *e)
 {
 	float	d;
 	float	xtmp;
@@ -42,26 +42,26 @@ void	ntwo(float *x, float *y, float x0, float y0)
 	d = p(*x, 4) + 2 * (*x) * (*x) * (*y) * (*y) + p(*y, 4);
 	if (d == 0)
 		return ;
-	xtmp = ((*x) * (*x) - (*y) * (*y)) / d + x0;
-	*y = -2 * (*x) * (*y) / d + y0;
+	xtmp = ((*x) * (*x) - (*y) * (*y)) / d + e->x0;
+	*y = -2 * (*x) * (*y) / d + e->y0;
 	*x = xtmp;
 }
 
-void	m_formula(float *x, float *y, float d, float x0, float y0)
+void	m_formula(float *x, float *y, t_env *e)
 {
-	if (d == -2)
-		ntwo(x, y, x0, y0);
-	else if (d == -1)
-		n0ne(x, y, x0, y0);
-	else if (d == 2)
-		two(x, y, x0, y0);
-	else if (d == 3)
-		three(x, y, x0, y0);
-	else if (d == 5)
-		five(x, y, x0, y0);
+	if (e->d == -2)
+		ntwo(x, y, e);
+	else if (e->d == -1)
+		n0ne(x, y, e);
+	else if (e->d == 2)
+		two(x, y, e);
+	else if (e->d == 3)
+		three(x, y, e);
+	else if (e->d == 5)
+		five(x, y, e);
 	else
 	{
-		n(x, y, x0, y0, d);
+		n(x, y, e);
 	}
 }
 
@@ -69,22 +69,17 @@ void	t_esc(float x, float y, t_env *e)
 {
 	int				i;
 	unsigned int	c;
-	float			xo;
-	float			yo;
 
-	//printf("%f x %f y\n", x, y);
 	i = 0;
-	xo = x;
-	yo = y;
-	while (x * x + y * y <= (2 * 2) && i < MAX_ITER)
+	e->x0 = x;
+	e->y0 = y;
+	while (x * x + y * y <= 4 && i < MAX_ITER)
 	{
-		m_formula(&x, &y, e->d, xo, yo);
-		i += 1;
+		m_formula(&x, &y, e);
+		++i;
 	}
-	if (i == MAX_ITER)
-		c = 0x000000FF;
-	else
-		c = melon(i);
-	mlx_put_pixel(e->img, f_flo(xo, e->px_size, e->img), f_flo(yo, e->px_size, e->img), c);
-	printf("%f x %f y\n", f_flo(xo, e->px_size, e->img), f_flo(yo, e->px_size, e->img));
+	//c = melon(i);
+	pallete(e);
+	c = e->p(i);
+	mlx_put_pixel(e->img, e->xo, e->yo, c);
 }

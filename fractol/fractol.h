@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/17 19:44:30 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:30:04 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,60 @@
 # include "Printf/ft_printf.h"
 # include "Libft/libft.h"
 
-# define WIDTH 800 
+# define WIDTH 600
 # define HEIGHT WIDTH
+# define PX_SIZE 0.005
+// 1 / (WIDTH >> 2)
 # define MAX_ITER 100
-# define PX_SIZE 0.005/ (WIDTH /800)
+
+
+typedef struct s_c
+{
+	int	xc;
+	int	yc;
+	mlx_image_t *img;
+}	t_c;
 
 typedef struct s_env
 {
-	mlx_t	 	*mlx;
+	mlx_t		*mlx;
 	mlx_image_t	*img;
 	float		px_size;
+	int			cx;
+	int			cy;
 	int			y;
+	int			x;
 	int			d;
+	float		x0;
+	float		y0;
+	int			xo;
+	int			yo;
 	void		(*f)(void *, int);
+	unsigned int	(*p)(int);
+	int			c;
+	t_c			earr;
+	t_c			earl;
+	t_c			face;
+	t_c			eyer;
+	t_c			eyel;
+	t_c			nose;
 }	t_env;
 
 void			t_esc(float x, float y, t_env *e);
 unsigned int	melon(int i);
+unsigned int	grey(int i);
+unsigned int	mas(int i);
 void			mandelbrot(void *p, int y);
+void			pallete(void *param);
 void			ft_scrollhook(double xdelta, double ydelta, void *param);
 void			ft_hook_esc_arrows(void *param);
+void			my_keyhook(mlx_key_data_t keydata, void* param);
 void			ft_clear(t_env *e);
 void			julia(void *p, int y);
-void			three(float *x, float *y, float x0, float y0);
-void			five(float *x, float *y, float x0, float y0);
-void			two(float *x, float *y, float x0, float y0);
-void			n(float *x, float *y, float x0, float y0, float d);
+void			three(float *x, float *y, t_env *e);
+void			five(float *x, float *y, t_env *e);
+void			two(float *x, float *y, t_env *e);
+void			n(float *x, float *y, t_env *e);
 float			p(float val, float pow);
 float			f_flo(float val, float px_size, mlx_image_t *img);
 

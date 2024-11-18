@@ -6,27 +6,24 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:15:30 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/17 15:24:48 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:27:49 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-/*unsigned int	melon(int i)
+void	pallete(void *param)
 {
-	if (i == 0)
-		return (0x50EBCEFF); //blue
-	else if (i == 1)
-		return (0xADFFC7FF); //green
-	else if (i == 2)
-		return (0xFFFFFFFF); //white
-	else if (i == 3)
-		return (0xFFC3C2FF); //pink
-	else if (i > 3)
-		return (0xFF6E6BFF); //red
-	else
-		return (0xFFFFFFFF);
-}*/
+	t_env *e;
+	e = param;
+
+	if (e->c == 0)
+		e->p = melon;
+	if (e->c == 1)
+		e->p = grey;
+	if (e->c == 2)
+		e->p = mas;
+}
 
 unsigned int	melon(int p)
 {
@@ -36,7 +33,29 @@ unsigned int	melon(int p)
 		return (0xADFFC7FF);
 	if (p == 2)
 		return (0xFFFFFFFF);
+	if (p > 2 && p < MAX_ITER)
+		return (0xFFC3C2FF);
+	return (0xFF6E6BFF);
+}
+
+unsigned int	grey(int p)
+{
+	if (p < MAX_ITER)
+		return (0x000000FF - (p*100));
+	return (0xFFFFFFFF);
+}
+
+unsigned int	mas(int p)
+{
+	if (p == 0)
+		return (0xFFFFFFFF);
+	if (p == 1)
+		return (0x50EBCEFF);
+	if (p == 2)
+		return (0xADFFC7FF);
 	if (p == 3)
+		return (0xFFFFFFFF);
+	if (p > 3 && p < MAX_ITER)
 		return (0xFFC3C2FF);
 	return (0xFF6E6BFF);
 }

@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:54:46 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/17 17:36:57 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:27:47 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ void	screen(mlx_image_t *img, int y, unsigned int color)
 
 void	line(void *p, int y)
 {
-	int	i;
-	t_env *e;
+	int		i;
+	t_env	*e;
 
 	(void)y;
 	e = p;
-	memset(e->img->pixels, 120, e->img->width * e->img->height * sizeof(int32_t));
+	memset(e->img->pixels, 120, e->img->width * \
+			e->img->height * sizeof(int32_t));
 	screen(e->img, 120, 0x50EBCEFF);
 	i = 0;
 	while (i++ < 100)

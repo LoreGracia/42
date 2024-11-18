@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:57 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/17 19:59:06 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:33:07 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,37 +54,36 @@ float	to_floats(int x, int y, mlx_image_t *img)
 	return (0);
 }*/
 
-float	to_flo(int val, float px_size, mlx_image_t *img)
+float	to_flo(int val, char c, t_env *e)
 {
-	val -= img->width / 2;
-	return (val * (px_size));
-}
-
-float	f_flo(float val, float px_size, mlx_image_t *img)
-{
-	val /= px_size;
-	val += img->width / 2;
-	if (val >= (int)val + 0.5f)
-		val += 1;
-	return (val);
+	if (c == 'x') 
+		val -= e->cx >> 1;
+	else
+		val -= e->cy >> 1;
+	return (val * (e->px_size));
 }
 
 void	mandelbrot(void *p, int y)
 {
 	int		x;
 	size_t	i;
-	t_env 	*e;
+	t_env	*e;
 
-	x = 0;
 	i = 0;
 	e = p;
+	x = e->x;
 	while (x <= (int)e->img->width && y != (int)e->img->height)
 	{
 		x++;
-		printf("%d x0 %d y0\n", x, y);
-		t_esc(to_flo(x, e->px_size, e->img), to_flo(y, e->px_size, e->img), e);
+		e->xo = x;
+		e->yo = y;
+		t_esc(to_flo(x, 'x', e), to_flo(y, 'y', e), e);
 		if (x == (int)e->img->width && y < (int)e->img->height)
-			mandelbrot(e, y + 1);
+		{
+			y++;
+			x=0;
+		}		
+//			mandelbrot(e, y + 1);
 		if (x == (int)e->img->width && y == (int)e->img->height)
 			break ;
 	}
