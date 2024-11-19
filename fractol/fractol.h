@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/18 18:30:04 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:04:43 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,37 +28,35 @@
 // 1 / (WIDTH >> 2)
 # define MAX_ITER 100
 
-
 typedef struct s_c
 {
-	int	xc;
-	int	yc;
-	mlx_image_t *img;
-}	t_c;
+	int			xc;
+	int			yc;
+	mlx_image_t	*img;
+}		t_c;
 
 typedef struct s_env
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	float		px_size;
-	int			cx;
-	int			cy;
-	int			y;
-	int			x;
-	int			d;
-	float		x0;
-	float		y0;
-	int			xo;
-	int			yo;
-	void		(*f)(void *, int);
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	float			px_size;
+	int				cx;
+	int				cy;
+	int				d;
+	float			x0;
+	float			y0;
+	int				xo;
+	int				yo;
+	void			(*f)(void *, int);
 	unsigned int	(*p)(int);
-	int			c;
-	t_c			earr;
-	t_c			earl;
-	t_c			face;
-	t_c			eyer;
-	t_c			eyel;
-	t_c			nose;
+	void			(*hook)(mlx_key_data_t keydata, void *);
+	int				c;
+	t_c				earr;
+	t_c				earl;
+	t_c				face;
+	t_c				eyer;
+	t_c				eyel;
+	t_c				nose;
 }	t_env;
 
 void			t_esc(float x, float y, t_env *e);
@@ -68,8 +66,8 @@ unsigned int	mas(int i);
 void			mandelbrot(void *p, int y);
 void			pallete(void *param);
 void			ft_scrollhook(double xdelta, double ydelta, void *param);
-void			ft_hook_esc_arrows(void *param);
-void			my_keyhook(mlx_key_data_t keydata, void* param);
+void			key_arrows_keyhook(mlx_key_data_t keydata, void *param);
+void			my_keyhook(mlx_key_data_t keydata, void *param);
 void			ft_clear(t_env *e);
 void			julia(void *p, int y);
 void			three(float *x, float *y, t_env *e);

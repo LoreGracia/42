@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:15:30 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/18 18:27:49 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:02:30 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	pallete(void *param)
 {
-	t_env *e;
-	e = param;
+	t_env	*e;
 
+	e = param;
 	if (e->c == 0)
 		e->p = melon;
 	if (e->c == 1)
@@ -41,7 +41,7 @@ unsigned int	melon(int p)
 unsigned int	grey(int p)
 {
 	if (p < MAX_ITER)
-		return (0x000000FF - (p*100));
+		return (0x000000FF - (p * 100));
 	return (0xFFFFFFFF);
 }
 

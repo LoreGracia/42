@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:57 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/18 17:33:07 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:21:22 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ float	to_floats(int x, int y, mlx_image_t *img)
 
 float	to_flo(int val, char c, t_env *e)
 {
-	if (c == 'x') 
+	if (c == 'x')
 		val -= e->cx >> 1;
 	else
 		val -= e->cy >> 1;
@@ -71,7 +71,7 @@ void	mandelbrot(void *p, int y)
 
 	i = 0;
 	e = p;
-	x = e->x;
+	x = 0;
 	while (x <= (int)e->img->width && y != (int)e->img->height)
 	{
 		x++;
@@ -81,9 +81,8 @@ void	mandelbrot(void *p, int y)
 		if (x == (int)e->img->width && y < (int)e->img->height)
 		{
 			y++;
-			x=0;
-		}		
-//			mandelbrot(e, y + 1);
+			x = 0;
+		}
 		if (x == (int)e->img->width && y == (int)e->img->height)
 			break ;
 	}

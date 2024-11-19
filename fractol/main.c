@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/18 19:39:17 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:00:04 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ int	parse_fractol(char **argv, t_env *e)
 		e->px_size = 1.0 / (WIDTH >> 2);
 		e->cx = WIDTH;
 		e->cy = HEIGHT;
-		e->y = 0;
-		e->x = 0;
 		e->c = 0;
 		e->d = ft_atoi(argv[2]);
 		e->f = mandelbrot;
+		e->hook = key_arrows_keyhook;
 		return (1);
 	}
 	else if (argv[1][0] == 'j')
@@ -73,14 +72,14 @@ int	draw(char **argv, t_env *e)
 		return (write(2, "EXIT_FAILURE", 12), -1);
 	e->mlx = mlx_init(WIDTH, HEIGHT, "Fractal", false);
 	if (!e->mlx)
-		return (mlx_close_window(e->mlx), ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
+		return (ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
 	e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
 	if (!e->img)
 	{
 		mlx_close_window(e->mlx);
 		return (ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
 	}
-	e->f(e, e->y);
+	e->f(e, 0);
 	if (mlx_image_to_window(e->mlx, e->img, 0, 0) == -1)
 	{
 		mlx_close_window(e->mlx);

@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/18 16:52:04 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:00:52 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	t_esc(float x, float y, t_env *e)
 		m_formula(&x, &y, e);
 		++i;
 	}
-	//c = melon(i);
 	pallete(e);
 	c = e->p(i);
 	mlx_put_pixel(e->img, e->xo, e->yo, c);
