@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 15:30:31 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/18 16:26:00 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/19 18:34:44 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	panda(void *p, int y)
 	e->nose.yc = HEIGHT / 2 + 100;
 	cercle(e->earr, 100, e->img, 0x000000FF);
 	cercle(e->earl, 100, e->img, 0x000000FF);
-	cercle(e->face, 300, e->img, 0xFFFFFFFF);
+	cercle(e->face, 300, e->img, 0xFFFFFF00);
 	cercle(e->eyer, 50, e->img, 0x000000FF);
 	cercle(e->eyel, 50, e->img, 0x000000FF);
 	cercle(e->nose, 30, e->img, 0x000000FF);

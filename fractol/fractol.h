@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/19 12:04:43 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/19 16:46:59 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define HEIGHT WIDTH
 # define PX_SIZE 0.005
 // 1 / (WIDTH >> 2)
-# define MAX_ITER 100
+# define MAX_ITER 50
 
 typedef struct s_c
 {

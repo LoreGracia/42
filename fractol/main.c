@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/19 12:00:04 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/19 19:01:12 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,10 @@ int	parse(char **argv, t_env *e)
 		else if (i == 1)
 			return (0);
 	}
-	else
-	{
-		if (argv[1][0] == 'p')
-			e->f = panda;
-		if (argv[1][0] == 'l')
-			e->f = line;
-	}
+	if (argv[1][0] == 'p')
+		e->f = panda;
+	if (argv[1][0] == 'l')
+		e->f = line;
 	return (0);
 }
 
@@ -79,12 +76,12 @@ int	draw(char **argv, t_env *e)
 		mlx_close_window(e->mlx);
 		return (ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
 	}
-	e->f(e, 0);
 	if (mlx_image_to_window(e->mlx, e->img, 0, 0) == -1)
 	{
 		mlx_close_window(e->mlx);
 		return (ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
 	}
+	e->f(e, 0);
 	mlx_scroll_hook(e->mlx, &ft_scrollhook, e);
 	mlx_key_hook(e->mlx, &my_keyhook, e);
 	mlx_loop(e->mlx);
