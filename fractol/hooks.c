@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:45:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/19 18:23:50 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:20:25 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,33 @@ void	ft_scrollhook(double xdelta, double ydelta, void *param)
 		puts("Sliiiide to the right!");
 }
 
+void	arrows_keyhook(mlx_key_data_t keydata, void *param)
+{
+	t_env	*e;
+
+	e = param;
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
+	{
+		e->cy += 5;
+		e->f(e, 0);
+	}
+	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+	{
+		e->cy -= 5;
+		e->f(e, 0);
+	}
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+	{
+		e->cx += 5;
+		e->f(e, 0);
+	}
+	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+	{
+		e->cx -= 5;
+		e->f(e, 0);
+	}
+}
+
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_env	*e;
@@ -40,7 +67,8 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	e = param;
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(e->mlx);
-	e->hook(keydata, e);
+	e->arrow(keydata, e);
+	e->arrow_scroll(keydata, e);
 	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
 	{
 		if (e->c != 2)
@@ -51,7 +79,7 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	}
 }
 
-void	key_arrows_keyhook(mlx_key_data_t keydata, void *param)
+void	scroll_arrows_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_env	*e;
 

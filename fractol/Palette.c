@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:15:30 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/19 19:52:56 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:47:32 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	pallete(void *param)
 	if (e->c == 0)
 		e->p = grey;
 	if (e->c == 2)
-		e->p = mas;
+		e->p = grass;
 }
 
-unsigned int	melon(int p)
+unsigned int	grass(int p)
 {
 	if (p == 0)
 		return (0x042940FF);
@@ -47,7 +47,7 @@ unsigned int	grey(int p)
 	return (0xFFFFFFFF);
 }
 
-unsigned int	mas(int p)
+unsigned int	melon(int p)
 {
 	if (p == 0)
 		return (0xFFFFFFFF);
@@ -58,6 +58,6 @@ unsigned int	mas(int p)
 	if (p == 3)
 		return (0xFFFFFFFF);
 	if (p > 3 && p < MAX_ITER)
-		return (0xFFC3C2FF + (p * 100));
+		return (0xFFC3C2FF * (p + 1));
 	return (0xFF6E6BFF);
 }

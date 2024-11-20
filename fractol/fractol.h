@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/19 16:46:59 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:00:19 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define WIDTH 600
 # define HEIGHT WIDTH
 # define PX_SIZE 0.005
-// 1 / (WIDTH >> 2)
-# define MAX_ITER 50
+:x
+# define MSG "Try './fractol m 2' or '/.fractol j 2 0.279 0.009'\n"
 
 typedef struct s_c
 {
@@ -37,6 +37,7 @@ typedef struct s_c
 
 typedef struct s_env
 {
+	char			type;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	float			px_size;
@@ -49,7 +50,8 @@ typedef struct s_env
 	int				yo;
 	void			(*f)(void *, int);
 	unsigned int	(*p)(int);
-	void			(*hook)(mlx_key_data_t keydata, void *);
+	void			(*arrow_scroll)(mlx_key_data_t keydata, void *);
+	void			(*arrow)(mlx_key_data_t keydata, void *);
 	int				c;
 	t_c				earr;
 	t_c				earl;
@@ -62,11 +64,12 @@ typedef struct s_env
 void			t_esc(float x, float y, t_env *e);
 unsigned int	melon(int i);
 unsigned int	grey(int i);
-unsigned int	mas(int i);
+unsigned int	grass(int i);
 void			mandelbrot(void *p, int y);
 void			pallete(void *param);
 void			ft_scrollhook(double xdelta, double ydelta, void *param);
-void			key_arrows_keyhook(mlx_key_data_t keydata, void *param);
+void			arrows_keyhook(mlx_key_data_t keydata, void *param);
+void			scroll_arrows_keyhook(mlx_key_data_t keydata, void *param);
 void			my_keyhook(mlx_key_data_t keydata, void *param);
 void			ft_clear(t_env *e);
 void			julia(void *p, int y);

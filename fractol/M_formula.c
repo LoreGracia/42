@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/19 19:46:33 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/20 19:12:39 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,11 @@ void	t_esc(float x, float y, t_env *e)
 	unsigned int	c;
 
 	i = 0;
-	e->x0 = x;
-	e->y0 = y;
+	if (e->type == 'm')
+	{
+		e->x0 = x;
+		e->y0 = y;
+	}
 	while (x * x + y * y <= 4 && i < MAX_ITER)
 	{
 		m_formula(&x, &y, e);
