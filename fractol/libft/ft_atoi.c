@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 18:23:32 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/20 18:40:36 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:10:45 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,59 +21,59 @@ static int	blanks(const char i)
 	return (1);
 }
 
-static void	parse_atoi(int *i, const char *nptr, float *f, int *sign)
+static void	parse_atoi(int *i, const char *nptr, double *sign)
 {
 	while (blanks(nptr[*i]) == 0)
 		*i += 1;
 	if (nptr[*i] == '-' || nptr[*i] == '+')
 	{
-		if (nptr[*i++] == '-')
+		if (nptr[*i] == '-')
 			*sign *= -1;
-	}
-	if (ft_strchr(nptr, '.') != 0)
-	{
-		*f = 0.1;
-		*i += 2;
+		*i += 1;
 	}
 }
 
-float	ft_atod(const char *nptr)
+double	ft_atod(const char *nptr)
 {
 	int		i;
-	float	ptr;
+	double	ptr;
 	int		sign;
-	float	f;
+	double	f;
 	int		dlen;
 
 	i = 0;
 	ptr = 0;
 	sign = 1;
-	f = 0;
-	parse_atoi(&i, nptr, &f, &sign);
 	dlen = i;
+	if (ft_strchr(nptr, '.') != 0)
+	{
+		f = 0.1;
+		i += 2;
+	}
 	while (nptr[i] <= '9' && nptr[i] >= '0')
 	{
 		ptr = nptr[i] - '0' + (10 * ptr);
 		i++;
 	}
-	dlen = i - dlen;
+	dlen = i - dlen - 2;
 	ptr *= sign;
 	while (f && dlen--)
 		ptr = (ptr * f);
 	return (ptr);
 }
 
-float	ft_atoi(const char *nptr)
+double	ft_atoi(const char *nptr)
 {
 	int		i;
-	float	ptr;
-	int		sign;
-	float	o;
+	double	ptr;
+	double	sign;
+	double	o;
 
 	i = 0;
 	ptr = 0;
 	sign = 1;
 	o = 0;
+	parse_atoi(&i, nptr, &sign);
 	if (ft_strchr(nptr, '.') != 0)
 		o = ft_atod(nptr);
 	while (nptr[i] <= '9' && nptr[i] >= '0')

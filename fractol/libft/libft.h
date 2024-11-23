@@ -6,7 +6,7 @@
 /*   By: lgracia- <marvin@42.fr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 19:56:08 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/20 15:54:36 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:01:57 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				ft_isascii(int c);
 int				ft_isprint(int c);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
-float			ft_atoi(const char *str);
+double			ft_atoi(const char *str);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);

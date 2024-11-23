@@ -6,32 +6,32 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:57 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/20 17:13:49 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/21 10:55:34 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-/*float	to_float(int x, int y, mlx_image_t *img, float max)
+/*double	to_double(int x, int y, mlx_image_t *img, double max)
 {
-	float i;
+	double i;
 
 	if (x && x != 0)
 	{
-		i = x * max / (float)img->width;
+		i = x * max / (double)img->width;
 	//	printf("%d x %f result\n", x, i);
 		return (i);
 	}
 	else if (y && y != 0)
 	{
-		i = y * max / (float)img->height;
+		i = y * max / (double)img->height;
 	//	printf("%d y %f y\n", y, i);
 		return (i);
 	}
 	return (0);
 }
 
-float	to_floats(int x, int y, mlx_image_t *img)
+double	to_doubles(int x, int y, mlx_image_t *img)
 {
 	if (!x && !y)
 		return (0);
@@ -39,22 +39,22 @@ float	to_floats(int x, int y, mlx_image_t *img)
 	{
 		if (x < (int)img->width/2)
 		{
-			return (to_float(x - (int)img->width/2, 0, img, -5.5));
+			return (to_double(x - (int)img->width/2, 0, img, -5.5));
 		}
 		else if (x > (int)img->width/2)
-			return (to_float(x - (int)img->width/2, 0, img, 5.5));
+			return (to_double(x - (int)img->width/2, 0, img, 5.5));
 	}
 	else if (y && y != 0)
 	{
 		if (y < (int)img->height/2)
-			return (to_float(y - (int)img->height/2, 0, img, -5.5));
+			return (to_double(y - (int)img->height/2, 0, img, -5.5));
 		else if (y > (int)img->height/2)
-			return (to_float(y - (int)img->height/2, 0, img, 5.5));
+			return (to_double(y - (int)img->height/2, 0, img, 5.5));
 	}
 	return (0);
 }*/
 
-float	to_flo(int val, char c, t_env *e)
+double	to_flo(int val, char c, t_env *e)
 {
 	if (c == 'x')
 		val -= e->cx >> 1;

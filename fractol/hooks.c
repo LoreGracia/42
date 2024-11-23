@@ -6,11 +6,60 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:45:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/20 17:20:25 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:35:45 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	is_cursor_close(void *param)
+{
+	t_env	*e;
+	int		w;
+
+	e = param;
+	w = (int)e->img->width / 2;
+	if (e->cursorx <= w)
+	{
+		e->cx += (e->cursorx - w) * -1;
+		printf("%d %d\n%d\n", e->cursorx, e->cx, (e->cursorx - w) * -1);
+	}
+	if (e->cursorx > w)
+		e->cx -= (e->cursory - w);
+	if (e->cursory <= w)
+		e->cy += (e->cursory - w) * -1;
+	if (e->cursory > w)
+		e->cy -= (e->cursory - w);
+}
+
+void	is_cursor_far(void *param)
+{
+	t_env	*e;
+	int		w;
+
+	e = param;
+	w = (int)e->img->width / 2;
+	if (e->cursorx <= w)
+	{
+		e->cx -= (e->cursorx - w) * -1;
+		printf("%d %d\n%d\n", e->cursorx, e->cx, (e->cursorx - w) * -1);
+	}
+	if (e->cursorx > w)
+		e->cx += (e->cursory - w);
+	if (e->cursory <= w)
+		e->cy -= (e->cursory - w) * -1;
+	if (e->cursory > w)
+		e->cy += (e->cursory - w);
+}
+
+void	mlx_pos_cursor_zoom(double xpos, double ypos, void *param)
+{
+	t_env	*e;
+
+	e = param;
+	e->cursorx = xpos;
+	e->cursory = ypos;
+}
 
 void	ft_scrollhook(double xdelta, double ydelta, void *param)
 {
@@ -20,17 +69,28 @@ void	ft_scrollhook(double xdelta, double ydelta, void *param)
 	if (ydelta > 0)
 	{
 		e->px_size /= 1.1;
-		e->f(e, 0);
+		mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
+		is_cursor_close(e);
 	}
 	if (ydelta < 0)
 	{
 		e->px_size *= 1.1;
-		e->f(e, 0);
+		mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
+		is_cursor_far(e);
 	}
 	if (xdelta < 0)
-		puts("Sliiiide to the left!");
-	else if (xdelta > 0)
-		puts("Sliiiide to the right!");
+	{
+		e->px_size /= 1.1;
+		mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
+		is_cursor_close(e);
+	}
+	if (xdelta > 0)
+	{
+		e->px_size *= 1.1;
+		mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
+		is_cursor_far(e);
+	}
+	e->f(e, 0);
 }
 
 void	arrows_keyhook(mlx_key_data_t keydata, void *param)
@@ -71,7 +131,7 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	e->arrow_scroll(keydata, e);
 	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
 	{
-		if (e->c != 2)
+		if (e->c != 3)
 			e->c += 1;
 		else
 			e->c = 0;

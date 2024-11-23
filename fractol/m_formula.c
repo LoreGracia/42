@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   M_formula.c                                        :+:      :+:    :+:   */
+/*   m_formula.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/20 19:12:39 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/21 19:24:12 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-float	p(float val, float pow)
+double	p(double val, double pow)
 {
-	float	i;
+	double	i;
 
 	i = val;
 	pow -= 1;
@@ -23,9 +23,9 @@ float	p(float val, float pow)
 	return (i);
 }
 
-void	n0ne(float *x, float *y, t_env *e)
+void	n0ne(double *x, double *y, t_env *e)
 {
-	float	d;
+	double	d;
 
 	d = p(*x, 2) + p(*y, 2);
 	if (d == 0)
@@ -34,10 +34,10 @@ void	n0ne(float *x, float *y, t_env *e)
 	*y = -(*y) / d + e->y0;
 }
 
-void	ntwo(float *x, float *y, t_env *e)
+void	ntwo(double *x, double *y, t_env *e)
 {
-	float	d;
-	float	xtmp;
+	double	d;
+	double	xtmp;
 
 	d = p(*x, 4) + 2 * (*x) * (*x) * (*y) * (*y) + p(*y, 4);
 	if (d == 0)
@@ -47,7 +47,7 @@ void	ntwo(float *x, float *y, t_env *e)
 	*x = xtmp;
 }
 
-void	m_formula(float *x, float *y, t_env *e)
+void	m_formula(double *x, double *y, t_env *e)
 {
 	if (e->d == -2)
 		ntwo(x, y, e);
@@ -65,7 +65,7 @@ void	m_formula(float *x, float *y, t_env *e)
 	}
 }
 
-void	t_esc(float x, float y, t_env *e)
+void	t_esc(double x, double y, t_env *e)
 {
 	int				i;
 	unsigned int	c;
