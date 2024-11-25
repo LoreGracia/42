@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/23 14:37:34 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:21:52 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	draw(char **argv, t_env *e)
 		return (ft_printf("%d\n", mlx_strerror(mlx_errno)), -1);
 	}
 	e->f(e, 0);
+	mlx_mouse_hook(e->mlx, &mouse, e);
 	mlx_scroll_hook(e->mlx, &ft_scrollhook, e);
 	mlx_key_hook(e->mlx, &my_keyhook, e);
 	mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);

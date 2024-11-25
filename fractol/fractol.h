@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/23 14:25:05 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:33:16 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void			mandelbrot(void *p, int y);
 void			pallete(void *param);
 void			ft_scrollhook(double xdelta, double ydelta, void *param);
 void			arrows_keyhook(mlx_key_data_t keydata, void *param);
+void			mouse(mouse_key_t keydata, action_t action, modifier_key_t mods, void *param);
 void			my_cursor(double xpos, double ypos, void* param);
 void			mlx_pos_cursor_zoom(double xpos, double ypos, void* param);
 void			scroll_arrows_keyhook(mlx_key_data_t keydata, void *param);

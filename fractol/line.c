@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 16:54:46 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/18 11:27:47 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/23 22:40:11 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	screen(mlx_image_t *img, int y, unsigned int color)
 	int		x;
 	size_t	i;
 
-	x = 0;
+	x = -1;
 	i = 0;
-	while (x <= (int)img->width && y != (int)img->height)
+	while (x < (int)img->width && y != (int)img->height)
 	{
 		x++;
 		mlx_put_pixel(img, x, y, color);

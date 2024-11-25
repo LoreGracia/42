@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/21 19:24:12 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/23 22:42:59 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,7 @@ void	m_formula(double *x, double *y, t_env *e)
 	else if (e->d == 5)
 		five(x, y, e);
 	else
-	{
 		n(x, y, e);
-	}
 }
 
 void	t_esc(double x, double y, t_env *e)

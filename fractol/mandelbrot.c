@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Mandelbrot.c                                       :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:57 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/21 10:55:34 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/23 22:58:51 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	mandelbrot(void *p, int y)
 
 	i = 0;
 	e = p;
-	x = 0;
-	while (x <= (int)e->img->width && y != (int)e->img->height)
+	x = -1;
+	while (x < (int)e->img->width && y != (int)e->img->height)
 	{
 		x++;
 		e->xo = x;
@@ -81,9 +81,31 @@ void	mandelbrot(void *p, int y)
 		if (x == (int)e->img->width && y < (int)e->img->height)
 		{
 			y++;
-			x = 0;
+			x = -1;
 		}
 		if (x == (int)e->img->width && y == (int)e->img->height)
 			break ;
 	}
 }
+
+/*void	mandelbrot(void *p, int y)
+{
+	int		x;
+	size_t	i;
+	t_env	*e;
+
+	i = 0;
+	e = p;
+	while (y < (int)e->img->width)
+	{
+		x = 0;
+		while (x < (int)e->img->width)
+		{
+			e->xo = x;
+			e->yo = y;
+			t_esc(to_flo(x, 'x', e), to_flo(y, 'y', e), e);
+			x++;
+		}
+		y++;
+	}
+}*/
