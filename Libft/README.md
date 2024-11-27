@@ -8,14 +8,7 @@
   <p align="center">
     A library, first 42 project!
     <br />
-    <a href="https://github.com/LoreGracia/42/blob/3a999a1dcd50ee586bc5821a9c1e263442ffdd4c/Reload/en.subject.pdf"><strong>Explore the subject »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Installation</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/LoreGracia/42/blob/004837ce85103b4f40fad06aedc5b1ed7378c17d/Libft/en.subject.pdf"><strong>Explore the subject »</strong></a>
   </p>
 </div>
 
@@ -41,7 +34,7 @@ The repository is organized as follows:
 └── libft.a          # Compiled library (generated after running 'make')
 ```
 
-see the <a href=[Reload/en.subject.pdf](https://github.com/LoreGracia/42/blob/3a999a1dcd50ee586bc5821a9c1e263442ffdd4c/libft/en.subject.pdf)>subject</a> for more details.
+see the <a href=[Libft/en.subject.pdf](https://github.com/LoreGracia/42/blob/004837ce85103b4f40fad06aedc5b1ed7378c17d/Libft/en.subject.pdf)>subject</a> for more details.
 
 ## Installation
 
