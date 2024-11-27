@@ -24,7 +24,7 @@ Libft is a custom library written in C that contains a set of standard functions
 
 ## Project Structure
 
-The repository is organized as follows:
+The project is organized as follows:
 
 ```bash
 .
