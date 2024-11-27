@@ -15,13 +15,24 @@
 void	zoom_tocursor(int *prev, int cursor, char c, int w)
 {
 	int	v;
+	int	d;
+	int	mid;
 //	(void)w;
 
 	v = *prev;
+	mid = e->img->width;
 	if (c == 'i')
-		*prev += (int)((cursor - v) * 1.1) - w;
+	{
+		d = (v * 1.1) - v;
+		v += cursor - (mid / 2) - d;
+		//*prev += (int)((cursor - v) * 1.1) - w;
+	}
 	else if (c == 'o')
-		*prev -= (int)((cursor - v) * 1.1) - w;
+	{
+		d = (v / 1.1) - v;
+ 		v += cursor - (mid / 2) - d;
+		//*prev -= (int)((cursor - v) * 1.1) - w;
+	}
 	//printf("%d\n", *prev);
 }
 
@@ -148,8 +159,8 @@ void	mouse(mouse_key_t key, action_t action, modifier_key_t mods, void *param)
 	{
 		printf("%d x%dy %d mid\n", (e->cursorx), (e->cursory), mid);
 		printf("%d x%dy\n", e->cx, e->cy);
-		e->cx += e->cursorx - mid / 2;
- 		e->cy += e->cursory - mid / 2;
+		e->cx += e->cursorx - (mid / 2);
+ 		e->cy += e->cursory - (mid / 2);
 		printf("%d x%dy\n", (e->cursorx), (e->cursory));
 		printf("%d x%dy\n", e->cx, e->cy);
 	}
