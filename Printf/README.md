@@ -24,7 +24,7 @@ Printf is a custom program written in C  that emulates the original printf funct
 
 ## Project Structure
 
-The repository is organized as follows:
+The project is organized as follows:
 
 ```bash
 .
