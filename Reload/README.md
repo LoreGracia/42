@@ -12,12 +12,7 @@
     <br />
     <a href="https://github.com/LoreGracia/42/blob/3a999a1dcd50ee586bc5821a9c1e263442ffdd4c/Reload/en.subject.pdf"><strong>Explore the subject »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Installation</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+
   </p>
 </div>
 
