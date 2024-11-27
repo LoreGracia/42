@@ -23,7 +23,7 @@ Get next line is a program written in C for reading files given as arguments. Th
 
 ## Project Structure
 
-The repository is organized as follows:
+The project is organized as follows:
 
 ```bash
 .
