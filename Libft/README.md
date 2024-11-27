@@ -43,8 +43,8 @@ To compile the library and generate the libft.a file, follow these steps:
 ### Clone this repository:
 
 ```bash
-git clone https://github.com/ararrojas/libft.git
-cd libft
+git clone https://github.com/LoreGracia/42.git
+cd 42/libft
 ```
 
 ### Compile the library:
