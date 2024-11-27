@@ -71,7 +71,7 @@ To compile the the programs in ex 18, 19 or 23 follow these steps:
 
 ```bash
 git clone https://github.com/LoreGracia/42.git
-cd 42/[folder name]
+cd 42/Realod/[folder name]
 ```
 
 ### Compile:
