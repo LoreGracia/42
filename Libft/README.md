@@ -34,7 +34,7 @@ The repository is organized as follows:
 └── libft.a          # Compiled library (generated after running 'make')
 ```
 
-see the <a href=[Libft/en.subject.pdf](https://github.com/LoreGracia/42/blob/004837ce85103b4f40fad06aedc5b1ed7378c17d/Libft/en.subject.pdf)>subject</a> for more details.
+see the <a href=https://github.com/LoreGracia/42/blob/004837ce85103b4f40fad06aedc5b1ed7378c17d/Libft/en.subject.pdf>subject</a> for more details.
 
 ## Installation
 
