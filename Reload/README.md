@@ -1,5 +1,8 @@
+
  <div align="right">
   <img src="https://www.42barcelona.com/wp-content/uploads/2020/07/Barcelona-300x79.png" alt="Logo"  height="20">
+  <div align="left">
+   <a href="https://github.com/LoreGracia/42/tree/main/Reload"><img src="https://img.shields.io/badge/reload-100%25-lightgreen?style=for-the-badge&labelColor=black"><a href="https://shields.io"/>
 <div align="center">
     <img src="https://cdn-icons-png.flaticon.com/512/724/724863.png" alt="Logo" width="80" height="80">
   
