@@ -61,7 +61,7 @@ This project is composed  by individual exercercises, each in it's own folder, a
 └── ex27              # Display file program.
 ```
 
-see the <a href=[Reload/en.subject.pdf](https://github.com/LoreGracia/42/blob/3a999a1dcd50ee586bc5821a9c1e263442ffdd4c/Reload/en.subject.pdf)>subject</a> for more details.
+see the <a href=https://github.com/LoreGracia/42/blob/3a999a1dcd50ee586bc5821a9c1e263442ffdd4c/Reload/en.subject.pdf>subject</a> for more details.
 
 ## Installation
 
