@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:57 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/23 22:58:51 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:09:56 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,15 @@ double	to_doubles(int x, int y, mlx_image_t *img)
 }*/
 
 double	to_flo(int val, char c, t_env *e)
+{
+	if (c == 'x')
+		val -= e->cx >> 1;
+	else
+		val -= e->cy >> 1;
+	return (val * (e->px_size));
+}
+
+int	from_flo(double val, char c, t_env *e)
 {
 	if (c == 'x')
 		val -= e->cx >> 1;

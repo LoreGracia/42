@@ -6,53 +6,11 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:45:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/28 11:17:01 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:03:35 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	zoom_tocursor(int start, int *end, double i, char c)
-{
-//	(void)w;
-
-	if (c == 'i')
-	{
-		*end = start + (double)((double)*end - (double)start) * i;
-		//*prev += (int)((cursor - v) * 1.1) - w;
-	}
-	else if (c == 'o')
-	{
-
-		*end = start + (double)((double)*end - (double)start) / i;
-		//*prev -= (int)((cursor - v) * 1.1) - w;
-	}
-	//printf("%d\n", *prev);
-}
-
-void	ft_scrollhook(double xdelta, double ydelta, void *param)
-{
-	t_env		*e;
-	int			w;
-	
-	e = param;
-	(void)xdelta;
-	w = e->img->width / 2;
-	if (ydelta > 0)
-	{
-		e->px_size /= 1.1;
-		zoom_tocursor(e->cursorx, &e->cx, 1.0 / 1.1, 'i');
-		zoom_tocursor(e->cursory, &e->cy, 1.0 / 1.1, 'i');
-		printf("%d y %d x\n", e->cy, e->cx);
-	}
-	else if (ydelta < 0)
-	{
-		e->px_size *= 1.1;
-		zoom_tocursor(e->cursorx, &e->cx, 1.0 / 1.1, 'o');
-		zoom_tocursor(e->cursory, &e->cy, 1.0 / 1.1, 'o');
-	}
-	e->f(e, 0);
-}
 
 void	is_cursor_close(void *param)
 {
@@ -62,16 +20,13 @@ void	is_cursor_close(void *param)
 	e = param;
 	w = (int)e->img->width / 2;
 	if (e->cursorx <= w)
-	{
-		e->cx += (e->cursorx - w) * -1;
-		printf("%d %d\n%d\n", e->cursorx, e->cx, (e->cursorx - w) * -1);
-	}
+		e->cx += (e->cursorx - w) * -1 * 1.1;
 	if (e->cursorx > w)
-		e->cx -= (e->cursorx - w);
+		e->cx -= (e->cursorx - w) * 1.1;
 	if (e->cursory <= w)
-		e->cy += (e->cursory - w) * -1;
+		e->cy += (e->cursory - w) * -1 * 1.1;
 	if (e->cursory > w)
-		e->cy -= (e->cursory - w);
+		e->cy -= (e->cursory - w) * 1.1;
 }
 
 void	is_cursor_far(void *param)
@@ -82,16 +37,13 @@ void	is_cursor_far(void *param)
 	e = param;
 	w = (int)e->img->width / 2;
 	if (e->cursorx <= w)
-	{
-		e->cx -= (e->cursorx - w) * -1;
-		printf("%d %d\n%d\n", e->cursorx, e->cx, (e->cursorx - w) * -1);
-	}
+		e->cx -= (e->cursorx - w) * -1 / 1.1;
 	if (e->cursorx > w)
-		e->cx += (e->cursorx - w);
+		e->cx += (e->cursorx - w) / 1.1;
 	if (e->cursory <= w)
-		e->cy -= (e->cursory - w) * -1;
+		e->cy -= (e->cursory - w) * -1 / 1.1;
 	if (e->cursory > w)
-		e->cy += (e->cursory - w);
+		e->cy += (e->cursory - w) / 1.1;
 }
 
 void	mlx_pos_cursor_zoom(double xpos, double ypos, void *param)
@@ -103,7 +55,7 @@ void	mlx_pos_cursor_zoom(double xpos, double ypos, void *param)
 	e->cursory = ypos;
 }
 
-/*void	ft_scrollhook(double xdelta, double ydelta, void *param)
+void	ft_scrollhook(double xdelta, double ydelta, void *param)
 {
 	t_env	*e;
 
@@ -111,29 +63,29 @@ void	mlx_pos_cursor_zoom(double xpos, double ypos, void *param)
 	if (ydelta > 0)
 	{
 		e->px_size /= 1.1;
-		mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
-		is_cursor_close(e);
+		if (e->button == 1)
+			is_cursor_close(e);
 	}
 	else if (ydelta < 0)
 	{
 		e->px_size *= 1.1;
-		mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
-		is_cursor_far(e);
+		if (e->button == 1)
+			is_cursor_far(e);
 	}
 	if (xdelta < 0)
 	{
 		e->px_size /= 1.1;
-		mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
-		is_cursor_close(e);
+		if (e->button == 1)
+			is_cursor_close(e);
 	}
 	else if (xdelta > 0)
 	{
 		e->px_size *= 1.1;
-		mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
-		is_cursor_far(e);
+		if (e->button == 1)
+			is_cursor_far(e);
 	}
 	e->f(e, 0);
-}*/
+}
 
 void	mouse(mouse_key_t key, action_t action, modifier_key_t mods, void *param)
 {
@@ -145,18 +97,15 @@ void	mouse(mouse_key_t key, action_t action, modifier_key_t mods, void *param)
 	mid = e->img->width;
 	if (key == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
 	{
-		printf("1\n");
 		e->cx = mid;
 		e->cy = mid;
 	}
 	if (key == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS)
 	{
-		printf("%d x%dy %d mid\n", (e->cursorx), (e->cursory), mid);
-		printf("%d x%dy\n", e->cx, e->cy);
-		e->cx += e->cursorx - (mid / 2);
- 		e->cy += e->cursory - (mid / 2);
-		printf("%d x%dy\n", (e->cursorx), (e->cursory));
-		printf("%d x%dy\n", e->cx, e->cy);
+		if (e->button != 1)
+			e->button = 1;
+		else
+			e->button = 0;
 	}
 	e->f(e, 0);
 }

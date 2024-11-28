@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 12:32:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/25 16:33:16 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:51:04 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_env
 	t_c				nose;
 	int				cursorx;
 	int				cursory;
+	int				button;
 }	t_env;
 
 void			t_esc(double x, double y, t_env *e);
@@ -84,7 +85,8 @@ void			five(double *x, double *y, t_env *e);
 void			two(double *x, double *y, t_env *e);
 void			n(double *x, double *y, t_env *e);
 double			p(double val, double pow);
-double			f_flo(double val, double px_size, mlx_image_t *img);
+double			to_flo(int val, char c, t_env *e);
+int				from_flo(double val, char c, t_env *e);
 
 void			panda(void *p, int y);
 void			line(void *p, int y);

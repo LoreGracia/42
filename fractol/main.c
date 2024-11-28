@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/28 10:28:13 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:56:11 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	parse_fractol(char **argv, t_env *e)
 	i = ft_atoi(argv[2]);
 	e->arrow = scroll_arrows_keyhook;
 	e->arrow_scroll = arrows_keyhook;
+	e->button = 0;
 	if (e->type == 'm' || argv[1][0] == 'j')
 	{
 		if (argv[1][0] == 'm')
@@ -87,7 +88,7 @@ int	draw(char **argv, t_env *e)
 	mlx_mouse_hook(e->mlx, &mouse, e);
 	mlx_scroll_hook(e->mlx, &ft_scrollhook, e);
 	mlx_key_hook(e->mlx, &my_keyhook, e);
-	//mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
+	mlx_cursor_hook(e->mlx, &mlx_pos_cursor_zoom, e);
 	mlx_loop(e->mlx);
 	mlx_delete_image(e->mlx, e->img);
 	mlx_terminate(e->mlx);
