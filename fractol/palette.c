@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 12:15:30 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/23 14:31:49 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:15:07 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,25 @@ void	pallete(void *param)
 
 	e = param;
 	if (e->c == 1)
+	{
 		e->p = melon;
+		printf("melon\n");
+	}
 	if (e->c == 0)
+	{
 		e->p = grey;
+		printf("grey\n");
+	}
 	if (e->c == 2)
+	{
 		e->p = grass;
+		printf("grass\n");
+	}
 	if (e->c == 3)
+	{
 		e->p = grade;
+		printf("grade");
+	}
 }
 
 unsigned int	grass(int p)

@@ -6,31 +6,25 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 16:45:19 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/25 19:57:33 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:17:01 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	zoom_tocursor(int *prev, int cursor, char c, int w)
+void	zoom_tocursor(int start, int *end, double i, char c)
 {
-	int	v;
-	int	d;
-	int	mid;
 //	(void)w;
 
-	v = *prev;
-	mid = e->img->width;
 	if (c == 'i')
 	{
-		d = (v * 1.1) - v;
-		v += cursor - (mid / 2) - d;
+		*end = start + (double)((double)*end - (double)start) * i;
 		//*prev += (int)((cursor - v) * 1.1) - w;
 	}
 	else if (c == 'o')
 	{
-		d = (v / 1.1) - v;
- 		v += cursor - (mid / 2) - d;
+
+		*end = start + (double)((double)*end - (double)start) / i;
 		//*prev -= (int)((cursor - v) * 1.1) - w;
 	}
 	//printf("%d\n", *prev);
@@ -47,20 +41,20 @@ void	ft_scrollhook(double xdelta, double ydelta, void *param)
 	if (ydelta > 0)
 	{
 		e->px_size /= 1.1;
-		zoom_tocursor(&e->cx, e->cursorx, 'i', w);
-		zoom_tocursor(&e->cy, e->cursory, 'i', w);
+		zoom_tocursor(e->cursorx, &e->cx, 1.0 / 1.1, 'i');
+		zoom_tocursor(e->cursory, &e->cy, 1.0 / 1.1, 'i');
 		printf("%d y %d x\n", e->cy, e->cx);
 	}
 	else if (ydelta < 0)
 	{
 		e->px_size *= 1.1;
-		zoom_tocursor(&e->cx, e->cursorx, 'o', w);
-		zoom_tocursor(&e->cy, e->cursory, 'o', w);
+		zoom_tocursor(e->cursorx, &e->cx, 1.0 / 1.1, 'o');
+		zoom_tocursor(e->cursory, &e->cy, 1.0 / 1.1, 'o');
 	}
 	e->f(e, 0);
 }
 
-/*void	is_cursor_close(void *param)
+void	is_cursor_close(void *param)
 {
 	t_env	*e;
 	int		w;
@@ -73,7 +67,7 @@ void	ft_scrollhook(double xdelta, double ydelta, void *param)
 		printf("%d %d\n%d\n", e->cursorx, e->cx, (e->cursorx - w) * -1);
 	}
 	if (e->cursorx > w)
-		e->cx -= (e->cursory - w);
+		e->cx -= (e->cursorx - w);
 	if (e->cursory <= w)
 		e->cy += (e->cursory - w) * -1;
 	if (e->cursory > w)
@@ -93,12 +87,12 @@ void	is_cursor_far(void *param)
 		printf("%d %d\n%d\n", e->cursorx, e->cx, (e->cursorx - w) * -1);
 	}
 	if (e->cursorx > w)
-		e->cx += (e->cursory - w);
+		e->cx += (e->cursorx - w);
 	if (e->cursory <= w)
 		e->cy -= (e->cursory - w) * -1;
 	if (e->cursory > w)
 		e->cy += (e->cursory - w);
-}*/
+}
 
 void	mlx_pos_cursor_zoom(double xpos, double ypos, void *param)
 {
@@ -236,14 +230,6 @@ void	scroll_arrows_keyhook(mlx_key_data_t keydata, void *param)
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_REPEAT)
 	{
 		e->cx -= 5;
-		e->f(e, 0);
-	}
-	if (keydata.key == MLX_KEY_C && keydata.action == MLX_PRESS)
-	{
-		if (e->c != 3)
-			e->c += 1;
-		else
-			e->c = 0;
 		e->f(e, 0);
 	}
 }
