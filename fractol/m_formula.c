@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 10:50:04 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/23 22:42:59 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/29 11:41:19 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	t_esc(double x, double y, t_env *e)
 	unsigned int	c;
 
 	i = 0;
-	if (e->type == 'm')
+	if (e->type == 'M')
 	{
 		e->x0 = x;
 		e->y0 = y;

@@ -6,23 +6,45 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/28 17:56:11 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/11/29 12:53:20 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+short	nmapi(const char *s, char c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (-1);
+	while (s[i])
+	{
+		if (c == 'd' && (s[1] == '.' || s[1] == ','))
+			i += 2;
+		if (ft_isdigit(s[i]) == 0)
+			return (-1);
+		i++;
+	}	
+	return (0);
+}
+
 int	parse_fractol(char **argv, t_env *e)
 {
 	int	i;
 
+	if (!argv[2] || nmapi(argv[2], 'i'))
+		return (-1);
 	i = ft_atoi(argv[2]);
 	e->arrow = scroll_arrows_keyhook;
 	e->arrow_scroll = arrows_keyhook;
 	e->button = 0;
-	if (e->type == 'm' || argv[1][0] == 'j')
+	if (e->type == 'M' || argv[1][0] == 'J')
 	{
-		if (argv[1][0] == 'm')
+		if (ft_strncmp("Mandelbrot", argv[1], 11) != 0)
+			return (-1);
+		if (argv[1][0] == 'M')
 		{
 			if (i < -2 || i == 0 || i == 1)
 				return (-1);
@@ -37,7 +59,8 @@ int	parse_fractol(char **argv, t_env *e)
 		e->f = mandelbrot;
 		if (e->type == 'j')
 		{
-			if (!argv[3] || !argv[4])
+			if (ft_strncmp("Julia", argv[1], -1) != 0 || 
+					nmapi(argv[3], 'd') || nmapi(argv[4], 'd'))
 				return (-1);
 			e->x0 = ft_atoi(argv[3]);
 			e->y0 = ft_atoi(argv[4]);
@@ -51,14 +74,16 @@ int	parse_fractol(char **argv, t_env *e)
 
 int	parse(char **argv, t_env *e)
 {
-	e->type = argv[1][0];
-	if (!argv[2] || argv[1][1] || (argv[1][0] != 'j' && argv[3]))
+	if (!argv[1])
 		return (-1);
-	if (e->type == 'm' || e->type == 'j')
+	e->type = argv[1][0];
+	if (e->type == 'M' || e->type == 'J')
 	{
 		if (parse_fractol(argv, e) == -1)
 			return (-1);
 	}
+	else if (argv[1][1])
+		return (-1);
 	if (e->type == 'p')
 		e->f = panda;
 	if (e->type == 'l')
