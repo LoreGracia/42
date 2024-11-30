@@ -6,15 +6,15 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/23 12:21:03 by lgracia-          #+#    #+#              #
-#    Updated: 2024/11/21 11:01:12 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/11/30 17:56:40 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror # -fsanitize=address 
+FLAGS = -Wall -Wextra -Werror  -fsanitize=address 
 
 NAME = fractol
 
-SRC = main.c mandelbrot.c formulas_m.c m_formula.c palette.c hooks.c panda.c line.c
+SRC = main.c mandelbrot.c formulas_m.c m_formula.c palette.c hooks.c utils.c panda.c line.c
 
 OBJ = $(SRC:.c=.o)
 
