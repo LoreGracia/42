@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/01 12:13:46 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/01 16:41:37 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ short	nmapi(const char *s, char c)
 	while (s[i])
 	{
 		if (i == 0 && (s[0] == '-' || s[0] == '+'))
+		{
 			i++;
+			if (i == 1 && c == 'd' && (s[2] == '.' || s[2] == ','))
+				i += 2;
+		}
 		if (i == 0 && c == 'd' && (s[1] == '.' || s[1] == ','))
 			i += 2;
 		if (ft_isdigit(s[i]) == 0)
@@ -78,10 +82,12 @@ int	parse(char **argv, t_env *e)
 	}
 	else if (argv[1][1])
 		return (-1);
-	if (e->type == 'p')
+	else if (e->type == 'p')
 		e->f = panda;
-	if (e->type == 'l')
+	else if (e->type == 'l')
 		e->f = line;
+	else 
+		return (-1);
 	return (0);
 }
 
