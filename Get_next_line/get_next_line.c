@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:17:59 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/08/15 17:16:17 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/01 12:03:36 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,11 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-#include <stdio.h>
-#include <fcntl.h>
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int	fd;
-	int	i;
-	char *line;
+	int		fd;
+	int		i;
+	char	*line;
 
 	argc = argc + 0;
 	fd = open(argv[1], O_RDONLY);
