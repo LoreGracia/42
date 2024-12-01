@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 17:25:29 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/30 17:55:17 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/01 12:14:01 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	mlx_pos_cursor_zoom(double xpos, double ypos, void *param)
 int	j(char **argv, t_env *e)
 {
 	if (ft_strncmp("Julia", argv[1], 6) != 0 || \
-		nmapi(argv[3], 'd') || nmapi(argv[4], 'd'))
+		nmapi(argv[3], 'd') || nmapi(argv[4], 'd') || argv[5])
 		return (-1);
 	e->x0 = ft_atoi(argv[3]);
 	e->y0 = ft_atoi(argv[4]);

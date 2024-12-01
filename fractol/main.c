@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/11/30 17:52:09 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/01 12:13:46 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	parse_fractol(char **argv, t_env *e, int i)
 	{
 		if (argv[1][0] == 'M')
 		{
-			if (ft_strncmp("Mandelbrot", argv[1], 11) != 0)
+			if (ft_strncmp("Mandelbrot", argv[1], 11) != 0 || argv[3])
 				return (-1);
 			if (i < -2 || i == 0 || i == 1 || (i > 6 && i % 2 != 0))
 				return (-1);
