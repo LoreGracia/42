@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:09:35 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/16 17:50:15 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/16 18:00:08 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	to_bits(char *str, int pid)
 				if (kill(pid, SIGUSR2) == -1)
 					exit(1);
 			}
+			ft_printf("\n|\n");
 			signal(SIGUSR2, handler);
 			pause();
 		}

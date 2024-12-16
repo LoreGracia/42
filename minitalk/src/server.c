@@ -6,13 +6,12 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 14:23:53 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/16 17:48:55 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:58:06 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minitalk.h"
 int i = -1;
-#include <stdio.h>
 
 void	from_bits(int c, int a, int b)
 {
