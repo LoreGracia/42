@@ -6,18 +6,19 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 14:23:53 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/16 15:40:14 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:48:55 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minitalk.h"
 int i = -1;
+#include <stdio.h>
 
-void	from_bits(char c, int a, int b)
+void	from_bits(int c, int a, int b)
 {
 	static unsigned char	bit;
 	static int				count;
-	static int				pid;
+	static double			pid;
 
 	bit |= (c - '0') << (7 - ++i);
 	if (count <= 55)
@@ -26,21 +27,23 @@ void	from_bits(char c, int a, int b)
 		if (i == 7)
 		{
 			pid += bit;
-			pid *= 10;
-			//ft_printf("count is %d\n", count);
-			ft_printf("%d\n", bit);
-			ft_printf("this is pid %d\n", pid);
+			if (count < 55)
+				pid /= 10;
+			else
+				pid *= 1000000;
 		}
 	}
 	if (i == 7)
 	{
 		i = -1;
 		if (count > 55)
-		{
 			ft_printf("%c", bit);
-			kill(pid / 100, SIGUSR1);
-		}
 		bit = 0;
+	}
+	if (count > 55)
+	{
+		usleep(200);
+		kill(pid, SIGUSR2);
 	}
 }
 

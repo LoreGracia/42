@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:09:35 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/16 15:40:52 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:50:15 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void handler()
 {
-	ft_printf("Signal succesfully delivered");
+	ft_printf("Signal succesfully delivered\n");
 }
 
 void	to_bits(char *str, int pid)
@@ -27,7 +27,6 @@ void	to_bits(char *str, int pid)
 	while (str[i])
 	{
 		bit = str[i];
-		ft_printf("bit is %c\n", bit);
 		j = 8;
 		while (j--)
 		{
@@ -35,16 +34,14 @@ void	to_bits(char *str, int pid)
 			{
 				if (kill(pid, SIGUSR1) == -1)
 					exit(1);
-				ft_printf("envia 1\n");
 			}
 			else
 			{
 				if (kill(pid, SIGUSR2) == -1)
 					exit(1);
-				ft_printf("envia 0\n");
 			}
-			signal(SIGUSR1, handler);
-			//pause();
+			signal(SIGUSR2, handler);
+			pause();
 		}
 		i++;
 	}
@@ -60,7 +57,6 @@ void	ibits(int str, int pid)
 	while (str)
 	{
 		bit = str % 10;
-		ft_printf("bit is %d\n", bit);
 		j = 8;
 		while (j--)
 		{
@@ -68,13 +64,11 @@ void	ibits(int str, int pid)
 			{
 				if (kill(pid, SIGUSR1) == -1)
 					exit(1);
-				ft_printf("envia 1\n");
 			}
 			else
 			{
 				if (kill(pid, SIGUSR2) == -1)
 					exit(1);
-				ft_printf("envia 0\n");
 			}
 			usleep(200);
 		}
@@ -94,7 +88,6 @@ int	main(int argc, char **argv)
 	if (argc > 3)
 		return (ft_printf("Too many arguments"));
 	pid = ft_atoi(argv[1]);
-	ft_printf("my pid is %d", getpid());
 	ibits(getpid(), pid);
 	to_bits(argv[2], pid);
 }
