@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 14:23:53 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/16 17:58:06 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:40:00 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,52 +17,47 @@ void	from_bits(int c, int a, int b)
 {
 	static unsigned char	bit;
 	static int				count;
-	static double			pid;
+	static int				pid;
 
-	bit |= (c - '0') << (7 - ++i);
-	if (count <= 55)
+	if (count < 32)
 	{
+		pid |= (c << (31 - ++i));
 		count += a + b;
+		if (i == 31)
+			i = -1;
+		usleep(200);
+	}
+	else
+	{
+		bit |= (c  << (8 - ++i));
 		if (i == 7)
 		{
-			pid += bit;
-			if (count < 55)
-				pid /= 10;
-			else
-				pid *= 1000000;
+			i = -1;
+			if (count >= 32)
+				ft_printf("%c", bit / 2);
+			bit = 0;
 		}
-	}
-	if (i == 7)
-	{
-		i = -1;
-		if (count > 55)
-			ft_printf("%c", bit);
-		bit = 0;
-	}
-	if (count > 55)
-	{
 		usleep(200);
-		kill(pid, SIGUSR2);
+		kill(pid, SIGUSR1);
 	}
+
 }
 
 void	handler1(int count)
 {
 	count += -count + 1;
-	from_bits('1', count, 0);
+	from_bits(1, count, 0);
 }
 
 void	handler(int count)
 {
 	count += -count + 1;
-	from_bits('0', 0, count);
+	from_bits(0, 0, count);
 }
 
 int main() 
 { 
 	ft_printf("Insert %d to the client\n", getpid());
-		signal(SIGUSR1, handler1);
-		signal(SIGUSR2, handler);
 		signal(SIGUSR1, handler1);
 		signal(SIGUSR2, handler);
 	while ("\(^v^)/")

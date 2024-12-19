@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:09:35 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/16 18:00:08 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/19 18:40:16 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	to_bits(char *str, int pid)
 				if (kill(pid, SIGUSR2) == -1)
 					exit(1);
 			}
-			ft_printf("\n|\n");
-			signal(SIGUSR2, handler);
+			ft_printf("EA");
+			signal(SIGUSR1, handler);
 			pause();
 		}
 		i++;
@@ -50,30 +50,22 @@ void	to_bits(char *str, int pid)
 
 void	ibits(int str, int pid)
 {
-	int		i;
 	int		j;
-	int		bit;
 
-	i = 0;
-	while (str)
+	j = 32;
+	while (j--)
 	{
-		bit = str % 10;
-		j = 8;
-		while (j--)
+		if (str >> j & 1)
 		{
-			if (bit >> j & 1)
-			{
-				if (kill(pid, SIGUSR1) == -1)
-					exit(1);
-			}
-			else
-			{
-				if (kill(pid, SIGUSR2) == -1)
-					exit(1);
-			}
-			usleep(200);
+			if (kill(pid, SIGUSR1) == -1)
+				exit(1);
 		}
-		str /= 10;
+		else
+		{
+			if (kill(pid, SIGUSR2) == -1)
+				exit(1);
+		}
+		usleep(2000);
 	}
 }
 
@@ -83,11 +75,11 @@ int	main(int argc, char **argv)
 	int	pid;
 
 	if (argc < 2)
-		return (ft_printf("Please add server pid"));
+		return (ft_printf("Please add server pid\n"));
 	if (argc < 3)
-		return (ft_printf("Please add message"));
+		return (ft_printf("Please add message\n"));
 	if (argc > 3)
-		return (ft_printf("Too many arguments"));
+		return (ft_printf("Too many arguments\n"));
 	pid = ft_atoi(argv[1]);
 	ibits(getpid(), pid);
 	to_bits(argv[2], pid);
