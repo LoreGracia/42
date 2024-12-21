@@ -6,74 +6,63 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:09:35 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/19 18:40:16 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:01:12 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minitalk.h"
 
-void handler()
+void handler(int sigv, siginfo_t *info, void *a)
 {
+	(void)sigv;
+	(void)a;
+	(void)info;
 	ft_printf("Signal succesfully delivered\n");
 }
 
-void	to_bits(char *str, int pid)
+int	kill_server(int j, int str, int pid, void *sa)
 {
-	int		i;
-	int		j;
-	int		bit;
-
-	i = 0;
-	while (str[i])
+	if (str >> j & 1)
 	{
-		bit = str[i];
-		j = 8;
+		if (kill(pid, SIGUSR1) == -1)
+			exit(1);
+	}
+	else
+	{
+		if (kill(pid, SIGUSR2) == -1)
+			exit(1);
+	}
+	if (sigaction(SIGUSR1, sa, NULL) != 0)
+		exit (0);
+	pause();
+	return (0);
+}
+
+void	to_bits(char *str, int pid, void *sa)
+{
+	int		j;
+	int		i;
+
+	i = -1;
+	while (str[++i])
+	{
+		j = 32;
 		while (j--)
 		{
-			if (bit >> j & 1)
-			{
-				if (kill(pid, SIGUSR1) == -1)
-					exit(1);
-			}
-			else
-			{
-				if (kill(pid, SIGUSR2) == -1)
-					exit(1);
-			}
-			ft_printf("EA");
-			signal(SIGUSR1, handler);
-			pause();
+			if (kill_server(j, str[i], pid, sa) == -1)
+				exit(0);
 		}
-		i++;
 	}
 }
-
-void	ibits(int str, int pid)
-{
-	int		j;
-
-	j = 32;
-	while (j--)
-	{
-		if (str >> j & 1)
-		{
-			if (kill(pid, SIGUSR1) == -1)
-				exit(1);
-		}
-		else
-		{
-			if (kill(pid, SIGUSR2) == -1)
-				exit(1);
-		}
-		usleep(2000);
-	}
-}
-
 
 int	main(int argc, char **argv)
 {
 	int	pid;
+	struct sigaction	sa;
 
+	sa.sa_flags = SA_SIGINFO;
+	sa.sa_sigaction = handler;
+	sigemptyset(&sa.sa_mask);
 	if (argc < 2)
 		return (ft_printf("Please add server pid\n"));
 	if (argc < 3)
@@ -81,6 +70,6 @@ int	main(int argc, char **argv)
 	if (argc > 3)
 		return (ft_printf("Too many arguments\n"));
 	pid = ft_atoi(argv[1]);
-	ibits(getpid(), pid);
-	to_bits(argv[2], pid);
+	to_bits(ft_itoa(ft_strlen(argv[2])), pid, &sa);
+	to_bits(argv[2], pid, &sa);
 }

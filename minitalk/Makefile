@@ -6,11 +6,11 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/01 17:50:56 by lgracia-          #+#    #+#              #
-#    Updated: 2024/12/16 15:00:58 by lgracia-         ###   ########.fr        #
+#    Updated: 2024/12/21 18:11:49 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror #-g
 
 ACLIENT = client.c
 
