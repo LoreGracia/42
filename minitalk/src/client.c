@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 16:09:35 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/21 18:01:12 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:43:20 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,20 @@ int	kill_server(int j, int str, int pid, void *sa)
 		exit (0);
 	pause();
 	return (0);
+}
+
+void	ibits(int str, int pid, void *sa)
+{
+	int		j;
+	int		i;
+
+	i = -1;
+	j = 32;
+	while (j--)
+	{
+		if (kill_server(j, str, pid, sa) == -1)
+			exit(0);
+	}
 }
 
 void	to_bits(char *str, int pid, void *sa)
@@ -69,7 +83,8 @@ int	main(int argc, char **argv)
 		return (ft_printf("Please add message\n"));
 	if (argc > 3)
 		return (ft_printf("Too many arguments\n"));
+	ft_printf("%d\n", getpid());
 	pid = ft_atoi(argv[1]);
-	to_bits(ft_itoa(ft_strlen(argv[2])), pid, &sa);
+	ibits(ft_strlen(argv[2]), pid, &sa);
 	to_bits(argv[2], pid, &sa);
 }

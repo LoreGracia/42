@@ -6,37 +6,33 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 14:23:53 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/21 18:02:16 by lgracia-         ###   ########.fr       */
+/*   Updated: 2024/12/22 17:26:40 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minitalk.h"
+
 int i = -1;
 
-//void	get_pid(int *pid, int *count, int *i);
-
-void	from_bits(int c, int pid)
+void	from_bits(int a, int pid)
 {
 	static int				bit;
 	static int				count;
-	static int				len;
+	static unsigned int		len;
 
 	usleep(200);
 	if (count < 32)
 	{
-		len |= (c << (31 - ++i));
+		len |= (a << (31 - ++i));
 		count++;
 		if (count == 32)
 		{
 			i = -1;
-			len -= '0';
 		}
-		if (kill(pid, SIGUSR1) == -1)
-			exit (ft_printf("Signal mixed\n") * 0);
 	}
-	else if (len)
+	else if (count >= 32 && len)
 	{
-		bit |= (c  << (31 - ++i));
+		bit |= (a << (31 - ++i));
 		if (i == 31)
 		{
 			ft_printf("%c", bit);
@@ -44,23 +40,22 @@ void	from_bits(int c, int pid)
 			bit = 0;
 			i = -1;
 		}
-		if (kill(pid, SIGUSR1) == -1)
-			exit (ft_printf("Signal mixed\n") * 0);
 	}
 	else
 	{
 		count = 0;
 		len = 0;
 		i = -1;
-		from_bits(c, pid);
+		from_bits(a, pid);
 	}
+	if (kill(pid, SIGUSR1) == -1)
+		exit(ft_printf("Signal mixed\n") * 0);
 }
 
 void	handler1(int sigv, siginfo_t *info, void *a)
 {
 	(void)sigv;
 	(void)a;
-
 	from_bits(1, info->si_pid);
 }
 
@@ -68,11 +63,10 @@ void	handler(int sigv, siginfo_t *info, void *a)
 {
 	(void)sigv;
 	(void)a;
-
 	from_bits(0, info->si_pid);
 }
 
-int main() 
+int	main() 
 {
 	struct	sigaction	sa;
 	struct	sigaction	sb;
@@ -88,5 +82,6 @@ int main()
 		exit(0);
 	while ("\(^v^)/")
 		pause();
+		//sleep(1);
     return 0; 
 } 
