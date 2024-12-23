@@ -19,6 +19,8 @@ void	from_bits(int a, int pid)
 	static int				bit;
 	static int				count;
 	static unsigned int		len;
+	static unsigned char		*s;
+	static unsigned int		l;
 
 	usleep(200);
 	if (count < 32)
@@ -28,6 +30,7 @@ void	from_bits(int a, int pid)
 		if (count == 32)
 		{
 			i = -1;
+			l = len;
 		}
 	}
 	else if (count >= 32 && len)
@@ -35,7 +38,7 @@ void	from_bits(int a, int pid)
 		bit |= (a << (31 - ++i));
 		if (i == 31)
 		{
-			ft_printf("%c", bit);
+			s[l - len] = bit;
 			len--;
 			bit = 0;
 			i = -1;
@@ -47,6 +50,7 @@ void	from_bits(int a, int pid)
 		len = 0;
 		i = -1;
 		from_bits(a, pid);
+		ft_printf("%s", s);
 	}
 	if (kill(pid, SIGUSR1) == -1)
 		exit(ft_printf("Signal mixed\n") * 0);
