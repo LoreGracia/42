@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:57:40 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 13:00:49 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:53:27 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,45 @@ unsigned long	gettime(t_env *env)
 		pthread_mutex_unlock(&env->mutex_time);
 	}
 	return (time);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c > 47 && c < 58)
+		return (0);
+	else
+		return (1);
+}
+
+long	ft_atoi(const char *nptr)
+{
+	int		i;
+	long	ptr;
+	long	sign;
+
+	if (!*nptr)
+		return (0);
+	i = 0;
+	ptr = 0;
+	sign = 1;
+	while (nptr[i] <= '9' && nptr[i] >= '0')
+	{
+		ptr = nptr[i] - '0' + (10 * ptr);
+		i++;
+	}
+	ptr *= sign;
+	return (ptr);
+}
+
+int	ft_isint(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (ft_isdigit(s[i++]) != 0)
+			return (1);
+	}
+	return (0);
 }

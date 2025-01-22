@@ -6,52 +6,11 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 19:30:16 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:56:07 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
-
-int	ft_isdigit(int c)
-{
-	if (c > 47 && c < 58)
-		return (0);
-	else
-		return (1);
-}
-
-long	ft_atoi(const char *nptr)
-{
-	int		i;
-	long	ptr;
-	long	sign;
-
-	if (!*nptr)
-		return (0);
-	i = 0;
-	ptr = 0;
-	sign = 1;
-	while (nptr[i] <= '9' && nptr[i] >= '0')
-	{
-		ptr = nptr[i] - '0' + (10 * ptr);
-		i++;
-	}
-	ptr *= sign;
-	return (ptr);
-}
-
-int	ft_isint(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (ft_isdigit(s[i++]) != 0)
-			return (1);
-	}
-	return (0);
-}
 
 int	thread_init(t_env *env, char **argv)
 {
@@ -75,8 +34,18 @@ int	thread_init(t_env *env, char **argv)
 		return (1);
 	env->time = gettime(NULL);
 	pthread_mutex_unlock(&env->mutex);
+	return (0);
+}
+
+int	keep_open(t_env *env, char **argv)
+{
+	if (thread_init(env, argv) != 0)
+		return (1);
 	while (env->death < env->max)
-		;
+	{
+		if (argv[5] && env->meals == 0)
+			break ;
+	}
 	return (0);
 }
 
@@ -97,7 +66,7 @@ int	main(int argc, char **argv)
 		if (ft_atoi(argv[i]) < 1)
 			return (printf("Argument is too low\n"), 1);
 	}
-	if (thread_init(&env, argv) != 0)
+	if (keep_open(&env, argv) != 0)
 		return (1);
 	pthread_mutex_destroy(&env.mutex);
 	pthread_mutex_destroy(&env.mutex_death);

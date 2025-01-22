@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 19:39:07 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:58:01 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@ void	routine(t_env *env, int i)
 		if (die(env, i))
 			break ;
 		if (env->meals && env->philo[i - 1].meals == env->meals)
+		{
+			env->meals = 0;
 			break ;
+		}
 	}
 }
 
 void	*thread_start(void *arg)
-{
+
 	t_env				*env;
 	static int			num;
 	int					i;
