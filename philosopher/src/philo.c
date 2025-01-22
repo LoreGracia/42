@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 15:53:32 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:01:12 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	*thread_start(void *arg)
 	pthread_mutex_unlock(&env->mutex);
 	while (env->death == 0)
 	{
-		printf("%d\n", i);
 		if (i % 2 != 0)
 		{
 			if (eat_a(env, i))
@@ -38,6 +37,8 @@ void	*thread_start(void *arg)
 		}
 		if (die(env, i))
 			break ;
+		if (env->meals && env->philo[i = 1].meals == env->meals)
+			break ;
 	}
 	return (0);
 }
@@ -46,6 +47,7 @@ int	new_thread(t_philo *node, int i, t_env *env)
 {
 	node->i = i;
 	node->last_meal = 0;
+	node->meals = 0;
 	pthread_mutex_init(&node->fork, NULL);
 	i = pthread_create(&node->id, NULL, &thread_start, env);
 	if (i != 0)
@@ -59,7 +61,7 @@ t_philo	*create_philo(int max, t_env *env)
 	t_philo			*philo;
 	int				i;
 
-	philo = malloc(sizeof(t_philo));
+	philo = malloc(sizeof(t_philo) * max);
 	if (philo == 0)
 		return (0);
 	i = 0;

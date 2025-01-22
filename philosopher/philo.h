@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:59:22 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 13:37:20 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:00:41 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct s_philo
 {
 	pthread_t		id;
 	pthread_mutex_t	fork;
-	long			last_meal;
+	unsigned long	last_meal;
+	unsigned long	meals;
 	int				i;
 }					t_philo;
 
@@ -40,9 +41,9 @@ typedef struct t_env
 	pthread_mutex_t	mutex_time;
 	unsigned long	time;
 	unsigned long	life_time;
-	long			eat_time;
-	long			sleep_time;
-	long			meals;
+	unsigned long	eat_time;
+	unsigned long	sleep_time;
+	unsigned long	meals;
 }				t_env;
 
 int					die(t_env *env, int i);
