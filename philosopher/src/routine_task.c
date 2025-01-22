@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:59:15 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 16:56:51 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:47:13 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,12 @@ int	talk(t_env *env, int i, char c)
 int	die(t_env *env, int i)
 {
 	pthread_mutex_lock(&env->mutex_death);
-	if (env->death != 0 || env->life_time < gettime(env)
+	if (env->death != 0 || env->life_time <= gettime(env)
 		- env->philo[i - 1].last_meal)
 	{
 		env->death++;
 		if (env->death == 1)
 			printf("%ld %d died\n", gettime(env), i);
-		printf("%lu = %ld %ld, %lu\n", env->life_time, gettime(env), env->philo[i - 1].last_meal, gettime(env) - env->philo[i - 1].last_meal);
-		return (pthread_mutex_unlock(&env->mutex_death), 1);
 	}
 	return (pthread_mutex_unlock(&env->mutex_death), 0);
 }
@@ -53,7 +51,6 @@ int	zzz(t_env *env, int i)
 	t = gettime(env);
 	if (talk(env, i, 's'))
 		return (1);
-	return (0);
 	usleep(env->sleep_time);
 	if (talk(env, i, 't'))
 		return (1);
@@ -93,6 +90,8 @@ int	eat_a(t_env *env, int i)
 		return (1);
 	if (die(env, i))
 		return (1);
+	if (env->max == 1)
+		return (env->death++, printf("%ld %d died\n", gettime(env), i), 1);
 	if (i == env->max)
 		pthread_mutex_lock(&env->philo[0].fork);
 	else

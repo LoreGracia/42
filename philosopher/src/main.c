@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 16:41:37 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:46:23 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	thread_init(t_env *env, char **argv)
 	env->sleep_time = ft_atoi(argv[4]);
 	if (argv[5])
 		env->meals = ft_atoi(argv[5]);
+	else
+		env->meals = 0;
 	pthread_mutex_lock(&env->mutex);
 	env->philo = create_philo(env->max, env);
 	if (env->philo == 0)
@@ -75,7 +77,6 @@ int	thread_init(t_env *env, char **argv)
 	pthread_mutex_unlock(&env->mutex);
 	while (env->death < env->max)
 		;
-	printf("ENDED %d threads\n", env->death);
 	return (0);
 }
 
