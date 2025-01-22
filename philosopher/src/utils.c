@@ -6,19 +6,28 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:57:40 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/17 19:08:06 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:00:49 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-long	gettime(env_t *env)
+unsigned long	gettime(t_env *env)
 {
 	struct timeval	tv;
-	
-	gettimeofday(&tv, NULL);
+	unsigned long	time;
+
 	if (env == NULL)
-		return (tv.tv_sec * 1000);
+	{
+		gettimeofday(&tv, NULL);
+		time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	}
 	else
-		return ((tv.tv_sec * 1000) - env->time);
+	{
+		pthread_mutex_lock(&env->mutex_time);
+		gettimeofday(&tv, NULL);
+		time = (tv.tv_sec * 1000 + tv.tv_usec / 1000) - env->time;
+		pthread_mutex_unlock(&env->mutex_time);
+	}
+	return (time);
 }

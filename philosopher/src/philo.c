@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/17 19:31:56 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:53:32 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,38 @@
 
 void	*thread_start(void *arg)
 {
-	env_t				*env;
-	static int			i;
+	t_env				*env;
+	static int			num;
+	int					i;
 
 	env = arg;
-	i++;
+	num++;
+	i = num;
 	pthread_mutex_lock(&env->mutex);
 	pthread_mutex_unlock(&env->mutex);
-	if (i % 2 == 0)
-		usleep(100);
 	while (env->death == 0)
 	{
-		die(env, i);
-		pthread_mutex_lock(&env->mutex);
-		if (env->death != 0)
+		printf("%d\n", i);
+		if (i % 2 != 0)
+		{
+			if (eat_a(env, i))
+				break ;
+		}
+		else
+		{
+			if (eat_b(env, i))
+				break ;
+		}
+		if (die(env, i))
 			break ;
-		pthread_mutex_unlock(&env->mutex);
-		eat(env, i);
-		die(env, i);
-		pthread_mutex_lock(&env->mutex);
-		if (env->death != 0)
-			break ;
-		pthread_mutex_unlock(&env->mutex);
-		zzz(env, i);
 	}
 	return (0);
 }
 
-int	new_thread(t_philo *node, int i, env_t *env)
+int	new_thread(t_philo *node, int i, t_env *env)
 {
+	node->i = i;
 	node->last_meal = 0;
-	node->last_rest = 0;
 	pthread_mutex_init(&node->fork, NULL);
 	i = pthread_create(&node->id, NULL, &thread_start, env);
 	if (i != 0)
@@ -53,19 +54,19 @@ int	new_thread(t_philo *node, int i, env_t *env)
 	return (0);
 }
 
-t_philo	*create_philo(int max, env_t *env)
+t_philo	*create_philo(int max, t_env *env)
 {
 	t_philo			*philo;
 	int				i;
 
-	philo = malloc(sizeof(t_philo) * max);
+	philo = malloc(sizeof(t_philo));
 	if (philo == 0)
 		return (0);
 	i = 0;
 	while (i != max)
 	{
 		if (new_thread(&philo[i], i + 1, env) < 0)
-		return (0);
+			return (0);
 		i++;
 	}
 	return (philo);

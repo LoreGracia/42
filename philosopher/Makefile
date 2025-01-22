@@ -6,13 +6,13 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 11:35:38 by lgracia-          #+#    #+#              #
-#    Updated: 2025/01/17 19:31:29 by lgracia-         ###   ########.fr        #
+#    Updated: 2025/01/22 12:50:14 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address 
 
-SRC = main.c philo.c death.c utils.c routine_task.c
+SRC = main.c philo.c utils.c routine.c routine_task.c
 
 DSRC = $(addprefix src/, $(SRC))
 
@@ -31,7 +31,7 @@ $(NAME): $(OBJ)
 	cc $(FLAGS) -MMD -o $@ -c $<
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(OBJ) $(DEP)
 
 fclean: clean
 	rm -rf $(NAME)

@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/17 19:06:28 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:16:07 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,35 @@ int	ft_isint(char *s)
 	return (0);
 }
 
+int	thread_init(t_env *env, char **argv)
+{
+	pthread_mutex_init(&env->mutex, NULL);
+	pthread_mutex_init(&env->mutex_death, NULL);
+	pthread_mutex_init(&env->mutex_print, NULL);
+	pthread_mutex_init(&env->mutex_sleep, NULL);
+	pthread_mutex_init(&env->mutex_time, NULL);
+	env->death = 0;
+	env->max = ft_atoi(argv[1]);
+	env->life_time = ft_atoi(argv[2]);
+	env->eat_time = ft_atoi(argv[3]) * 1000;
+	env->sleep_time = ft_atoi(argv[4]) * 1000;
+	if (argv[5])
+		env->meals = ft_atoi(argv[5]);
+	pthread_mutex_lock(&env->mutex);
+	env->philo = create_philo(env->max, env);
+	if (env->philo == 0)
+		return (1);
+	env->time = gettime(NULL);
+	pthread_mutex_unlock(&env->mutex);
+	while (env->death < env->max)
+		;
+	printf("ENDED %d threads\n", env->death);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
-	env_t	env;
+	t_env	env;
 	int		i;
 
 	if (argc > 6)
@@ -70,25 +96,13 @@ int	main(int argc, char **argv)
 		if (ft_atoi(argv[i]) < 1)
 			return (printf("Argument is too low\n"), 1);
 	}
-	i = 0;
-	pthread_mutex_init(&env.mutex, NULL);
-	pthread_mutex_init(&env.mutex_print, NULL);
-	pthread_mutex_init(&env.mutex_sleep, NULL);
-	env.death = 0;
-	env.max = ft_atoi(argv[1]);
-	env.life_time = ft_atoi(argv[2]);
-	env.eat_time = ft_atoi(argv[3]);
-	env.sleep_time = ft_atoi(argv[4]);
-	if (argv[5])
-		env.meals = ft_atoi(argv[5]);
-	pthread_mutex_lock(&env.mutex);
-	env.philo = create_philo(env.max, &env);
-	if (env.philo == 0)
+	if (thread_init(&env, argv) != 0)
 		return (1);
-	env.time = gettime(NULL);
-	pthread_mutex_unlock(&env.mutex);
-	while (env.death == 0)
-		;
 	pthread_mutex_destroy(&env.mutex);
+	pthread_mutex_destroy(&env.mutex_death);
+	pthread_mutex_destroy(&env.mutex_print);
+	pthread_mutex_destroy(&env.mutex_sleep);
+	pthread_mutex_destroy(&env.mutex_time);
+	free(env.philo);
 	return (0);
 }
