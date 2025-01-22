@@ -6,23 +6,14 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 17:38:22 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/22 19:39:07 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void	*thread_start(void *arg)
+void	routine(t_env *env, int i)
 {
-	t_env				*env;
-	static int			num;
-	int					i;
-
-	env = arg;
-	num++;
-	i = num;
-	pthread_mutex_lock(&env->mutex);
-	pthread_mutex_unlock(&env->mutex);
 	while (env->death == 0)
 	{
 		if (i % 2 != 0)
@@ -37,9 +28,23 @@ void	*thread_start(void *arg)
 		}
 		if (die(env, i))
 			break ;
-		if (env->meals && env->philo[i = 1].meals == env->meals)
+		if (env->meals && env->philo[i - 1].meals == env->meals)
 			break ;
 	}
+}
+
+void	*thread_start(void *arg)
+{
+	t_env				*env;
+	static int			num;
+	int					i;
+
+	env = arg;
+	num++;
+	i = num;
+	pthread_mutex_lock(&env->mutex);
+	pthread_mutex_unlock(&env->mutex);
+	routine(env, i);
 	return (0);
 }
 
