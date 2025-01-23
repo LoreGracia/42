@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 19:58:01 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/23 15:25:12 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	routine(t_env *env, int i)
 {
 	while (env->death == 0)
 	{
+		if (die(env, i))
+			break ;
 		if (i % 2 != 0)
 		{
 			if (eat_a(env, i))
@@ -30,14 +32,14 @@ void	routine(t_env *env, int i)
 			break ;
 		if (env->meals && env->philo[i - 1].meals == env->meals)
 		{
-			env->meals = 0;
+			env->done++;
 			break ;
 		}
 	}
 }
 
 void	*thread_start(void *arg)
-
+{
 	t_env				*env;
 	static int			num;
 	int					i;
@@ -51,9 +53,10 @@ void	*thread_start(void *arg)
 	return (0);
 }
 
-int	new_thread(t_philo *node, int i, t_env *env)
+int	new_thread(t_philo *node, t_env *env)
 {
-	node->i = i;
+	int	i;
+
 	node->last_meal = 0;
 	node->meals = 0;
 	pthread_mutex_init(&node->fork, NULL);
@@ -75,7 +78,7 @@ t_philo	*create_philo(int max, t_env *env)
 	i = 0;
 	while (i != max)
 	{
-		if (new_thread(&philo[i], i + 1, env) < 0)
+		if (new_thread(&philo[i], env) < 0)
 			return (0);
 		i++;
 	}

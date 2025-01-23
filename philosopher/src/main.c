@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 19:56:07 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:47:00 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	thread_init(t_env *env, char **argv)
 	pthread_mutex_init(&env->mutex_sleep, NULL);
 	pthread_mutex_init(&env->mutex_time, NULL);
 	env->death = 0;
+	env->done = 0;
 	env->max = ft_atoi(argv[1]);
 	env->life_time = ft_atoi(argv[2]);
 	env->eat_time = ft_atoi(argv[3]);
@@ -43,7 +44,7 @@ int	keep_open(t_env *env, char **argv)
 		return (1);
 	while (env->death < env->max)
 	{
-		if (argv[5] && env->meals == 0)
+		if (argv[5] && env->done == env->max)
 			break ;
 	}
 	return (0);

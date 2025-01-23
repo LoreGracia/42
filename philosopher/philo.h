@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:59:22 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/22 19:52:55 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:47:58 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_philo
 	pthread_t		id;
 	pthread_mutex_t	fork;
 	unsigned long	last_meal;
-	unsigned long	meals;
+	int				meals;
 	int				i;
 }					t_philo;
 
@@ -43,7 +43,8 @@ typedef struct t_env
 	unsigned long	life_time;
 	unsigned long	eat_time;
 	unsigned long	sleep_time;
-	unsigned long	meals;
+	int				meals;
+	int				done;
 }				t_env;
 
 int					ft_isint(char *s);
