@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/23 15:25:12 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/24 19:28:02 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 void	routine(t_env *env, int i)
 {
+	if (env->max == 1)
+	{
+		talk(env, i, 'f');
+		env->death++;
+		talk(env, i, 'd');
+	}
 	while (env->death == 0)
 	{
-		if (die(env, i))
-			break ;
 		if (i % 2 != 0)
-		{
-			if (eat_a(env, i))
-				break ;
-		}
+			eat_a(env, i);
 		else
-		{
-			if (eat_b(env, i))
-				break ;
-		}
-		if (die(env, i))
-			break ;
+			eat_b(env, i);
 		if (env->meals && env->philo[i - 1].meals == env->meals)
 		{
 			env->done++;

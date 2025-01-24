@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:59:22 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/23 13:47:58 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:43:50 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ typedef struct t_env
 	int				done;
 }				t_env;
 
+void				free_philo(t_env *env);
 int					ft_isint(char *s);
 long				ft_atoi(const char *nptr);
 int					ft_isdigit(int c);
-int					die(t_env *env, int i);
-int					talk(t_env *env, int i, char c);
-int					zzz(t_env *env, int i);
-int					eat_a(t_env *env, int i);
-int					eat_b(t_env *env, int i);
+void				talk(t_env *env, int i, char c);
+void				zzz(t_env *env, int i);
+void				eat_a(t_env *env, int i);
+void				eat_b(t_env *env, int i);
 unsigned long		gettime(t_env *env);
 t_philo				*create_philo(int max, t_env *env);
 int					if_death(t_env *env, t_philo *philo);

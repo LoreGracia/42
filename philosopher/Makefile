@@ -6,11 +6,11 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 11:35:38 by lgracia-          #+#    #+#              #
-#    Updated: 2025/01/22 16:26:57 by lgracia-         ###   ########.fr        #
+#    Updated: 2025/01/24 19:00:29 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=address 
+FLAGS = -Wall -Wextra -Werror -g  -fsanitize=thread #-fsanitize=address 
 
 SRC = main.c philo.c utils.c routine_task.c
 

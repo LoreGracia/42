@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/23 13:47:00 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/24 19:29:09 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	thread_init(t_env *env, char **argv)
 	pthread_mutex_init(&env->mutex_death, NULL);
 	pthread_mutex_init(&env->mutex_print, NULL);
 	pthread_mutex_init(&env->mutex_sleep, NULL);
-	pthread_mutex_init(&env->mutex_time, NULL);
+	if (pthread_mutex_init(&env->mutex_time, NULL) == -1)
+		printf("ESTOY JODIDAMENTE MALITO\n");
 	env->death = 0;
 	env->done = 0;
 	env->max = ft_atoi(argv[1]);
@@ -40,10 +41,27 @@ int	thread_init(t_env *env, char **argv)
 
 int	keep_open(t_env *env, char **argv)
 {
+	int	i;
+
 	if (thread_init(env, argv) != 0)
 		return (1);
-	while (env->death < env->max)
+	while (!env->death)
 	{
+		i = 0;
+		while (!env->death && i != env->max)
+		{
+			pthread_mutex_lock(&env->>mutex_death);
+			if	(env->life_time <= gettime(env) - env->philo[i].last_meal)
+			{
+				//free_philo(env);
+				talk(env, i + 1, 'd');
+				env->death++;
+			}
+			pthread_mutex_lock(&env->mutex_death);
+			if (argv[5] && env->done == env->max)
+				break ;
+			i++;
+		}
 		if (argv[5] && env->done == env->max)
 			break ;
 	}
