@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/24 19:29:09 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/26 12:55:11 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,32 @@ int	keep_open(t_env *env, char **argv)
 		i = 0;
 		while (!env->death && i != env->max)
 		{
-			pthread_mutex_lock(&env->>mutex_death);
+			pthread_mutex_lock(&env->philo[i].mutex_meals);
 			if	(env->life_time <= gettime(env) - env->philo[i].last_meal)
 			{
-				//free_philo(env);
 				talk(env, i + 1, 'd');
+				pthread_mutex_lock(&env->mutex_death);
 				env->death++;
-			}
-			pthread_mutex_lock(&env->mutex_death);
-			if (argv[5] && env->done == env->max)
+				pthread_mutex_unlock(&env->mutex_death);
+				pthread_mutex_unlock(&env->philo[i].mutex_meals);
 				break ;
+			}
+			pthread_mutex_unlock(&env->philo[i].mutex_meals);
+			pthread_mutex_lock(&env->mutex_death);
+			if (env->done == env->max)
+			{
+				pthread_mutex_unlock(&env->mutex_death);
+				break ;
+			}
+			pthread_mutex_unlock(&env->mutex_death);
 			i++;
 		}
-		if (argv[5] && env->done == env->max)
-			break ;
+	}
+	i = 0;
+	while (i < env->max)
+	{
+		pthread_join(env->philo[i].id, NULL);
+		i++;
 	}
 	return (0);
 }
@@ -87,6 +99,12 @@ int	main(int argc, char **argv)
 	}
 	if (keep_open(&env, argv) != 0)
 		return (1);
+	i = -1;
+	while(++i != env.max)
+	{
+		pthread_mutex_destroy(&env.philo[i].fork);
+	}
+	free(env.philo);
 	pthread_mutex_destroy(&env.mutex);
 	pthread_mutex_destroy(&env.mutex_death);
 	pthread_mutex_destroy(&env.mutex_print);

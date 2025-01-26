@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 11:57:40 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/24 19:26:47 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/26 13:11:07 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,4 @@ int	ft_isint(char *s)
 			return (1);
 	}
 	return (0);
-}
-
-void	free_philo(t_env *env)
-{
-	int	i;
-	
-	i = 0;
-	free(env->philo);
-	/*while (i != env->max)
-	{
-		free(&env->philo[i].fork);
-		free(&env->philo[i].meals);
-		free(&env->philo[i].last_meal);
-		free(&env->philo[i].i);
-		free(&env->philo[i].id);
-	}*/
 }
