@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/26 18:27:08 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:02:53 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,5 @@ int	main(int argc, char **argv)
 	pthread_mutex_destroy(&env.mutex_print);
 	pthread_mutex_destroy(&env.mutex_sleep);
 	pthread_mutex_destroy(&env.mutex_time);
-	free(env.philo);
 	return (0);
 }

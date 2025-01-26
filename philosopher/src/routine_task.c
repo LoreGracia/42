@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:59:15 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/26 18:23:36 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/26 19:10:30 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	zzz(t_env *env, int i)
 int	eat_a(t_env *env, int i)
 {
 	pthread_mutex_lock(&env->philo[i - 1].fork);
+	talk(env, i, 'f');
 	if (i == env->max)
 		pthread_mutex_lock(&env->philo[0].fork);
 	else
