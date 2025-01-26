@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/26 12:55:11 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:27:08 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	keep_open(t_env *env, char **argv)
 			pthread_mutex_lock(&env->mutex_death);
 			if (env->done == env->max)
 			{
+				env->death++;
 				pthread_mutex_unlock(&env->mutex_death);
 				break ;
 			}

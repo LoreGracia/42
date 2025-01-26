@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/26 12:34:47 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/26 18:28:19 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,26 @@
 
 void	routine(t_env *env, int i)
 {
-	while (1)
+	if (env->max == 1)
+		talk(env, i, 'f');
+	else
 	{
-		if (die(env))
-			break ;
 		if (i % 2 == 0)
-			eat_b(env, i);
-		else
+			usleep(env->eat_time * 1000);
+		while (1)
 		{
-			if (eat_a(env, i))
+			if (die(env))
 				break ;
-		}
-		if (env->meals && env->philo[i - 1].meals == env->meals)
-		{
-			pthread_mutex_lock(&env->mutex_death);
-			env->done++;
-			pthread_mutex_unlock(&env->mutex_death);
-			break ;
+			eat_a(env, i);
+			if (env->meals && env->philo[i - 1].meals == env->meals)
+			{
+				pthread_mutex_lock(&env->mutex_death);
+				env->done++;
+				pthread_mutex_unlock(&env->mutex_death);
+				break ;
+			}
 		}
 	}
-	pthread_mutex_lock(&env->mutex_death);
-	env->done++;
-	pthread_mutex_unlock(&env->mutex_death);
 }
 
 void	*thread_start(void *arg)
