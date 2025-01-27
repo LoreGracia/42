@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/26 18:28:19 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:53:28 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ void	*thread_start(void *arg)
 	num++;
 	i = num;
 	pthread_mutex_unlock(&env->mutex_death);
+	if (i == env->max)
+		env->philo[i - 1].next = &env->philo[0];
+	else
+		env->philo[i - 1].next = &env->philo[i];
 	pthread_mutex_lock(&env->mutex);
 	pthread_mutex_unlock(&env->mutex);
 	routine(env, i);
@@ -63,7 +67,10 @@ int	new_thread(t_philo *node, t_env *env)
 	pthread_mutex_init(&node->mutex_meals, NULL);
 	i = pthread_create(&node->id, NULL, &thread_start, env);
 	if (i != 0)
+	{
+		env->death++;
 		return (-1);
+	}
 	return (0);
 }
 
@@ -79,7 +86,7 @@ t_philo	*create_philo(int max, t_env *env)
 	while (i != max)
 	{
 		if (new_thread(&philo[i], env) < 0)
-			return (0);
+			return (philo);
 		i++;
 	}
 	return (philo);

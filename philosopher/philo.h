@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:59:22 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/26 18:24:12 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:54:32 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_philo
 	unsigned long	last_meal;
 	int				meals;
 	int				i;
+	void			*next;
 }					t_philo;
 
 typedef struct s_env
@@ -55,10 +56,8 @@ int					ft_isdigit(int c);
 void				talk(t_env *env, int i, char c);
 void				zzz(t_env *env, int i);
 int					eat_a(t_env *env, int i);
-int					eat_b(t_env *env, int i);
 unsigned long		gettime(t_env *env);
 t_philo				*create_philo(int max, t_env *env);
 int					if_death(t_env *env, t_philo *philo);
-int					death(t_philo *philo);
 
 #endif

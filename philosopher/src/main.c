@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/26 19:02:53 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/27 12:31:29 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,26 @@ int	thread_init(t_env *env, char **argv)
 	return (0);
 }
 
-int	keep_open(t_env *env, char **argv)
+void	death(t_env *env, int i)
 {
-	int	i;
+	talk(env, i + 1, 'd');
+	pthread_mutex_lock(&env->mutex_death);
+	env->death++;
+	pthread_mutex_unlock(&env->mutex_death);
+	pthread_mutex_unlock(&env->philo[i].mutex_meals);
+}
 
-	if (thread_init(env, argv) != 0)
-		return (1);
+void	keep_open(t_env *env, int i)
+{
 	while (!env->death)
 	{
 		i = 0;
 		while (!env->death && i != env->max)
 		{
 			pthread_mutex_lock(&env->philo[i].mutex_meals);
-			if	(env->life_time <= gettime(env) - env->philo[i].last_meal)
+			if (env->life_time <= gettime(env) - env->philo[i].last_meal)
 			{
-				talk(env, i + 1, 'd');
-				pthread_mutex_lock(&env->mutex_death);
-				env->death++;
-				pthread_mutex_unlock(&env->mutex_death);
-				pthread_mutex_unlock(&env->philo[i].mutex_meals);
+				death(env, i);
 				break ;
 			}
 			pthread_mutex_unlock(&env->philo[i].mutex_meals);
@@ -72,13 +73,21 @@ int	keep_open(t_env *env, char **argv)
 			i++;
 		}
 	}
-	i = 0;
-	while (i < env->max)
+}
+
+void	destroy(t_env *env, int i)
+{
+	while (++i != env->max)
 	{
 		pthread_join(env->philo[i].id, NULL);
-		i++;
+		pthread_mutex_destroy(&env->philo[i].fork);
 	}
-	return (0);
+	free(env->philo);
+	pthread_mutex_destroy(&env->mutex);
+	pthread_mutex_destroy(&env->mutex_death);
+	pthread_mutex_destroy(&env->mutex_print);
+	pthread_mutex_destroy(&env->mutex_sleep);
+	pthread_mutex_destroy(&env->mutex_time);
 }
 
 int	main(int argc, char **argv)
@@ -98,18 +107,9 @@ int	main(int argc, char **argv)
 		if (ft_atoi(argv[i]) < 1)
 			return (printf("Argument is too low\n"), 1);
 	}
-	if (keep_open(&env, argv) != 0)
+	if (thread_init(&env, argv) != 0)
 		return (1);
-	i = -1;
-	while(++i != env.max)
-	{
-		pthread_mutex_destroy(&env.philo[i].fork);
-	}
-	free(env.philo);
-	pthread_mutex_destroy(&env.mutex);
-	pthread_mutex_destroy(&env.mutex_death);
-	pthread_mutex_destroy(&env.mutex_print);
-	pthread_mutex_destroy(&env.mutex_sleep);
-	pthread_mutex_destroy(&env.mutex_time);
+	keep_open(&env, 0);
+	destroy(&env, -1);
 	return (0);
 }
