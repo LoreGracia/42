@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:59:15 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/28 12:31:08 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:52:07 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,9 @@ void	zzz(t_env *env, int i)
 
 void	eat_a(t_env *env, int i)
 {
-	t_philo	*next;
-
-	next = env->philo[i - 1].next;
 	pthread_mutex_lock(&env->philo[i - 1].fork);
 	talk(env, i, 'f');
-	pthread_mutex_unlock(&next->fork);
+	pthread_mutex_lock(env->philo[i - 1].next);
 	talk(env, i, 'f');
 	talk(env, i, 'e');
 	pthread_mutex_lock(&env->philo[i - 1].mutex_meals);
@@ -64,6 +61,6 @@ void	eat_a(t_env *env, int i)
 	env->philo[i - 1].meals++;
 	pthread_mutex_unlock(&env->philo[i - 1].mutex_meals);
 	usleep(env->eat_time * 1000);
-	pthread_mutex_unlock(&next->fork);
+	pthread_mutex_unlock(env->philo[i - 1].next);
 	pthread_mutex_unlock(&env->philo[i - 1].fork);
 }

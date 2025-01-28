@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:59:22 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/28 12:31:26 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:53:09 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_philo
 	unsigned long	last_meal;
 	int				meals;
 	int				i;
-	void			*next;
+	pthread_mutex_t	*next;
 }					t_philo;
 
 typedef struct s_env

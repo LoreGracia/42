@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/28 12:20:31 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:56:27 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	routine(t_env *env, int i)
 	else
 	{
 		if (i % 2 == 0)
-			usleep(env->eat_time * 1000);
+			usleep(env->eat_time * 900);
 		while (1)
 		{
 			if (die(env))
@@ -48,12 +48,12 @@ void	*thread_start(void *arg)
 	num++;
 	i = num;
 	pthread_mutex_unlock(&env->mutex_death);
-	if (i == env->max)
-		env->philo[i - 1].next = &env->philo[0];
-	else
-		env->philo[i - 1].next = &env->philo[i];
 	pthread_mutex_lock(&env->mutex);
 	pthread_mutex_unlock(&env->mutex);
+	if (i == env->max)
+		env->philo[i - 1].next = &env->philo[0].fork;
+	else
+		env->philo[i - 1].next = &env->philo[i].fork;
 	routine(env, i);
 	return (0);
 }
