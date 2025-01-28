@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:59:15 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/27 12:58:20 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:31:08 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	zzz(t_env *env, int i)
 	talk(env, i, 't');
 }
 
-int	eat_a(t_env *env, int i)
+void	eat_a(t_env *env, int i)
 {
 	t_philo	*next;
 
@@ -66,6 +66,4 @@ int	eat_a(t_env *env, int i)
 	usleep(env->eat_time * 1000);
 	pthread_mutex_unlock(&next->fork);
 	pthread_mutex_unlock(&env->philo[i - 1].fork);
-	zzz(env, i);
-	return (0);
 }

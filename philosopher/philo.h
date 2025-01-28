@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:59:22 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/27 12:54:32 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:31:26 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ typedef struct s_philo
 typedef struct s_env
 {
 	t_philo			*philo;
-	int				death;
-	int				max;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	mutex_death;
 	pthread_mutex_t	mutex_print;
@@ -47,17 +45,18 @@ typedef struct s_env
 	unsigned long	sleep_time;
 	int				meals;
 	int				done;
+	int				death;
+	int				max;
 }				t_env;
 
-int					die(t_env *env);
 int					ft_isint(char *s);
-long				ft_atoi(const char *nptr);
 int					ft_isdigit(int c);
+long				ft_atoi(const char *nptr);
+unsigned long		gettime(t_env *env);
+int					die(t_env *env);
+void				eat_a(t_env *env, int i);
 void				talk(t_env *env, int i, char c);
 void				zzz(t_env *env, int i);
-int					eat_a(t_env *env, int i);
-unsigned long		gettime(t_env *env);
 t_philo				*create_philo(int max, t_env *env);
-int					if_death(t_env *env, t_philo *philo);
 
 #endif

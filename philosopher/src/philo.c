@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/27 12:53:28 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:20:31 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	routine(t_env *env, int i)
 				pthread_mutex_unlock(&env->mutex_death);
 				break ;
 			}
+			zzz(env, i);
 		}
 	}
 }
