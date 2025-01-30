@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/28 19:56:27 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:16:06 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,13 @@ void	*thread_start(void *arg)
 
 int	new_thread(t_philo *node, t_env *env)
 {
-	int	i;
-
 	node->last_meal = 0;
 	node->meals = 0;
 	pthread_mutex_init(&node->fork, NULL);
 	pthread_mutex_init(&node->mutex_meals, NULL);
-	i = pthread_create(&node->id, NULL, &thread_start, env);
-	if (i != 0)
+	if (pthread_create(&node->id, NULL, &thread_start, env) != 0)
 	{
+		printf("\e[91;5mERROR pthread_create didn't work\n");
 		env->death++;
 		return (-1);
 	}
@@ -87,7 +85,10 @@ t_philo	*create_philo(int max, t_env *env)
 	while (i != max)
 	{
 		if (new_thread(&philo[i], env) < 0)
+		{
+			env->death = i * -1;
 			return (philo);
+		}
 		i++;
 	}
 	return (philo);

@@ -6,20 +6,19 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/30 16:58:17 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:14:04 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int	thread_init(t_env *env, char **argv)
+void	thread_init(t_env *env, char **argv)
 {
 	pthread_mutex_init(&env->mutex, NULL);
 	pthread_mutex_init(&env->mutex_death, NULL);
 	pthread_mutex_init(&env->mutex_print, NULL);
 	pthread_mutex_init(&env->mutex_sleep, NULL);
-	if (pthread_mutex_init(&env->mutex_time, NULL) == -1)
-		printf("ESTOY JODIDAMENTE MALITO\n");
+	pthread_mutex_init(&env->mutex_time, NULL);
 	env->death = 0;
 	env->done = 0;
 	env->max = ft_atoi(argv[1]);
@@ -32,11 +31,8 @@ int	thread_init(t_env *env, char **argv)
 		env->meals = 0;
 	pthread_mutex_lock(&env->mutex);
 	env->philo = create_philo(env->max, env);
-	if (env->philo == 0)
-		return (1);
 	env->time = gettime(NULL);
 	pthread_mutex_unlock(&env->mutex);
-	return (0);
 }
 
 void	death(t_env *env, int i)
@@ -77,6 +73,8 @@ void	keep_open(t_env *env, int i)
 
 void	destroy(t_env *env, int i)
 {
+	if (env->death < 0)
+		env->max -= env->max - (env->death * -1);
 	while (++i != env->max)
 	{
 		pthread_join(env->philo[i].id, NULL);
@@ -107,8 +105,7 @@ int	main(int argc, char **argv)
 		if (ft_atoi(argv[i]) < 1)
 			return (printf("\e[91mArgument is too low\n"), 1);
 	}
-	if (thread_init(&env, argv) != 0)
-		return (1);
+	thread_init(&env, argv);
 	keep_open(&env, 0);
 	destroy(&env, -1);
 	return (0);
