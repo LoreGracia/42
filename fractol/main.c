@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/01 16:41:37 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/30 18:49:40 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ int	parse(char **argv, t_env *e)
 	}
 	else if (argv[1][1])
 		return (-1);
-	else if (e->type == 'p')
+	/*else if (e->type == 'p')
 		e->f = panda;
 	else if (e->type == 'l')
-		e->f = line;
+		e->f = line;*/
 	else 
 		return (-1);
 	return (0);
