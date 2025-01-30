@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/28 19:21:04 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:58:17 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,16 @@ int	main(int argc, char **argv)
 	int		i;
 
 	if (argc > 6)
-		return (printf("To many arguments\n"), 1);
+		return (printf("\e[91mTo many arguments\n"), 1);
 	if (argc < 5)
-		return (printf("Arguments missing\n"), 1);
+		return (printf("\e[91mArguments missing\n"), 1);
 	i = 0;
 	while (++i < argc)
 	{
 		if (ft_isint(argv[i]) != 0)
-			return (printf("Enter digits\n"), 1);
+			return (printf("\e[91mEnter digits, positive numbers\n"), 1);
 		if (ft_atoi(argv[i]) < 1)
-			return (printf("Argument is too low\n"), 1);
+			return (printf("\e[91mArgument is too low\n"), 1);
 	}
 	if (thread_init(&env, argv) != 0)
 		return (1);
