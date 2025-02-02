@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:55:41 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/30 18:14:04 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/02 14:58:16 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	keep_open(t_env *env, int i)
 void	destroy(t_env *env, int i)
 {
 	if (env->death < 0)
-		env->max -= env->max - (env->death * -1);
+		env->max -= env->max + env->death;
 	while (++i != env->max)
 	{
 		pthread_join(env->philo[i].id, NULL);
