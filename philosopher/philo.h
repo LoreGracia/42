@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:59:22 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/28 19:53:09 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/02 18:05:30 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int					ft_isdigit(int c);
 long				ft_atoi(const char *nptr);
 unsigned long		gettime(t_env *env);
 int					die(t_env *env);
-void				eat_a(t_env *env, int i);
+void				eat(t_env *env, int i);
 void				talk(t_env *env, int i, char c);
 void				zzz(t_env *env, int i);
 t_philo				*create_philo(int max, t_env *env);

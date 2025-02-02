@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 10:59:15 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/28 19:52:07 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/02 18:04:49 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	zzz(t_env *env, int i)
 	talk(env, i, 't');
 }
 
-void	eat_a(t_env *env, int i)
+void	eat(t_env *env, int i)
 {
 	pthread_mutex_lock(&env->philo[i - 1].fork);
 	talk(env, i, 'f');

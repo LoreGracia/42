@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:19:39 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/30 18:16:06 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/02 18:05:10 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	routine(t_env *env, int i)
 		{
 			if (die(env))
 				break ;
-			eat_a(env, i);
+			eat(env, i);
 			if (env->meals && env->philo[i - 1].meals == env->meals)
 			{
 				pthread_mutex_lock(&env->mutex_death);
