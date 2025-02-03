@@ -35,7 +35,7 @@ The project is organized as follows:
 └── get_next_line_utils_bonus.c        # Rest of functions needed
 ```
 
-see the <a href=https://github.com/LoreGracia/42/blob/63bab32b77e51be03f9f2f5427096d79d13db112/Printf/en.subject.pdf>subject</a> for more details.
+see the <a href=https://github.com/LoreGracia/42/blob/63bab32b77e51be03f9f2f5427096d79d13db112/Get_next_line/en.subject.pdf>subject</a> for more details.
 
 ## Installation
 
