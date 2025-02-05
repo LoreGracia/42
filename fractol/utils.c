@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 17:25:29 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/12/01 12:14:01 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:11:22 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,21 @@ int	j(char **argv, t_env *e)
 	if (ft_strncmp("Julia", argv[1], 6) != 0 || \
 		nmapi(argv[3], 'd') || nmapi(argv[4], 'd') || argv[5])
 		return (-1);
-	e->x0 = ft_atoi(argv[3]);
-	e->y0 = ft_atoi(argv[4]);
-	if (e->x0 >= 4.2 && e->y0 >= 4.2)
+	if (argv[3][0] == '-')
+	{
+		e->x0 = ft_atoi(&argv[3][1]);
+		e->x0 *= -1;
+	}
+	else
+		e->x0 = ft_atoi(argv[3]);
+	if (argv[4][0] == '-')
+	{
+		e->y0 = ft_atoi(&argv[4][1]);
+		e->y0 *= -1;
+	}
+	else
+		e->y0 = ft_atoi(argv[4]);
+	if (e->x0 >= 4.2 && e->y0 >= 4.2 && e->x0 >= -4.2 && e->y0 >= -4.2)
 		ft_printf("Is advised to use lower levels as 0.270 0.009");
 	return (0);
 }

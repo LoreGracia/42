@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 11:20:09 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/01/30 18:49:40 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:51:39 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	parse_fractol(char **argv, t_env *e, int i)
 		{
 			if (ft_strncmp("Mandelbrot", argv[1], 11) != 0 || argv[3])
 				return (-1);
-			if (i < -2 || i == 0 || i == 1 || (i > 6 && i % 2 != 0))
-				return (-1);
 		}
+		if (i < -2 || i == 0 || i == 1 || (i > 6 && i % 2 != 0))
+			return (-1);
 		e->px_size = 1.0 / (WIDTH >> 2);
 		e->cx = WIDTH;
 		e->cy = HEIGHT;
