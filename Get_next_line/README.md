@@ -4,7 +4,7 @@
  <a href="https://github.com/LoreGracia/42/tree/main/Get_next_line"><img src="https://img.shields.io/badge/get_next_line-125%25-greenyellow?style=for-the-badge&labelColor=black"><a href="https://shields.io"/>
     <!---img src="https://cdn-icons-png.flaticon.com/512/724/724863.png" alt="Logo" width="80" height="80"--->
   
-  <h3 align="center">Get next line</h3>
+  <h3 align="center">Get_next_line</h3>
   <p align="center">
     Program for reading files!
     <br />
@@ -60,4 +60,5 @@ Once you have compiled the files, you can execute it as follows:
 ./a.out [or ./file resulted from the execution]
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<br><hr><p align="right">
+[🔼⬆️ Back to top](#get_next_line)
