@@ -90,47 +90,25 @@ Once you have compiled the files, you can execute it as follows:
 |<img src="https://github.com/user-attachments/assets/dec6d9a7-85f8-4427-b272-c0625fac8ab4" height="125"><img src="https://github.com/user-attachments/assets/63131841-a010-4dd1-846b-d3249982104c" height="125"><img src="https://github.com/user-attachments/assets/521fe09d-868a-477f-ae36-d4586a8d47e2" height="125"><img src="https://github.com/user-attachments/assets/66d7e543-0fe8-4f60-8928-a2e0f3df5694" height="125">|<img src="https://github.com/user-attachments/assets/599aac6a-0df4-4612-9b37-49a0dbac44d8" height="125"><img src="https://github.com/user-attachments/assets/307c3585-2c38-45df-a0b3-626d8f01f415" height="125"><img src="https://github.com/user-attachments/assets/4a1c4b45-7b59-4b05-a75c-fd8c39396983" height="125"><img src="https://github.com/user-attachments/assets/c3da3511-3b0f-43df-bfae-3de334eb075d" height="125">|
 
 | ./fractol Mandelbrot 14 | ./fractol Mandelbrot 80 |
-| - | -|
+| - | - |
 |<img src="https://github.com/user-attachments/assets/0a1599e4-c04c-4243-9fad-95a9f662a152" height="125"> <img src="https://github.com/user-attachments/assets/a94382ea-7900-4783-b2c7-71c8c8e20bfa" height="125"> <img src="https://github.com/user-attachments/assets/18b98298-2e06-4a65-821d-de104750846c" height="125">  <img src="https://github.com/user-attachments/assets/7c15b721-e372-4eaf-a5f2-5dec1a4a2015" height="125"> | <img src="https://github.com/user-attachments/assets/a8e92ea1-5c33-4419-bd57-6653f990f069" height="125"> <img src="https://github.com/user-attachments/assets/b13a16cf-8a4d-4862-b21e-eac2d3ecdd64" height="125"> <img src="https://github.com/user-attachments/assets/fc0bd984-ee6f-4da6-a2be-e6cbf5c2c266" height="125"> <img src="https://github.com/user-attachments/assets/268d4a4c-ec62-403d-a81e-7427049f3133" height="125"> |
 
 ## ./fractol Julia 2
-### ./fractol Julia 2 0.267 0.009
-<img src="https://github.com/user-attachments/assets/94288fe6-663d-43c5-a84a-0db5d00194e2" height="125">
-<img src="https://github.com/user-attachments/assets/67d841a1-65d2-478a-b6de-034ef555f297" height="125">
-<img src="https://github.com/user-attachments/assets/83f5b0a0-cef0-4783-861b-e83f416d4b0f" height="125">
-<img src="https://github.com/user-attachments/assets/10f8bad7-315e-4b4f-ae66-85fc775f65b5" height="125">
+| ./fractol Julia 2 0.267 0.009 | ./fractol Julia 2 0.267 0.009 |
+|- |- |
+|<img src="https://github.com/user-attachments/assets/94288fe6-663d-43c5-a84a-0db5d00194e2" height="125"><img src="https://github.com/user-attachments/assets/67d841a1-65d2-478a-b6de-034ef555f297" height="125"><img src="https://github.com/user-attachments/assets/83f5b0a0-cef0-4783-861b-e83f416d4b0f" height="125"><img src="https://github.com/user-attachments/assets/10f8bad7-315e-4b4f-ae66-85fc775f65b5" height="125"> | <img src="https://github.com/user-attachments/assets/af907e57-cf28-4c41-9fad-689d267dc072" height="125"><img src="https://github.com/user-attachments/assets/bb5c4bd4-fad1-4a63-9d7d-1f86725b1278" height="125"><img src="https://github.com/user-attachments/assets/2f2c53a2-bd4f-4c0c-a5e2-59e6b4d865e1" height="125"><img src="https://github.com/user-attachments/assets/9b84eb49-159d-4791-a37f-011add2f3308" height="125">|
 
-### ./fractol Julia 2 0.267 0.009
+|./fractol Julia 2 0.267 0.009 | ./fractol Julia 2 0.267 0.009 |
+| - | - |
+|<img src="https://github.com/user-attachments/assets/9a597142-cf0a-4e25-b39a-f6da18260193" height="125">  <img src="https://github.com/user-attachments/assets/6b718515-468c-4883-a7b7-6f2d1f9879f9" height="125"><img src="https://github.com/user-attachments/assets/f6b2c6ff-a567-4fe1-b025-2d4d66f5238f" height="125"><img src="https://github.com/user-attachments/assets/4d288d67-8fa2-40da-b15c-8402ec121f84" height="125"> | <img src="https://github.com/user-attachments/assets/be8d9890-46ec-496e-93ab-4cd09057fc11" height="125"><img src="https://github.com/user-attachments/assets/568474ef-ef75-474e-a26a-915a56e936de" height="125"><img src="https://github.com/user-attachments/assets/343a57b9-2ddf-4522-af70-0cecab34419d" height="125"><img src="https://github.com/user-attachments/assets/2ff593bb-d6db-40dd-8f6f-eda235bbf41b" height="125">|
 
-<img src="https://github.com/user-attachments/assets/af907e57-cf28-4c41-9fad-689d267dc072" height="125">
-<img src="https://github.com/user-attachments/assets/bb5c4bd4-fad1-4a63-9d7d-1f86725b1278" height="125">
-<img src="https://github.com/user-attachments/assets/2f2c53a2-bd4f-4c0c-a5e2-59e6b4d865e1" height="125">
-<img src="https://github.com/user-attachments/assets/9b84eb49-159d-4791-a37f-011add2f3308" height="125">
-
-### ./fractol Julia 2 0.267 0.009
-
-<img src="https://github.com/user-attachments/assets/9a597142-cf0a-4e25-b39a-f6da18260193" height="125">
-<img src="https://github.com/user-attachments/assets/6b718515-468c-4883-a7b7-6f2d1f9879f9" height="125">
-<img src="https://github.com/user-attachments/assets/f6b2c6ff-a567-4fe1-b025-2d4d66f5238f" height="125">
-<img src="https://github.com/user-attachments/assets/4d288d67-8fa2-40da-b15c-8402ec121f84" height="125">
-
-### ./fractol Julia 2 0.267 0.009
-
-<img src="https://github.com/user-attachments/assets/be8d9890-46ec-496e-93ab-4cd09057fc11" height="125">
-<img src="https://github.com/user-attachments/assets/568474ef-ef75-474e-a26a-915a56e936de" height="125">
-<img src="https://github.com/user-attachments/assets/343a57b9-2ddf-4522-af70-0cecab34419d" height="125">
-<img src="https://github.com/user-attachments/assets/2ff593bb-d6db-40dd-8f6f-eda235bbf41b" height="125">
-
-| ### ./fractol Julia 2 0.267 0.009                                                                        | ### ./fractol Julia 2 0.267 0.009 |
-|---------------------------------------------------------------------------------------------------------- | ------------------- |
+|  ./fractol Julia 2 0.267 0.009| ./fractol Julia 2 0.267 0.009 |
+| - | - |
 | <img src="https://github.com/user-attachments/assets/8181ca63-9a81-48ca-963f-422c03897e73" height="125"> <img src="https://github.com/user-attachments/assets/602ae551-6643-4b29-941c-ec9761a6bf18" height="125"> <img src="https://github.com/user-attachments/assets/5abe5bff-cda4-4d04-8912-fb87da78d2d8" height="125">  <img src="https://github.com/user-attachments/assets/b767ed7d-ccee-4d3e-b1ab-5fef819192e8" height="125"> |  <img src="https://github.com/user-attachments/assets/489a8a6b-331c-43a4-be6c-67a22d1e3325" height="125"> <img src="https://github.com/user-attachments/assets/a56f563d-3a0c-4594-b850-acfcdef84575" height="125"> <img src="https://github.com/user-attachments/assets/078b724e-874c-46c7-bfdf-1544e0ebb181" height="125">  <img src="https://github.com/user-attachments/assets/950423b8-2b64-4160-a3b2-304c5911cd01" height="125"> |
 
-### ./fractol Julia 2 0.267 0.009
-
-<img src="https://github.com/user-attachments/assets/ecbc5b54-0563-4e92-aaae-1731b0b4fbd5" height="125">
-<img src="https://github.com/user-attachments/assets/fb6448a9-6054-4d45-9c77-bfad7adf3991" height="125">
-<img src="https://github.com/user-attachments/assets/fbf456ad-b4d6-4dd5-8ddd-cba2e21221fd" height="125">
-<img src="https://github.com/user-attachments/assets/efa3f75d-c690-44b2-a926-7c5bfb1dead7" height="125">
+|./fractol Julia 2 0.267 0.009 |
+| - |
+| <img src="https://github.com/user-attachments/assets/ecbc5b54-0563-4e92-aaae-1731b0b4fbd5" height="125"> <img src="https://github.com/user-attachments/assets/fb6448a9-6054-4d45-9c77-bfad7adf3991" height="125"> <img src="https://github.com/user-attachments/assets/fbf456ad-b4d6-4dd5-8ddd-cba2e21221fd" height="125"> <img src="https://github.com/user-attachments/assets/efa3f75d-c690-44b2-a926-7c5bfb1dead7" height="125"> |
 
 ## ./fractol p
 
@@ -138,4 +116,5 @@ In order to get the grip of the MLX codam library I made some try and error from
 
 <img src="https://github.com/user-attachments/assets/767ad717-2bcb-48b4-9723-b209aa005cff" height="125">
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">
+  (<a href="Fractol">back to top</a>)</p>
