@@ -66,4 +66,4 @@ For example:
 gcc yourmain.c libft.a
 ```
 <br><hr><p align="right">
-[🔼⬆️ Back to top](#libft)
+[⬆️ Back to top](#libft)
