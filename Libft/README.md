@@ -65,4 +65,5 @@ For example:
 ```bash
 gcc yourmain.c libft.a
 ```
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<br><hr><p align="right">
+[🔼⬆️ Back to top](#libft)
