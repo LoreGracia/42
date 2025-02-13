@@ -61,4 +61,4 @@ Once you have compiled the files, you can execute it as follows:
 ```
 
 <br><hr><p align="right">
-[🔼⬆️ Back to top](#get_next_line)
+[⬆️ Back to top](#get_next_line)
