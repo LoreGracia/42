@@ -116,8 +116,7 @@ In order to get the grip of the MLX codam library I made some try and error from
 
 <img src="https://github.com/user-attachments/assets/767ad717-2bcb-48b4-9723-b209aa005cff" height="125">
 
-<p align="right">
-  (<a href="fractol">back to top</a>)</p>
 
-<br><hr>
+  
+<br><hr><p align="right">
 [🔼⬆️ Back to top](#fractol)
