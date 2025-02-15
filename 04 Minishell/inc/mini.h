@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:54:55 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/02/12 16:09:32 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/15 12:44:55 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include <string.h>
 #include <sys/ioctl.h>
 #include <termcap.h>
+#include <termios.h>
 
 typedef struct	s_pipe
 {

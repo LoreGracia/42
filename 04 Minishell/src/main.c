@@ -6,34 +6,36 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:59:36 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/02/13 16:25:04 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/15 13:02:59 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../mini.h"
+#include "mini.h"
 
 int	main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
 	(void)env;
-	char *cosa;
+	char *read_line;
 
 	while ("O.O")
 	{
-		cosa = readline("\e[33m૮₍ ˃ ⤙ ˂ ₎ა\n./づ\e[0mᡕᠵ᠆ᠵ_⸝᠊᠆ᡁ᠊᠊\e[31m~~~~ \e[0m");
-		if (!strcmp(cosa, "u ugly"))
+		read_line = readline("\e[33m૮₍ ˃ ⤙ ˂ ₎ა\n./づ\e[0mᡕᠵ᠆ᠵ_⸝᠊᠆ᡁ᠊᠊\e[31m~~~~ \e[0m");
+		if (!strcmp(read_line, "u ugly"))
 			printf("(ಥ_ಥ)");
-		if (!strcmp(cosa, "what u looking"))
+		else if (!strcmp(read_line, "what u looking"))
 			printf("┻┳|―-∩\n┳┻|   ヽ\n┻┳| ●  |\n┳┻|▼)_ノ\n┻┳|￣ )\n┳ﾐ(￣／\n┻┳T￣|\n");
-		if (!strcmp(cosa, "f u"))
+		else if (!strcmp(read_line, "f u"))
 			printf("凸( •̀_•́ )凸");
-		if (!strcmp(cosa, "u mad?"))
+		else if (!strcmp(read_line, "u mad?"))
 			printf("ᕕ(˵•̀෴•́˵)ᕗ");
-		if (!strcmp(cosa, "beware the cat"))
+		else if (!strcmp(read_line, "beware the cat"))
 			printf("ก₍⸍⸌̣ʷ̣̫⸍̣⸌₎ค");
+		else if (read_line && *read_line)
+			add_history(read_line);
 		printf("\n");
-		free(cosa);
+		free(read_line);
 	}
 //	for(int i = 0; env[i]; i++)
 	//	printf("%s\n", env[i]);

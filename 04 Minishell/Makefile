@@ -6,38 +6,40 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 11:35:38 by lgracia-          #+#    #+#              #
-#    Updated: 2025/02/12 16:46:32 by lgracia-         ###   ########.fr        #
+#    Updated: 2025/02/15 13:02:21 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror -g  -fsanitize=address 
-
-SRC = main.c
-
-DSRC = $(addprefix src/, $(SRC))
-
-OBJ = $(DSRC:.c=.o)
-
-DEP = $(DSRC:.c=.d)
-
 NAME = mini
+
+CFLAGS = -Wall -Wextra -Werror -g  -fsanitize=address 
+
+INCS = inc/
+
+SRCS = main.c
+
+DSRCS = $(addprefix src/, $(SRCS))
+
+OBJS = $(DSRCS:.c=.o)
+
+DEPS = $(DSRCS:.c=.d)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) 
-	cc $(FLAGS) $(OBJ) -ltermcap -lreadline -o $(NAME)
+$(NAME): $(OBJS) 
+	$(CC) $(CFLAGS) $(OBJS) -ltermcap -lreadline -o $(NAME)
 
 %.o:%.c Makefile
-	cc $(FLAGS) -MMD -o $@ -c $<
+	$(CC) $(CFLAGS) -I$(INCS) -MMD -o $@ -c $<
 
 clean:
-	rm -rf $(OBJ) $(DEP)
+	rm -rf $(OBJS) $(DEPS)
 
 fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
 
--include $(DEP)
+-include $(DEPS)
 
 .PHONY: all clean fclean re
