@@ -6,25 +6,56 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:59:36 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/02/18 13:32:35 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/23 12:13:12 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini.h"
 
+int	chrccount(char *read_line, char c)
+{
+	int	i;
+	int	count;
+	int	one;
+
+	i = 0;
+	count = 0;
+	one = 1;
+	printf("a\n");
+	while (one > 0 && read_line[i] != c)
+	{
+		if (!read_line[i])
+			break ;
+		printf("missing\n");
+		if (read_line[i] == 34 || read_line[i] == 39)
+			one *= -1;
+		count++;
+		i++;
+	}
+	if (one < 0)
+		printf("missing\n");
+	return (count);
+}
+
 int	ccount(char *read_line, char c)
 {
 	int	i;
 	int	count;
+	int	one;
 
 	i = 0;
 	count = 0;
+	one = 1;
 	while (read_line[i])
 	{
-		if (read_line[i] == c)
+		if (read_line[i] == 34 || read_line[i] == 39)
+			one *= -1;
+		if (one > 0 && read_line[i] == c)
 			count++;
 		i++;
 	}
+	if (one < 0)
+		printf("missing\n");
 	return (count);
 }
 
@@ -39,35 +70,18 @@ int	main(int ac, char **av, char **pc_env)
 	while ("O.O")
 	{
 		printf("\e[33m૮₍ ˃ ⤙ ˂ ₎ა\n");
-		read_line = readline("./づ\e[0mᡕᠵ᠆ᠵ_⸝᠊᠆ᡁ᠊᠊\e[31m~~~~ \e[0m");
-		env.num_pipes = ccount(read_line, '|');
-		env.pipe = lexer_init(read_line, &env);
-		free(read_line);
+		read_line = readline("\e[33m./づ\e[0mᡕᠵ᠆ᠵ_⸝᠊᠆ᡁ᠊᠊\e[31m~~~~ \e[0m");
 		if (!strcmp((const char *)&read_line, "exit"))
-		{
-			free(read_line);
-			rl_clear_history();
-			exit(0);
-		}
-		else if (!strcmp((const char *)read_line, "u ugly"))
-			printf("(ಥ_ಥ)");
-		else if (!strcmp((const char *)read_line, "what u looking"))
-			printf("┻┳|―-∩\n┳┻|   ヽ\n┻┳| ●  |\n┳┻|▼)_ノ\n┻┳|￣ )\n┳ﾐ(￣／\n┻┳T￣|\n");
-		else if (!strcmp((const char *)read_line, "f u"))
-			printf("凸( •̀_•́ )凸");
-		else if (!strcmp((const char *)read_line, "u mad?"))
-			printf("ᕕ(˵•̀෴•́˵)ᕗ");
-		else if (!strcmp((const char *)read_line, "beware the cat"))
-			printf("ก₍⸍⸌̣ʷ̣̫⸍̣⸌₎ค");
+			break ;
+		env.num_pipes = ccount(read_line, '|');
+		env.pipe = lexer_init(read_line, env.num_pipes);
+		print_token(env.pipe, env.num_pipes);
+		if (!env.pipe)
+			return (printf("\e[31m-1\e[0m"),-1);
+		printf("\n");
 		if (read_line && *read_line)
 			add_history(read_line);
-		printf("\n");
 		free(read_line);
-		rl_clear_history();
-
 	}
-//	for(int i = 0; env[i]; i++)
-	//	printf("%s\n", env[i]);
-
-//	printf("%s\n", "");
+	rl_clear_history();
 }

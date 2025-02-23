@@ -6,7 +6,7 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 11:35:38 by lgracia-          #+#    #+#              #
-#    Updated: 2025/02/18 14:39:27 by lgracia-         ###   ########.fr        #
+#    Updated: 2025/02/23 12:24:30 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror # -fsanitize=address
 
 INCS = inc/
 
-SRCS = main.c lexer.c lexer_utils.c 
+SRCS = main.c split_token.c lexer.c  
 
 DSRCS = $(addprefix src/, $(SRCS))
 
