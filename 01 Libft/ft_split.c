@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:50:24 by lgracia-          #+#    #+#             */
-/*   Updated: 2024/07/17 10:31:07 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/23 16:29:27 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	**ft_split(char const *s, char c)
 			return (full_free(str, i));
 		i++;
 	}
-	str[i] = 0;
+	str[i] = NULL;
 	return (str);
 }
 /*
@@ -113,9 +113,9 @@ int	main(void)
 	if (!str)
 		return (1);
 
-	while (str[i] != 0)
+	while (str[i])
 	{
-		printf("array[%p]: \"%s\"\n", str[i], str[i]);
+		printf("array[%d]: \"%s\"\n", i, str[i]);
 		i++;
 	}
 	printf("pass");
