@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:59:36 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/02/23 12:13:12 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:49:38 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,15 @@ int	main(int ac, char **av, char **pc_env)
 
 	while ("O.O")
 	{
-		printf("\e[33m૮₍ ˃ ⤙ ˂ ₎ა\n");
-		read_line = readline("\e[33m./づ\e[0mᡕᠵ᠆ᠵ_⸝᠊᠆ᡁ᠊᠊\e[31m~~~~ \e[0m");
+		read_line = readline("\e[32m(^v^) \e[0m");
 		if (!strcmp((const char *)&read_line, "exit"))
 			break ;
 		env.num_pipes = ccount(read_line, '|');
 		env.pipe = lexer_init(read_line, env.num_pipes);
-		print_token(env.pipe, env.num_pipes);
 		if (!env.pipe)
 			return (printf("\e[31m-1\e[0m"),-1);
-		printf("\n");
+		if (!strcmp(av[1], "print_arg"))
+			print_token(env.pipe, env.num_pipes);
 		if (read_line && *read_line)
 			add_history(read_line);
 		free(read_line);

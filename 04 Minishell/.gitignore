@@ -1,0 +1,9 @@
+*.d
+*.o
+*.swp
+*.a
+build
+fractol
+.vscode
+mini
+.a.out

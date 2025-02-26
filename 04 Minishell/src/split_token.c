@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:50:24 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/02/22 19:25:17 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:45:58 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,29 @@ static int	words(char const *s, char c)
 	return (count);
 }
 
+int	split_exception(const char *s, int start, int irecursive)
+{
+	irecursive *= -1;
+	if (s[start + 1] == '\\')
+	{
+		printf("+1 %c\n", s[start + 1]);
+		if (split_exception(s, start + 1, irecursive) > 0)
+			return (1 * irecursive);
+	}
+	return (-1 * irecursive);
+}
+
+int	split_quotes(char const *s, char c, int *start)
+{
+	if (s[*start] == c)
+	{
+		++(*start);
+		while (s[*start] != c && split_exception(s, (*start) + 1, -1) < 0)
+			++(*start);
+	}
+	return (0);
+}
+
 static int	starts(char const *s, char c, int next, int point)
 {
 	int	start;
@@ -48,17 +71,20 @@ static int	starts(char const *s, char c, int next, int point)
 		while (s[start] && s[start] == c)
 		{
 			start++;
-			//start = iter_start(start, s, &one, &two);
 		}
 	}
 	else
 	{
 		while ((s[start]) && s[start] != c)
 		{
+			if (s[start] == 34)
+				split_quotes(s, 34, &start);
+			if (s[start] == 39)
+				split_quotes(s, 39, &start);
 			if (s[start] == '|')
 				break;
-			start++;
-			//start = iter_start(start, s, &one, &two);
+			else
+				start++;
 		}
 	}
 	return (start);
