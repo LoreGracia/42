@@ -6,17 +6,17 @@
 #    By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/07 11:35:38 by lgracia-          #+#    #+#              #
-#    Updated: 2025/02/23 12:24:30 by lgracia-         ###   ########.fr        #
+#    Updated: 2025/03/22 19:02:28 by lgracia-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = mini
 
-CFLAGS = -Wall -Wextra -Werror # -fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror  -g# -fsanitize=address 
 
 INCS = inc/
 
-SRCS = main.c split_token.c lexer.c  
+SRCS = main.c lexer.c split_token.c split_token_utils.c expander.c 
 
 DSRCS = $(addprefix src/, $(SRCS))
 
@@ -25,6 +25,8 @@ OBJS = $(DSRCS:.c=.o)
 DEPS = $(DSRCS:.c=.d)
 
 LIBS =  ./libft/libft.a -ltermcap -lreadline
+
+CC = cc
 
 all: $(NAME)
 

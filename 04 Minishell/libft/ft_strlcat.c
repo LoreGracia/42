@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/libft.h"
 
 static void	concatenate(char *dst, const char *src, size_t size)
 {

@@ -28,7 +28,7 @@ The project is organized as follows:
 
 ```bash
 .
-├── *.h              # Header file -> libft.h
+├── *.h              # Header file -> ../inc/libft.h
 ├── *.c              # Source files
 ├── Makefile         # Script to compile the library
 └── libft.a          # Compiled library (generated after running 'make')
@@ -57,7 +57,7 @@ Once compiled the library, it can be used as follows:
 
 Include header files in your code:
 ```c
-#include "libft.h"
+#include "../inc/libft.h"
 ```
 
 ### Start using the functions

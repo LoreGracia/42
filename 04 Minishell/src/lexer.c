@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 18:48:42 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/03/11 18:32:08 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:29:07 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_token(t_pipe *pipe, int num_pipes)
 		{
 			j = -1;
 			while (pipe[i].token[++j])
-				printf("\e[35mToken[%d][%d] \e[93m%s\n\e[0m", i, j, pipe[i].token[j]);
+				printf("\e[35mPipe[%d]token[%d] \e[93m%s\n\e[0m", i, j, pipe[i].token[j]);
 		}
 }
 
