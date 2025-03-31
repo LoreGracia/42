@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 18:11:25 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/03/22 18:55:09 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/03/27 13:02:28 by lgracia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	ft_strnncmp(const char *s1, const char *s2, size_t n)
 	ss2 = (unsigned char *)s2;
 	if (n == 0)
 		return (0);
-	while (ss1[i] == ss2[i] && i + 1 < n && ss1[i] && ss2[i])
+	while (ss1[i] == ss2[i] && i != n && ss1[i] && ss2[i])
 		i++;
-	if (!ss1[i + 1] && ss2[i + 1] == '=')
+	if (!ss1[i] && ss2[i] == '=')
 		return (0);
 	return (ss1[i] - ss2[i]);
 }
@@ -38,23 +38,22 @@ char	*find_venv(char *s, int *start, int *len)
 		&& s[*start + *len] != '\"')
 		(*len)++;
 	tmp = ft_calloc(1, *len + 2);
-	if (!tmp || !ft_strlcpy(tmp, &s[*start + 1], *len - 1))
-		return (NULL);
+	if (!tmp || !ft_strlcpy(tmp, &s[*start + 1], *len))
+		tmp = ft_strdup("");
 	return (tmp);
 }
 
-void	cp_venv(char **env, char *tmp, int len)
+void	cp_venv(char **env, char **tmp, int len)
 {
 	int	i;
 
 	i = 0;
-	while (env[i] && ft_strnncmp(tmp, env[i], len) != 0)
+	while (env[i] && ft_strnncmp(*tmp, env[i], len) != 0)
 		i++;
-	free(tmp);
 	if (!env[i])
-		tmp = ft_strdup("");
+		*tmp = ft_strdup("");
 	else
-		tmp = ft_strdup(ft_strchr(env[i], '=') + 1);
+		*tmp = ft_strdup(ft_strchr(env[i], '=') + 1);
 }
 
 char	*replacesubstr(char *s, int *start, char *tmp, int len)
@@ -72,6 +71,7 @@ char	*replacesubstr(char *s, int *start, char *tmp, int len)
 	new = ft_strjoin(new, &s[*start + len]);
 	if (ft_strlen(tmp))
 		*start += ft_strlen(tmp);
+	free(s);
 	return (new);
 }
 
@@ -83,15 +83,16 @@ char	*expand(char *s, int *start, char **env)
 	if (s[*start] == 36 && s[*start + 1] && s[*start + 1] != ' ')
 	{
 		len = 0;
-		if (s[*start + 1] == 36)
+		if (s[*start + 1] && s[*start + 1] == 36)
 		{
 			len = 2;
-			tmp = ft_strdup("");
+			tmp = ft_strdup("\0");
 		}
 		else
 		{
 			tmp = find_venv(s, start, &len);
-			cp_venv(env, tmp, len);
+			if (tmp)
+				cp_venv(env, &tmp, len);
 		}
 		return (replacesubstr(s, start, tmp, len));
 	}

@@ -6,7 +6,7 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:50:24 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/03/22 19:01:23 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/03/31 12:44:00 by lgracia-         ###   ########.fr       */
 /*   Updated: 2025/03/12 12:44:57 by mcullell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -70,20 +70,27 @@ void	*full_free(char **str, int words)
 	return (0);
 }
 
-char	**remallocstr(char **str, int count)
+char	**reallocstr(char **str, int *count, char c, char *string)
 {
 	char	**s;
 	int		i;
+	int		old_count;
 
-	i = 0;
-	s = ft_calloc((count + 1), sizeof(char *));
-	if (!s)
-		return (NULL);
-	while (str[i])
+	old_count = *count;
+	*count = ccount(string, c);
+	if (old_count != *count)
 	{
-		s[i] = ft_strdup(str[i]);
-		i++;
+		i = 0;
+		s = ft_calloc((*count), sizeof(char *));
+		if (!s)
+			return (NULL);
+		while (str[i])
+		{
+			s[i] = ft_strdup(str[i]);
+			i++;
+		}
+		free(str);
+		return (s);
 	}
-	free(str);
-	return (s);
+	return (str);
 }

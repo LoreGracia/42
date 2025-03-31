@@ -6,21 +6,39 @@
 /*   By: lgracia- <lgracia-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:50:24 by lgracia-          #+#    #+#             */
-/*   Updated: 2025/03/22 19:01:56 by lgracia-         ###   ########.fr       */
+/*   Updated: 2025/03/31 16:38:12 by lgracia-         ###   ########.fr       */
 /*   Updated: 2025/03/12 12:44:57 by mcullell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini.h"
 
-int	split_double_quotes(char **string, int *start, char **env)
+char	*delete_strchar(char *s, int *start, char c)
+{
+	int		len;
+	char	*new;
+
+	if (*start && s[*start - 1] != ' ' && c == ' ')
+	{
+		len = ft_strlen(s) - 1;
+		new = ft_calloc(1, len);
+		ft_strlcpy(new, s, *start + 1);
+		new = ft_strjoin(new, &s[*start + 1]);
+		free(s);
+		return (new);
+	}
+	++(*start);
+	return (s);
+}
+
+int	split_double_quotes(char **string, int *start, char **env, char c)
 {
 	char	*s;
 
 	s = *string;
 	if (s[*start] == '\"')
 	{
-		++(*start);
+		s = delete_strchar(s, start, c);
 		while (s[(*start)] != '\"')
 		{
 			s = expand(s, start, env);
@@ -68,14 +86,14 @@ int	ends(char **string, char c, int next, char **env)
 
 	s = *string;
 	start = next;
-	while (s[start] && s[start] != c)
+	while (s && s[start] && s[start] != c)
 	{
-		if (split_double_quotes(&s, &start, env))
+		if (split_double_quotes(&s, &start, env, c))
 			return (-1);
 		if (split_single_quote(s, &start))
 			return (-1);
 		s = expand(s, &start, env);
-		if (s[start] == '|')
+		if (!s[start] || s[start] == '|')
 			break ;
 		else
 			start++;
@@ -94,35 +112,34 @@ char	**split_token(char *s, char c, char **env)
 
 	i = 0;
 	end = 0;
-	count = 0;
 	words(s, c, &count);
-	str = ft_calloc((count + 1), sizeof(char *));
+	str = ft_calloc((count + 2), sizeof(char *));
+	count = ccount(s, c);
 	if (!s)
 		return (NULL);
-	while (end < count)
+	while (i != count + 1)
 	{
 		start = starts(&s, c, end);
-		if (start < 0)
-			return (NULL);
 		end = ends(&s, c, start, env);
 		if (end < 0)
 			return (NULL);
-		words(s, c, &count);
-		if (s[start] == '\"' && c == ' ')
+		if ((s[start] == '\"' && c == ' ') || (s[start] == '\'' && c == ' '))
 			start++;
-		str[i] = ft_substr(s, start, end - start);
-		if (s[end - 1] == '\"' && c == ' ')
+		if ((s[end - 1] == '\"' && c == ' ') || (s[start - 1] == '\'' && c == ' '))
 		{
-			str = remallocstr(str, count);
+			str[i] = ft_calloc(end - 1 -start, sizeof(char));
 			str[i] = ft_substr(s, start, end - 1 - start);
 		}
 		else
 		{
-			str = remallocstr(str, count);
+			str[i] = ft_calloc(end - start, sizeof(char));
 			str[i] = ft_substr(s, start, end - start);
 		}
+		str = reallocstr(str, &count, c, s);
+		if (!s[i])
+			end = 1;
 		i++;
 	}
-	str[i] = 0;
+	str[i] = NULL;
 	return (str);
 }
